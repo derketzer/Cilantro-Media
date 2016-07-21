@@ -1,0 +1,691 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Cilantro Media</title>
+
+        <link rel="stylesheet" type="text/css"
+              href="{{ asset('bundles/cilantromedia/home-assets/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" type="text/css"
+              href="{{ asset('bundles/cilantromedia/home-assets/css/font-awesome.min.css') }}">
+        <link rel="stylesheet" type="text/css"
+              href="{{ asset('bundles/cilantromedia/home-assets/css/icomoon-fonts.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/cilantromedia/home-assets/css/animate.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/cilantromedia/home-assets/css/settings.css') }}">
+
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/cilantromedia/home-assets/css/owl.carousel.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/cilantromedia/home-assets/css/zerogrid.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/cilantromedia/home-assets/css/style.css') }}">
+
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/cilantromedia/home-assets/css/loader.css') }}">
+
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/cilantromedia/css/home/default.css') }}">
+
+        <link rel="shortcut icon" href="images/favicon.png">
+    </head>
+
+    <body>
+        <div class="loader">
+            <div class="sk-cube-grid">
+                <div class="sk-cube sk-cube1"></div>
+                <div class="sk-cube sk-cube2"></div>
+                <div class="sk-cube sk-cube3"></div>
+                <div class="sk-cube sk-cube4"></div>
+                <div class="sk-cube sk-cube5"></div>
+                <div class="sk-cube sk-cube6"></div>
+                <div class="sk-cube sk-cube7"></div>
+                <div class="sk-cube sk-cube8"></div>
+                <div class="sk-cube sk-cube9"></div>
+            </div>
+        </div>
+
+        <header id="main-navigation">
+            <div id="navigation" data-spy="affix" data-offset-top="20">
+                <div class="container">
+                    <div class="row">
+                        <nav class="navbar navbar-default col-md-12">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                        data-target="#fixed-collapse-navbar" aria-expanded="true">
+                                    <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span
+                                            class="icon-bar bottom-bar"></span>
+                                </button>
+                                <a class="navbar-brand" href="{{ path('cilantro_media_home_index') }}"><img
+                                            src="{{ asset('bundles/cilantromedia/images/logo.png') }}" alt="logo"
+                                            class="img-responsive"></a>
+                            </div>
+
+                            <div id="fixed-collapse-navbar" class="navbar-collapse collapse navbar-right">
+                                <ul class="nav navbar-nav">
+                                    <li class="active">
+                                        <a href="{{ path('cilantro_media_home_index') }}">
+                                            Inicio
+                                        </a>
+                                    </li>
+
+                                    <li class="dropdown">
+                                        <a data-toggle="dropdown" href="#" class="dropdown-toggle">Televisión</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Desestresa2</a></li>
+                                            <li><a href="#">Rumbo a Río</a></li>
+                                            <li><a href="#">Te presento a...</a></li>
+                                            <li><a href="#">Sabías que...</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="dropdown">
+                                        <a data-toggle="dropdown" href="#" class="dropdown-toggle">Radio</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Efemérides</a></li>
+                                            <li><a href="#">Expediente musical</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">
+                                            Contáctanos
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section id="main-slider">
+
+            <div class="tp-banner-container text-center">
+                <div class="tp-banner">
+                    <ul>    <!-- SLIDE  -->
+                        <li data-transition="fade" data-slotamount="6" data-delay="5000">
+                            <!-- MAIN IMAGE -->
+                            <img src="{{ asset('bundles/cilantromedia/images/home/slide1.jpeg') }}" alt="slidebg1"
+                                 data-bgfit="cover" data-bgposition="center center">
+
+                            <h2 class="tp-caption sft tp-resizeme"
+                                data-x="center"
+                                data-y="360"
+                                data-speed="500"
+                                data-start="1600"
+                                data-easing="Power3.easeInOut"
+                                data-elementdelay="0.05"
+                                data-endelementdelay="0.1"
+                                style="z-index: 9;">
+                                Video
+                            </h2>
+                        </li>
+                        <!-- SLIDE  -->
+                        <li data-transition="slideleft" data-slotamount="7" data-delay="7000">
+                            <!-- MAIN IMAGE -->
+                            <img src="{{ asset('bundles/cilantromedia/images/home/slide2.jpeg') }}"
+                                 alt="laptopmockup_sliderdy" data-bgfit="cover" data-bgposition="center center">
+                            <!-- LAYERS -->
+
+                            <h2 class="tp-caption sft tp-resizeme"
+                                data-x="center"
+                                data-y="360"
+                                data-speed="500"
+                                data-start="1600"
+                                data-easing="Power3.easeInOut"
+                                data-elementdelay="0.05"
+                                data-endelementdelay="0.1"
+                                style="z-index: 9;">
+                                Audio
+                            </h2>
+                        </li>
+                        <!-- SLIDE  -->
+                        <li data-transition="fade" data-slotamount="6" data-delay="5000">
+                            <!-- MAIN IMAGE -->
+                            <img src="{{ asset('bundles/cilantromedia/images/home/slide3.jpeg') }}" alt="slidebg1"
+                                 data-bgposition="center top">
+
+                            <h2 class="tp-caption sft tp-resizeme"
+                                data-x="center"
+                                data-y="360"
+                                data-speed="500"
+                                data-start="1600"
+                                data-easing="Power3.easeInOut"
+                                data-elementdelay="0.05"
+                                data-endelementdelay="0.1"
+                                style="z-index: 9;">
+                                Marketing Digital
+                            </h2>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+        </section>
+
+
+        <section id="bg-canvas">
+            <div class="container">
+                <div class="image hidden-xs">
+                    <img src="{{ asset('bundles/cilantromedia/home-assets/images/divider.png') }}" alt="divider">
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-4 canvas-box text-center">
+                        <a href="#"><span class="icon-wrap text-center"><i class="icon-icons96"></i></span></a>
+                        <h4>Creatividad</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                    <div class="col-md-4 col-sm-4 canvas-box text-center">
+                        <a href="#"><span class="icon-wrap text-center"><i class="icon-lock"></i></span></a>
+                        <h4>Compromiso</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                    <div class="col-md-4 col-sm-4 canvas-box text-center">
+                        <a href="#"><span class="icon-wrap text-center"><i class="icon-trophy"></i></span></a>
+                        <h4>Excelencia</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Paralax Effect Section -->
+        <section id="bg-paralax">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <p class="title">Cuenta historias con nosotros</p>
+                        <h2>Nosotros te ayudamos <br>a grabar tus ideas</h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Work Project GALLERY -->
+        <section id="project">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <p class="title">lo que hacemos</p>
+                        <h2 class="heading">Últimos proyectos</h2>
+                        <div class="work-filter">
+                            <ul class="text-center">
+                                <li><a href="javascript:;" data-filter="all" class="active filter">Todos</a></li>
+                                <li><a href="javascript:;" data-filter=".brand" class="filter">Televisión</a></li>
+                                <li><a href="javascript:;" data-filter=".design" class="filter">Radio</a></li>
+                                <li><a href="javascript:;" data-filter=".graphic" class="filter">Marketing</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="container-fluid project-wrapper">
+                <div class="zerogrid">
+                    <div class="wrap-container clearfix">
+                        <div class="row wrap-content">
+                            <div class="col-1-2">
+                                <div class="col-full mix work-item video">
+                                    <div class="wrap-col">
+                                        <div class="item-container">
+                                            <a class="overlay text-center" href="work-detail.html">
+                                                <div class="overlay-inner">
+                                                    <h4>Modern worspace</h4>
+                                                    <div class="line"></div>
+                                                    <p>Design</p>
+                                                </div>
+                                            </a>
+                                            <img src="{{ asset('bundles/cilantromedia/home-assets/images/workimg1.jpg') }}"
+                                                 alt="work"/>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-2-4 mix work-item brand">
+                                    <div class="wrap-col">
+                                        <div class="item-container">
+                                            <a class="overlay text-center" href="work-detail_2.html">
+                                                <div class="overlay-inner">
+                                                    <h4>Modern worspace</h4>
+                                                    <div class="line"></div>
+                                                    <p>Design</p>
+                                                </div>
+                                            </a>
+                                            <img src="{{ asset('bundles/cilantromedia/home-assets/images/workimg4.jpg') }}"
+                                                 alt="work"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-2-4 mix work-item">
+                                    <div class="wrap-col">
+                                        <div class="item-container">
+                                            <a class="overlay text-center" href="work-detail_3.html">
+                                                <div class="overlay-inner">
+                                                    <h4>Modern worspace</h4>
+                                                    <div class="line"></div>
+                                                    <p>Design</p>
+                                                </div>
+                                            </a>
+                                            <img src="{{ asset('bundles/cilantromedia/home-assets/images/workimg5.jpg') }}"
+                                                 alt="work"/></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-1-4 mix work-item graphic">
+                                <div class="wrap-col">
+                                    <div class="item-container">
+                                        <a class="overlay text-center" href="work-detail.html">
+                                            <div class="overlay-inner">
+                                                <h4>Modern worspace</h4>
+                                                <div class="line"></div>
+                                                <p>Design</p>
+                                            </div>
+                                        </a>
+                                        <img src="{{ asset('bundles/cilantromedia/home-assets/images/workimg2.jpg') }}"
+                                             alt="work"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-1-4 mix work-item design">
+                                <div class="wrap-col">
+                                    <div class="item-container">
+                                        <a class="overlay text-center" href="work-detail_2.html">
+                                            <div class="overlay-inner">
+                                                <h4>Modern worspace</h4>
+                                                <div class="line"></div>
+                                                <p>Design</p>
+                                            </div>
+                                        </a>
+                                        <img src="{{ asset('bundles/cilantromedia/home-assets/images/workimg3.jpg') }}"
+                                             alt="work"/></div>
+                                </div>
+                            </div>
+                            <div class="col-1-2 mix work-item graphic">
+                                <div class="wrap-col">
+                                    <div class="item-container">
+                                        <a class="overlay text-center" href="work-detail_3.html">
+                                            <div class="overlay-inner">
+                                                <h4>Modern worspace</h4>
+                                                <div class="line"></div>
+                                                <p>Design</p>
+                                            </div>
+                                        </a>
+                                        <img src="{{ asset('bundles/cilantromedia/home-assets/images/workimg6.jpg') }}"
+                                             alt="work"/>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!--Counter-->
+        <section id="facts">
+            <h3 class="hidden">hidden</h3>
+            <div class="container-fluid">
+                <div class="row number-counters">
+                    <!-- first count item -->
+                    <div class="col-md-3 col-sm-3 col-xs-12 text-center">
+                        <div class="counters-item blue row"><strong data-to="10">0</strong>
+                            <p>Clientes satisfechos</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-12 text-center">
+                        <div class="counters-item purple row"><strong data-to="35">0</strong>
+                            <p>Historias contadas</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-12 text-center">
+                        <div class="counters-item pink row"><strong data-to="12">0</strong>
+                            <p>Proyectos completados</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-12 text-center">
+                        <div class="counters-item green row"><strong data-to="1350">0</strong>
+                            <p>Chelas bebidas</p>
+                        </div>
+                    </div>
+                    <!-- end first count item -->
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Responsive image with left -->
+        <section id="responsive" class="padding">
+            <div class="container-fluid">
+                <div class="row responsive-pic">
+                    <div class="col-md-6 col-sm-6">
+                        <img src="{{ asset('bundles/cilantromedia/home-assets/images/full-responsive.png') }}"
+                             alt="fully responsive" class="img-responsive">
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6 r-test">
+                                <h3>Historias únicas</h3>
+                                <p>Trabajar con nosotros es una experiencia única, de historias especiales contadas con el mayor profesionalismo y entrega para llevar al público tu idea.</p>
+                                <h4>Ofrecemos</h4>
+                                <ul class="r-feature">
+                                    <li>Contenido creativo</li>
+                                    <li>Web</li>
+                                    <li>Móvil</li>
+                                    <li>Marketing online</li>
+                                    <li>Redes sociales</li>
+                                    <li>Branding</li>
+                                </ul>
+                                <div class="screens"><i class="icon-laptop2"></i> <i class="icon-tablet2"></i> <i
+                                            class="icon-icons202"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Skills with Description -->
+        <section id="bg-skill" class="padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <p class="title">Algunas de nuestras</p>
+                        <h2 class="heading">áreas de experiencia</h2>
+                    </div>
+                    <div class="col-md-6 skills">
+                        <ul>
+                            <li>
+                                <p class="pull-left">Producción</p>
+                                <p class="pull-right"> 95%</p>
+                                <div class="clearfix"></div>
+                            </li>
+                            <li class="progress">
+                                <div class="progress-bar blue" data-width="95"></div>
+                            </li>
+                            <li>
+                                <p class="pull-left">Diseño</p>
+                                <p class="pull-right"> 78%</p>
+                                <div class="clearfix"></div>
+                            </li>
+                            <li class="progress">
+                                <div class="progress-bar pink" data-width="78"></div>
+                            </li>
+                            <li>
+                                <p class="pull-left">Radio</p>
+                                <p class="pull-right"> 70%</p>
+                                <div class="clearfix"></div>
+                            </li>
+                            <li class="progress">
+                                <div class="progress-bar purple" data-width="70"></div>
+                            </li>
+                            <li>
+                                <p class="pull-left">Marketing</p>
+                                <p class="pull-right"> 85%</p>
+                                <div class="clearfix"></div>
+                            </li>
+                            <li class="progress">
+                                <div class="progress-bar green" data-width="85"></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="heading">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum tempus libero, sed bibendum lorem suscipit sed. In maximus placerat dignissim. Nunc suscipit augue at enim egestas, finibus scelerisque libero imperdiet. Curabitur ac porttitor ante. Suspendisse potenti. Mauris eleifend quis eros sit amet lobortis. Pellentesque nec urna at lacus ultricies fermentum sed nec dolor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas maximus, tellus non commodo maximus, sapien tortor imperdiet orci, vitae commodo eros sem id odio. Nam consectetur blandit placerat. Etiam at consequat odio. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis suscipit mollis maximus. Nullam tincidunt sodales velit, sed luctus orci egestas ut.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- What We Do Section -->
+        <section class="we-do bg-grey padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <p class="title">nuestros servicios</p>
+                        <h2 class="heading">qué hacemos</h2>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="do-wrap text-center"><span class="green"></span> <i class="icon-video-camera green"></i>
+                            <h4>Video</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <br />
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="do-wrap text-center"><span class="pink"></span> <i class="icon-headphones pink"></i>
+                            <h4>Audio</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <br />
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="do-wrap text-center"><span class="purple"></span> <i class="icon-cart purple"></i>
+                            <h4>Marketing</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <br />
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="do-wrap text-center"><span class="blue"></span> <i class="icon-glass blue"></i>
+                            <h4>Fiestas</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Crteative Thinker -->
+        <section id="thinkers" class="padding">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-12 wow fadeIn">
+                        <p class="title">creatividad y pasión</p>
+                        <h2 class="heading">nuestro equipo</h2>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="thinker-wrap">
+                            <div class="thinker-image">
+                                <img src="{{ asset('bundles/cilantromedia/home-assets/images/thinker.jpg') }}" alt="Richard"
+                                     class="img-responsive">
+                                <div class="overlay">
+                                    <div class="overlay-inner">
+                                        <ul class="social-link">
+                                            <li><a href="#" class="text-center"><i class="fa fa-facebook"></i><span></span></a>
+                                            </li>
+                                            <li><a href="#" class="text-center"><i class="fa fa-twitter"></i><span></span></a>
+                                            </li>
+                                            <li><a href="#" class="text-center"><i class="icon-instagram"></i><span></span></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3>Richard Stevens</h3>
+                            <small>Web Designer</small>
+                            <p>Keep away from people who try to belittle your ambitions. Small people always do that.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="thinker-wrap">
+                            <div class="thinker-image">
+                                <img src="{{ asset('bundles/cilantromedia/home-assets/images/thinker2.jpg') }}" alt="Richard"
+                                     class="img-responsive">
+                                <div class="overlay">
+                                    <div class="overlay-inner">
+                                        <ul class="social-link">
+                                            <li><a href="#" class="text-center"><i class="fa fa-facebook"></i><span></span></a>
+                                            </li>
+                                            <li><a href="#" class="text-center"><i class="fa fa-twitter"></i><span></span></a>
+                                            </li>
+                                            <li><a href="#" class="text-center"><i class="icon-instagram"></i><span></span></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3>Richard Stevens</h3>
+                            <small>Web Designer</small>
+                            <p>Keep away from people who try to belittle your ambitions. Small people always do that.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="thinker-wrap">
+                            <div class="thinker-image">
+                                <img src="{{ asset('bundles/cilantromedia/home-assets/images/thinker3.jpg') }}" alt="Richard"
+                                     class="img-responsive">
+                                <div class="overlay">
+                                    <div class="overlay-inner">
+                                        <ul class="social-link">
+                                            <li><a href="#" class="text-center"><i class="fa fa-facebook"></i><span></span></a>
+                                            </li>
+                                            <li><a href="#" class="text-center"><i class="fa fa-twitter"></i><span></span></a>
+                                            </li>
+                                            <li><a href="#" class="text-center"><i class="icon-instagram"></i><span></span></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3>Richard Stevens</h3>
+                            <small>Web Designer</small>
+                            <p>Keep away from people who try to belittle your ambitions. Small people always do that.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="slogan" class="wow fadeIn" data-wow-duration="500ms" data-wow-delay="300ms">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 clearfix">
+                        <h5 class="hidden">hiddens</h5>
+                        <p class="">
+                            &iquest;Ayuda con tu proyecto?
+                        </p>
+                        <a class="btn-common bounce-top-black" href="#">Contáctanos</a></div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="media">
+                            <div class="media-left media-middle"><a href="#"> <img class="media-object img-responsive"
+                                                                                   src="{{ asset('bundles/cilantromedia/images/logo.png') }}"
+                                                                                   alt="Cilantro Media"> </a></div>
+                            <div class="media-right">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum tempus libero, sed bibendum lorem suscipit sed. In maximus placerat dignissim. Nunc suscipit augue at enim egestas, finibus scelerisque libero imperdiet. Curabitur ac porttitor ante. Suspendisse potenti.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                        <div class="footer-col">
+                            <span class="line"></span>
+                            <h4>&iquest;Dónde?</h4>
+
+                            <ul class="address">
+                                <li><i class="icon-icons158"></i>Av de las Grangas 553<br>
+                                    8374, México
+                                </li>
+                                <li><i class="icon-icons202"></i>+52 552-112-222</li>
+                                <li><a href="mailto:email@website.com"><i class="icon-icons208"></i>email@cilantromedia.mx</a></li>
+                            </ul>
+                            <ul class="social-link">
+                                <li><a href="#" class="text-center"><i class="fa fa-facebook"></i><span></span></a></li>
+                                <li><a href="#" class="text-center"><i class="fa fa-twitter"></i><span></span></a></li>
+                                <li><a href="#" class="text-center"><i class="icon-instagram"></i><span></span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="footer-col">
+                            <span class="line"></span>
+                            <h4>Vínculos</h4>
+                            <ul class="nayax-links">
+                                <li><a href="#">Visión</a></li>
+                                <li><a href="#">Código de ética</a></li>
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Ejecutivo</a></li>
+                                <li><a href="#">Negocios</a></li>
+                                <li><a href="#">Instalaciones</a></li>
+                                <li><a href="#">Aviso legal</a></li>
+                                <li><a href="#">Contacto</a></li>
+                                <li><a href="#">Mapa web</a></li>
+                                <li><a href="#">Política de privacidad</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-12">
+                        <div class="footer-col instagram">
+                            <span class="line"></span>
+                            <h4>Twitter</h4>
+
+                            <a class="twitter-timeline" data-lang="es" data-height="270" data-link-color="#07aaa5" data-theme="dark" href="https://twitter.com/der_ketzer">Tweets by der_ketzer</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <div class="footer-bottom text-center">
+            <a href="#" class="go-top text-center"><i class="fa fa-angle-double-up"></i></a>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>Copyright &copy; 2016 Cilantro Media. Todos los derechos reservados. Desarrollado por Katana Studios</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script src="{{ asset('bundles/cilantromedia/home-assets/js/jquery-2.1.4.js') }}"></script>
+        <script src="{{ asset('bundles/cilantromedia/home-assets/js/jquery.cookie.js') }}"></script>
+        <script src="{{ asset('bundles/cilantromedia/home-assets/js/jquery.stellar.js') }}"></script>
+        <script src="{{ asset('bundles/cilantromedia/home-assets/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('bundles/cilantromedia/home-assets/js/jquery.collapsible.js') }}"></script>
+        <script src="{{ asset('bundles/cilantromedia/home-assets/js/jquery.themepunch.tools.min.js') }}"></script>
+        <script src="{{ asset('bundles/cilantromedia/home-assets/js/jquery.themepunch.revolution.min.js') }}"></script>
+        <script src="{{ asset('bundles/cilantromedia/home-assets/js/slider.js') }}"></script>
+        <script src="{{ asset('bundles/cilantromedia/home-assets/js/owl.carousel.min.js') }}"></script>
+        <script src="{{ asset('bundles/cilantromedia/home-assets/js/jquery-countTo.js') }}"></script>
+        <script src="{{ asset('bundles/cilantromedia/home-assets/js/jquery.appear.js') }}"></script>
+        <script src="{{ asset('bundles/cilantromedia/home-assets/js/jquery.mixitup.min.js') }}"></script>
+        <script src="{{ asset('bundles/cilantromedia/home-assets/js/portfolio.js') }}"></script>
+        <script src="{{ asset('bundles/cilantromedia/home-assets/js/wow.min.js') }}"></script>
+        <script src="{{ asset('bundles/cilantromedia/home-assets/js/jPushMenu.js') }}"></script>
+        <script src="{{ asset('bundles/cilantromedia/home-assets/js/functions.js') }}"></script>
+
+        {% if app.environment != 'dev' %}
+            <script>
+                (function (i, s, o, g, r, a, m) {
+                    i['GoogleAnalyticsObject'] = r;
+                    i[r] = i[r] || function () {
+                                (i[r].q = i[r].q || []).push(arguments)
+                            }, i[r].l = 1 * new Date();
+                    a = s.createElement(o),
+                            m = s.getElementsByTagName(o)[0];
+                    a.async = 1;
+                    a.src = g;
+                    m.parentNode.insertBefore(a, m)
+                })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+                ga('create', 'UA-81169201-1', 'auto');
+                ga('send', 'pageview');
+            </script>
+        {% endif %}
+    </body>
+</html>

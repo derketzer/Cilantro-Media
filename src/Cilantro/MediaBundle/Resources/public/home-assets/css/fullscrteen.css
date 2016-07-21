@@ -1,0 +1,12 @@
+
+#navigation.affix .navbar-default .navbar-nav > li > a {
+	padding: 34px 0;
+
+}
+#navigation.affix .navbar-brand {
+	padding: 18px 0;
+	width:auto;
+}
+#navigation.affix .icon-nav ul li {
+	padding:30px 15px;
+}

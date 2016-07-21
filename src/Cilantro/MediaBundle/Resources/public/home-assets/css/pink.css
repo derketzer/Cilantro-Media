@@ -1,0 +1,201 @@
+
+.loader{
+	background-color: #d02552 !important;
+}
+.sk-cube-grid .sk-cube {background-color: #fff !important;}
+.bg-first {background: #d02552;}
+.bg-second {background: #b7db05;}
+.bg-third {background: #bde304;}
+.bg-fourth {background: #c4eb05;}
+.bg-fifth {background: #ccf40b;}
+.bounce-top:before {background: #d02552;}
+.bounce-top:hover, .bounce-top:focus {border: 1px solid #d02552;}
+.base_color {
+  background:#d02552;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > .active a, .navbar-default .navbar-nav > .dropdown.active a, .navbar-default .navbar-nav > .active a:hover, .navbar-default .navbar-nav > .active a:focus {
+    border-bottom: 2px solid #d02552;
+}
+.navbar-nav > li > .megamenu-content li > a:hover::before {
+	content: url(../images/menu-arrow-pink.png);
+}
+.navbar-nav > li > .megamenu-content li > a:hover, .navbar-nav > li > .megamenu-content li > a:focus, .navbar-default .navbar-nav .open .megamenu-content > li > a:hover {color: #d02552 !important;}
+.navbar-nav > li > .dropdown-menu > li {border-bottom: 1px solid rgb(255, 255, 255);}
+
+.navbar-nav > li > .dropdown-menu > li > a:focus, .navbar-nav > li > .dropdown-menu > li > a:hover, .navbar-default .navbar-nav > .active > .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover {background-color: #d02552;}
+
+.navbar-nav > li > .megamenu-content h5 {color: #000000;}
+span.new {
+    background: #d02552;
+    color: #fff;
+    padding: 3px 10px;
+    font-size: 9px;
+    text-transform: uppercase;
+    border-radius: 3px;
+    margin: 0 0 0 10px;
+}
+#search .close { background-color: #d02552; border-color: #d02552;}
+#search .btn {background-color: #d02552;}
+
+.icon-nav ul li a:hover{color: #d02552;}
+
+.cart .cart-content a {color: #d02552;}
+.certified{ background:#eaeaea;}
+.other-page-link a .fa, .other-page-link a:hover, .other-page-link a:focus, .other-page-link span { color: #d02552; }
+
+.main-pic .light {
+  border-left: 4px solid #d02552;
+}
+.main-pic .light .btn-common.active {
+  background: #d02552;
+}
+.index_3 .canvas-box:hover span i {
+  color: #d02552;
+}
+.index_3 .canvas-box:hover h4 {
+  color: #d02552;
+}
+#testinomial-slider .owl-prev:hover, #testinomial-slider .owl-next:hover, #about-slider .owl-prev:hover, #about-slider .owl-next:hover, #publication-slider .owl-prev:hover, #publication-slider .owl-next:hover{
+  background-color: #d02552;
+  border: 1px solid #d02552;
+}
+.feature-wrap i {
+  border: 1px solid #d02552;
+  color: #d02552;
+}
+.feature-wrap.feature-wrap:hover i, .error-page a.btn-common{
+  background: #d02552;
+  border: 1px solid #d02552;
+  color:#fff;
+}
+
+#grid-layout .overlay {
+  background-color: rgba(208, 37, 82, 0.8);
+}
+
+.thinker-image .overlay ,.overlay {background-color: rgba(208, 37, 82, 0.71);}
+.thinker-image .overlay ul.social-link li a:hover span {
+  border: 1px solid transparent;
+}
+
+#testinomial-indexFour .item h4 {
+  color: #d02552;
+}
+#testinomial-indexFour .owl-page.active span, #testinomial-indexFour .owl-page:hover span{
+  background: #d02552;
+}
+.index_3 .center a {
+  color: #d02552;
+}
+
+#area-main ul.blog-author li a:hover, #area-main ul.blog-author li a:focus ,
+.morepost-wrap a:hover, .morepost-wrap2 a:hover ,
+.morepost-wrap2 .morepost:hover .fa-long-arrow-left, .morepost-wrap .morepost:hover .fa-long-arrow-left,
+.morepost-wrap2 .morepost:hover .fa-long-arrow-right, .morepost-wrap .morepost:hover .fa-long-arrow-right,
+.white-box a.readmore, .error-page h1 span{
+  color: #d02552;
+}
+#area-main a.readmore:hover, #area-main a.readmore:focus {
+  border: 1px solid #d02552;
+}
+ul.category li a:hover, ul.category li a:focus , ul.category li a .date , .blog-item blockquote,
+.loadmore:hover , .loadmore:focus, .project-detail .column p > a, .center-icon:hover, .center-icon:focus,
+.info-section ul.social-media li a:hover, .info-section ul.social-media li a:focus{
+  color: #d02552;
+}
+
+#area-main .tag-cloud li a:hover, #area-main .tag-cloud li a:focus, .blog-reply a.btn-rep:hover, .blog-reply a.btn-rep:focus {
+  background: #d02552;
+  color: #fff;
+}
+.blog-item .post-comment form input[type="submit"]{
+  background: #d02552;
+}
+.work-filter ul li a:hover, .work-filter ul li a.active {
+  background-color: #d02552;
+  border: 1px solid #d02552;
+}
+#portfolio .overlay {
+	background:rgba(255,255,255,0.78);
+}
+.loadmore:hover::before, .loadmore:focus::before {
+  color: #d02552;
+  text-shadow: 10px 0 #d02552, -10px 0 #d02552;
+}
+ul.detail-share li a:hover, ul.detail-share li a:focus, .work-detail .link-navigation .previous a:hover, .work-detail .link-navigation .previous a:focus, .work-detail .link-navigation .next a:hover, .work-detail .link-navigation .next a:focus {
+  background-color: #d02552;
+  border: 1px solid #d02552;
+  color: #fff;
+}
+.service-slider .owl-page span:hover, .service-slider .owl-page.active span, #team-slider .owl-page span:hover, #team-slider .owl-page.active span {
+  background:#d02552;
+}
+
+.resp-vtabs .resp-tabs-list li:hover , .resp-vtabs li.resp-tab-active{
+  background-color: #d02552 !important;
+  border-bottom: 1px solid #d02552;
+}
+h2.resp-accordion:hover , h2.resp-tab-active{
+  background-color: #d02552 !important;
+}
+.contact p > span { color: #d02552; }
+.contact form #submit_btn:hover, .contact form #submit_btn:focus {
+  background: #d02552;
+  border: 1px solid #d02552;
+}
+.faq .collapse-open h4 {
+  color: #d02552;
+}
+#slogan {
+  background:#d02552;
+}
+footer .footer-col h4 {
+  border-bottom: 1px solid #d02552;
+}
+ul.nayax-links li a:hover, ul.nayax-links li a:focus, ul.nayax-links li.active a:hover, ul.nayax-links li.active a {
+  color: #d02552;
+}
+
+.index_3 .center ul.social-link li a:hover span , ul.social-link li a:hover span {background: #d02552; border: 1px solid #d02552;}
+.index_3 .center ul.social-link li a:hover i{ color:#fff;}
+.index_3 .form-inline input[type="submit"]:hover {
+  background-color: #d02552;
+}
+.index_3 .breadcrumb li a:hover, .index_3 .breadcrumb li a:focus {
+  color: #d02552;
+}
+.go-top:hover, .go-top:focus {
+	color:#d02552;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

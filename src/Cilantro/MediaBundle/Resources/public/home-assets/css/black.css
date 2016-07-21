@@ -1,0 +1,113 @@
+.sk-cube-grid .sk-cube {background-color: #000;}
+.bg-first {background: #000;}
+.bg-second{background: #343434;}
+.bg-third{background: #484848;}
+.bg-fourth{background: #5d5d5d;}
+.bg-fifth{background: #717171;}
+
+#navigation.affix {
+  background-color: #fff;
+}
+#main-navigation {
+  height: 80px;
+  background-color:transparent;
+}
+#main-navigation a.logo {
+  display: inline-block;
+  padding: 20px 0;
+}
+#main-navigation a.logo img{
+	width:100%;
+}
+#navigation.affix a.logo{
+  padding: 12px 0;
+  width: 136px;
+}
+
+
+
+
+
+
+.index_3 .canvas-box:hover span i {color: #5a5a5a;}
+.index_3 .canvas-box:hover h4 {color: #5a5a5a;}
+.bounce-top:hover, .bounce-top:focus {border: 1px solid #000;}
+.bounce-top:before {background: #000;}
+
+
+ul.social-link li a:hover span { border: 1px solid #fff;}
+
+.index_2#bg-paralax, .index_4#bg-paralax, .index_6#bg-paralax {background: url("../images/paralax-2.jpg") no-repeat fixed 100% 70% / cover;}
+
+.work-filter ul li a:hover, .work-filter ul li a.active {
+  background-color: #000;
+  border: 1px solid #000;
+
+}
+.thinker-image .overlay {background: rgba(0, 0, 0, 0.75);}
+.index_3 .center a {
+    color: #5a5a5a;
+}
+.index_3 .center ul.social-link li a:hover span {
+  background: #000;
+  border: 1px solid #000;
+}
+.index_3 .center ul.social-link li a:hover i{
+	color:#fff;
+}
+#testinomial-slider .owl-prev:hover, #testinomial-slider .owl-next:hover{border: 1px solid #000;background-color: #000;}
+#testinomial {background: url(../images/bg-testinomial.jpg) no-repeat;}
+.index_3 .form-inline input[type="submit"]:hover,.index_3 .form-inline input[type="submit"]:focus{
+  background-color:#000;
+}
+
+
+
+
+ul.nayax-links li a:hover, ul.nayax-links li a:focus, ul.nayax-links li.active a:hover, ul.nayax-links li.active a {color: #000;}
+.news p a {color: #000;}
+.index_2 form.footer-search .input-group-btn > button {color: #000;}
+.index_2 form.footer-search .input-group-btn > button:hover {background-color: #000;}
+
+.index_3 .breadcrumb li a:hover, .index_3 .breadcrumb li a:focus{ color:#5a5a5a;
+	
+}
+.go-top:hover, .go-top:focus {color: #000;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 1024px){
+	
+	
+}
+@media screen and (max-width: 980px){
+	
+  
+}
+
+@media screen and (max-width: 767px){
+  #main-navigation {
+  background-color: transparent;
+  }
+ 
+}
+
+

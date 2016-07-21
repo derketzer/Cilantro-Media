@@ -1,0 +1,205 @@
+
+
+ul.resp-tabs-list, p {
+    margin: 0px;
+    padding: 0px;
+}
+
+.resp-tabs-list li {
+
+    cursor: pointer;
+    float: left;
+}
+
+.resp-tabs-container {
+    padding: 0px;
+    background-color: #fff;
+    clear: left;
+}
+
+h2.resp-accordion {
+  cursor: pointer;
+  display: none;
+  font-size: 20px;
+  margin-bottom: 10px;
+  padding: 15px;
+  background-color:#1b1d1f !important;
+  color:#fff;
+}
+.resp-tab-content {
+    display: none;
+}
+
+.resp-content-active, .resp-accordion-active {
+    display: block;
+}
+
+.resp-tab-content {
+ /*   border: 1px solid #c1c1c1;
+	border-top-color: #5AB1D0;*/
+}
+
+/*h2.resp-accordion {
+    font-size: 13px;
+    border: 1px solid #c1c1c1;
+    border-top: 0px solid #c1c1c1;
+    margin: 0px;
+    padding: 10px 15px;
+}
+
+h2.resp-tab-active {
+    border-bottom: 0px solid #c1c1c1 !important;
+    margin-bottom: 0px !important;
+    padding: 10px 15px !important;
+}
+
+h2.resp-tab-title:last-child {
+    border-bottom: 12px solid #c1c1c1 !important;
+    background: blue;
+}
+*/
+/*-----------Vertical tabs-----------*/
+.resp-vtabs ul.resp-tabs-list {
+/*    float: left;
+    width: 30%;*/
+}
+
+.resp-vtabs .resp-tabs-list li {
+	background-color: #1b1d1f !important;
+	  border-bottom: 1px solid #3d3f40;
+	  color: #fff;
+	  display: block;
+	  font-family: "montserratregular";
+	  font-size: 15px;
+	  padding: 22px;
+	  text-transform: uppercase;
+    cursor: pointer;
+    float: none;
+	 
+	 -webkit-transition: all 500ms linear;
+   -moz-transition: all 500ms linear;
+	-ms-transition: all 500ms linear;
+   -o-transition:all 500ms linear;
+	transition:all 500ms linear;
+}
+.resp-vtabs .resp-tabs-list li:hover{
+	background-color:#07aaa5 !important;
+	border-bottom:1px solid #07aaa5;
+}
+.resp-vtabs .resp-tabs-container {
+    padding: 0px;
+    min-height: 250px;
+}
+
+.resp-vtabs .resp-tab-content {
+    border: none;
+    word-wrap: break-word;
+}
+
+.resp-vtabs li.resp-tab-active { 
+	position: relative;
+	z-index: 1;
+   color: #fff;
+	background-color:#07aaa5 !important;
+	border-bottom:1px solid #07aaa5;
+}
+
+
+.resp-arrow {
+    width: 0;
+    height: 0;
+    float: right;
+    margin-top: 3px;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 12px solid #fff;
+}
+
+h2.resp-tab-active span.resp-arrow {
+    border: none;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 12px solid #fff;
+}
+
+/*-----------Accordion styles-----------*/
+h2.resp-tab-active {
+    background: #07aaa5 !important;
+	 color:#fff;
+}
+
+.resp-easy-accordion h2.resp-accordion {
+    display: block;
+}
+
+.resp-easy-accordion .resp-tab-content {
+    border: 1px solid #c1c1c1;
+}
+
+.resp-easy-accordion .resp-tab-content:last-child {
+    border-bottom: 1px solid #c1c1c1;/* !important;*/
+}
+
+.resp-jfit {
+    width: 100%;
+    margin: 0px;
+}
+
+.resp-tab-content-active {
+    display: block;
+}
+h2.resp-accordion{
+	-webkit-transition: all 500ms linear;
+   -moz-transition: all 500ms linear;
+	-ms-transition: all 500ms linear;
+   -o-transition:all 500ms linear;
+	transition:all 500ms linear;
+
+}
+h2.resp-accordion:hover{
+	background-color:#07aaa5 !important;
+}
+
+h2.resp-accordion:first-child {
+
+}
+div.sticker {
+	position:relative;
+}
+.stick {
+    position:fixed;
+    top:0px;
+}
+
+/*Here your can change the breakpoint to set the accordion, when screen resolution changed*/
+@media only screen and (max-width: 768px) {
+    ul.resp-tabs-list {
+        display: none;
+    }
+
+    h2.resp-accordion {
+        display: block;
+		  
+    }
+	.faq > h3{
+		display:none;
+	}
+	#parentVerticalTab .col-sm-4, #parentVerticalTab .col-sm-8{
+		width:100%;
+	}
+    .resp-vtabs .resp-tabs-container {
+        border: none;
+        float: none;
+        width: 100%;
+        min-height: 100px;
+        clear: none;
+    }
+
+    .resp-accordion-closed {
+        display: none !important;
+    }
+
+    .resp-vtabs .resp-tab-content:last-child {
+        border-bottom: 1px solid #c1c1c1 !important;
+    }
+}
