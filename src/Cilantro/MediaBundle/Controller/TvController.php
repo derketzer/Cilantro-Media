@@ -12,6 +12,12 @@ class TvController extends Controller
      */
     public function episodesAction($slug)
     {
-        return $this->render('CilantroMediaBundle:Tv:episode_list.html.twig');
+        $themePath = 'bundles/cilantromedia/site-assets/css/theme-color.css';
+        if(file_exists('bundles/cilantromedia/css/site/theme-color-'.$slug.'.css'))
+            $themePath = 'bundles/cilantromedia/css/site/theme-color-'.$slug.'.css';
+
+        return $this->render('CilantroMediaBundle:Tv:episode_list.html.twig', Array(
+            'themePath' => $themePath
+        ));
     }
 }
