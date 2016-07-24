@@ -1,3 +1,7 @@
 #bg-paralax {
     background-image: url("/bundles/cilantromedia/images/home/parallax_1.jpeg");
 }
+
+.innerpage-banner{
+    background-image: url("/bundles/cilantromedia/images/home/contact_header.jpg");
+}

@@ -1,1 +1,400 @@
-{% extends ':CilantroMedia:base.html.twig' %}
+{% extends 'CilantroMedia/Site/base.html.twig' %}
+
+{% block body %}
+<!--Banner Start-->
+<div class="cp_banner_full_width">
+
+    <div class="cp-slider-block">
+
+
+        <div class="cp_banner">
+            <!--Banner Slider Start-->
+            <div class="owl-carousel" id="cp-video-slider">
+                {% for i in 1..8 %}
+                    <div class="item">
+                        <img src="http://placekitten.com/g/983/595" alt="">
+
+                        <div class="cp-banner-caption">
+                            <div class="inner-holder">
+                                <div class="banner-top-text">
+                                    <strong class="banner-title">Episodio {{ i }}</strong>
+                                    <p>Nombre Comediante {{ i }}</p>
+                                </div>
+                                <a href="#" class="cp-btn-style1">Ver episodio</a>
+                            </div>
+                        </div>
+                        <!--Banner Caption End-->
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="cp-video-grid-block">
+        <ul class="cp-video-grid-listing">
+
+            <li class="cp-vgl-holder m2 p2">
+                <div class="cp-thumb">
+                    <img src="http://img.youtube.com/vi/9E7FZyZiJe0/hqdefault.jpg" alt="">
+
+                    <div class="cp-caption">
+                        <a class="play-video" href="#">Reproducir</a>
+                        <h4>Paty Muñoz Video Blog</h4>
+                        <strong>Episodio 8</strong>
+                    </div>
+                </div>
+            </li>
+
+            <li class="cp-vgl-holder m2 p2">
+                <div class="cp-thumb">
+                    <img src="http://img.youtube.com/vi/Pzn7j6vhGVM/hqdefault.jpg" alt="">
+                    <div class="cp-caption">
+                        <a class="play-video" href="#">Reproducir</a>
+                        <h4>Paty Muñoz Entrevista</h4>
+                        <strong>Episodio 8</strong>
+                    </div>
+                </div>
+            </li>
+
+            <li class="cp-vgl-holder p2">
+                <div class="cp-thumb">
+                    <img src="http://img.youtube.com/vi/H4B2FYIebvw/hqdefault.jpg" alt="">
+                    <div class="cp-caption">
+                        <a class="play-video" href="#">Reproducir</a>
+                        <h4>Paty Muñoz Sketch</h4>
+                        <strong>Episodio 8</strong>
+                    </div>
+                </div>
+            </li>
+
+            <li class="cp-vgl-holder p2">
+                <div class="cp-thumb">
+                    <img src="http://img.youtube.com/vi/z3Qj0QPYtMQ/hqdefault.jpg" alt="">
+                    <div class="cp-caption">
+                        <a class="play-video" href="#">Reproducir</a>
+                        <h4>Paty Muñoz Impro</h4>
+                        <strong>Episodio 8</strong>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+
+</div>
+<!--Banner End-->
+
+<!--Main Content Start-->
+<div id="cp-main-content">
+    <section class="cp-section pd-tb60">
+        <div class="container">
+            <!--Outer Holder Start-->
+
+            <div class="cp-outer-holder cp-featured-video">
+                <div class="row">
+                    <div class="col-md-12 cp-heading-outer">
+                        <h2>Videos recomendados</h2>
+                    </div>
+                </div>
+                <div id="featured-video">
+                    <div class="item">
+                        <div class="cp-video-item">
+                            <figure class="cp-thumb">
+                                <img src="http://img.youtube.com/vi/rZF7NIZH4s0/hqdefault.jpg" alt="">
+                                <figcaption class="cp-caption"><a href="#" class="play-video">Reproducir</a>
+                                </figcaption>
+                            </figure>
+                            <div class="cp-text">
+                                <h4>
+                                    <a href="#">
+                                        El Indio Brayan Sketch
+                                    </a>
+                                </h4>
+                                <ul class="cp-meta-list">
+                                    <li>Lunes, Jun 2, 2016</li>
+                                    <li>Episodio 1</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="cp-video-item">
+                            <figure class="cp-thumb">
+                                <img src="http://img.youtube.com/vi/Vnbs_VTiQts/hqdefault.jpg" alt="">
+                                <figcaption class="cp-caption"><a href="#" class="play-video">Reproducir</a>
+                                </figcaption>
+                            </figure>
+                            <div class="cp-text">
+                                <h4>
+                                    <a href="#">
+                                        Olga Sana Sketch
+                                    </a>
+                                </h4>
+                                <ul class="cp-meta-list">
+                                    <li>Lunes, Jun 9, 2016</li>
+                                    <li>Episodio 2</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="cp-video-item">
+                            <figure class="cp-thumb">
+                                <img src="http://img.youtube.com/vi/dZxrweNFFrc/hqdefault.jpg" alt="">
+                                <figcaption class="cp-caption"><a href="#" class="play-video">Reproducir</a>
+                                </figcaption>
+                            </figure>
+                            <div class="cp-text">
+                                <h4>
+                                    <a href="#">
+                                        El Costeño Sketch
+                                    </a>
+                                </h4>
+                                <ul class="cp-meta-list">
+                                    <li>Lunes, Jun 16, 2016</li>
+                                    <li>Episodio 3</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="cp-video-item">
+                            <figure class="cp-thumb">
+                                <img src="http://img.youtube.com/vi/MGNaRooe73o/hqdefault.jpg" alt="">
+                                <figcaption class="cp-caption"><a href="#" class="play-video">Reproducir</a>
+                                </figcaption>
+                            </figure>
+                            <div class="cp-text">
+                                <h4>
+                                    <a href="#">
+                                        Meire Carvalho Sketch
+                                    </a>
+                                </h4>
+                                <ul class="cp-meta-list">
+                                    <li>Lunes, Jun 23, 2016</li>
+                                    <li>Episodio 4</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="cp-video-item">
+                            <figure class="cp-thumb">
+                                <img src="http://img.youtube.com/vi/2pG7pBwUdkI/hqdefault.jpg" alt="">
+                                <figcaption class="cp-caption"><a href="#" class="play-video">Reproducir</a>
+                                </figcaption>
+                            </figure>
+                            <div class="cp-text">
+                                <h4>
+                                    <a href="#">
+                                        Radamés de Jesús Sketch
+                                    </a>
+                                </h4>
+                                <ul class="cp-meta-list">
+                                    <li>Lunes, Jun 30, 2016</li>
+                                    <li>Episodio 5</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="cp-video-item">
+                            <figure class="cp-thumb">
+                                <img src="http://img.youtube.com/vi/ZTjIAv6KMAs/hqdefault.jpg" alt="">
+                                <figcaption class="cp-caption"><a href="#" class="play-video">Reproducir</a>
+                                </figcaption>
+                            </figure>
+                            <div class="cp-text">
+                                <h4>
+                                    <a href="#">
+                                        El Chevo Sketch
+                                    </a>
+                                </h4>
+                                <ul class="cp-meta-list">
+                                    <li>Lunes, Jul 7, 2016</li>
+                                    <li>Episodio 6</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="cp-video-item">
+                            <figure class="cp-thumb">
+                                <img src="http://img.youtube.com/vi/HfLyBZcv9HI/hqdefault.jpg" alt="">
+                                <figcaption class="cp-caption"><a href="#" class="play-video">Reproducir</a>
+                                </figcaption>
+                            </figure>
+                            <div class="cp-text">
+                                <h4>
+                                    <a href="#">
+                                        El Gamborimbo Sketch
+                                    </a>
+                                </h4>
+                                <ul class="cp-meta-list">
+                                    <li>Lunes, Jul 14, 2016</li>
+                                    <li>Episodio 7</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="cp-video-item">
+                            <figure class="cp-thumb">
+                                <img src="http://img.youtube.com/vi/H4B2FYIebvw/hqdefault.jpg" alt="">
+                                <figcaption class="cp-caption"><a href="#" class="play-video">Reproducir</a>
+                                </figcaption>
+                            </figure>
+                            <div class="cp-text">
+                                <h4>
+                                    <a href="#">
+                                        Paty Muñoz Sketch
+                                    </a>
+                                </h4>
+                                <ul class="cp-meta-list">
+                                    <li>Lunes, Jul 21, 2016</li>
+                                    <li>Episodio 8</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!--Outer Holder End-->
+
+            <!--Outer Holder Start-->
+            <div class="cp-outer-holder pd-t60">
+                <div class="row">
+                    <div class="col-md-9">
+                        <!--Most Viewer Outer Start-->
+                        <div class="cp-most-view-outer pd-b60">
+                            <div class="cp-heading-outer">
+                                <h2>Últimos videos</h2>
+                            </div>
+                            <div class="cp_viewed-slider">
+                                <div class="item">
+                                    <div class="cp-most-listed">
+                                        <figure class="cp-thumb">
+                                            <img src="http://img.youtube.com/vi/yMa_5h_AmoI/hqdefault.jpg" alt="">
+                                            <figcaption class="cp-caption">
+                                                <a href="#" class="play-video">Reproducir</a>
+                                            </figcaption>
+                                        </figure>
+                                        <div class="cp-text">
+                                            <h3>Promo julio</h3>
+                                            <ul class="cp-meta-list">
+                                                <li>Lunes, Jul 1, 2016</li>
+                                                <li>Bloopers</li>
+                                            </ul>
+                                            <p>Desestresa2 es un programa que busca traer la comedia tradicional al presente y crear una sinergia con la nueva comedia.</p>
+                                            <p>No te lo pierdas...<br />Desestresa2 está en la red y por hoy... Ya se chingaron.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="cp-most-listed">
+                                        <figure class="cp-thumb">
+                                            <img src="http://img.youtube.com/vi/4cRnnuc1XtE/hqdefault.jpg" alt="">
+                                            <figcaption class="cp-caption">
+                                                <a href="#" class="play-video">Reproducir</a>
+                                            </figcaption>
+                                        </figure>
+                                        <div class="cp-text">
+                                            <h3>El Chevo</h3>
+                                            <ul class="cp-meta-list">
+                                                <li>Lunes, Jul 7, 2016</li>
+                                                <li>Teasers</li>
+                                            </ul>
+                                            <p>Un programa que busca traer la comedia tradicional al presente y crear una sinergia con la nueva comedia. Dentro del contenido se tocan herramientas de improvisación, sketches, rutinas cómicas, parodias y de stand up, la participación de personajes que agregan un toque ácido y que en conjunto se aborden temas cotidianos, con los que todos nos identificamos.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Most Viewer Outer End-->
+                    </div>
+                    <div class="col-md-3">
+                        <aside class="cp_sidebar-outer">
+                            <!--Widget Item Start-->
+                            <div class="widget widget-share">
+                                <div class="cp-heading-outer">
+                                    <h2>Síguenos</h2>
+                                </div>
+                                <ul class="cp-share-social">
+                                    <li class="fb-box"><a href="#"><i class="fa fa-facebook"></i><span>32,355</span><span>Likes</span></a>
+                                    </li>
+                                    <li class="tw-box"><a href="#"><i
+                                                    class="fa fa-twitter"></i><span>49,122</span><span>Usuarios</span></a>
+                                    </li>
+                                    <li class="google-box"><a href="#"><i
+                                                    class="fa fa-youtube"></i><span>27,355</span><span>Usuarios</span></a>
+                                    </li>
+                                    <li class="inst-box"><a href="#"><i
+                                                    class="fa fa-instagram"></i><span>45,015</span><span>Usuarios</span></a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!--div class="widget widget-form">
+                                <div class="cp-heading-outer">
+                                    <h2>Sign Up for Newsletter</h2>
+                                </div>
+                                <form method="get" action="">
+                                    <input type="text" pattern="[a-zA-Z ]+" required
+                                           placeholder="Enter email for subscription...">
+                                    <button type="submit"><i class="fa fa-arrow-right"></i></button>
+                                </form>
+                            </div-->
+                            <div class="widget widget-advertisement">
+                                <div class="cp-advertisement">
+                                    <img src="http://lorempixel.com/300/250/" alt="">
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+
+            <!--Outer Holder End-->
+
+            <div class="cp-advertisement">
+                <div class="row">
+                    <div class="col-md-12"><img src="http://lorempixel.com/728/90/" alt=""></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--Today Video Start-->
+    <div class="cp-today-video">
+        <div class="container">
+            <div class="row">
+                <div class="cp-heading-outer">
+                    <h2>Queens</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <ul class="today-videos">
+                        <li>
+                            <iframe src="https://www.youtube.com/embed/csF0bLQF7m8" frameborder="0" allowfullscreen></iframe>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+    </div>
+    <!--Today Video End-->
+</div>
+<!--Main Content End-->
+{% endblock %}
