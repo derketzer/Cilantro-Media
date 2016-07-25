@@ -1,38 +1,76 @@
 <!--Footer Start-->
 <footer class="cp_footer">
-    <!--Instagram Section Start-->
-    <section class="cp-instagram-section">
-        <div class="cp-ins-text">
-            <h4>Instagram</h4>
-            <i class="fa fa-instagram"></i></div>
-        <ul class="cp-instagram-listed">
-            <li>
-                <figure class="cp-ins-item"><a href="#"><img src="http://placekitten.com/g/224/187" alt=""></a></figure>
-            </li>
-            <li>
-                <figure class="cp-ins-item"><a href="#"><img src="http://placekitten.com/g/224/187" alt=""></a></figure>
-            </li>
-            <li>
-                <figure class="cp-ins-item"><a href="#"><img src="http://placekitten.com/g/224/187" alt=""></a></figure>
-            </li>
-            <li>
-                <figure class="cp-ins-item"><a href="#"><img src="http://placekitten.com/g/224/187" alt=""></a></figure>
-            </li>
-            <li>
-                <figure class="cp-ins-item"><a href="#"><img src="http://placekitten.com/g/224/187" alt=""></a></figure>
-            </li>
-            <li>
-                <figure class="cp-ins-item"><a href="#"><img src="http://placekitten.com/g/224/187" alt=""></a></figure>
-            </li>
-            <li>
-                <figure class="cp-ins-item"><a href="#"><img src="http://placekitten.com/g/224/187" alt=""></a></figure>
-            </li>
-            <li>
-                <figure class="cp-ins-item"><a href="#"><img src="http://placekitten.com/g/224/187" alt=""></a></figure>
-            </li>
-        </ul>
-    </section>
-    <!--Instagram Section End-->
+    {% if videosRelacionados is defined %}
+        <!--Instagram Section Start-->
+        <section class="cp-instagram-section">
+            <div class="cp-ins-text">
+                <h4>+ videos</h4>
+                <i class="fa fa-video-camera"></i>
+            </div>
+            <ul class="cp-instagram-listed">
+                <li>
+                    <figure class="cp-ins-item"><a href="#"><img src="http://img.youtube.com/vi/9E7FZyZiJe0/hqdefault.jpg" alt=""></a></figure>
+                </li>
+                <li>
+                    <figure class="cp-ins-item"><a href="#"><img src="http://img.youtube.com/vi/Pzn7j6vhGVM/hqdefault.jpg" alt=""></a></figure>
+                </li>
+                <li>
+                    <figure class="cp-ins-item"><a href="#"><img src="http://img.youtube.com/vi/H4B2FYIebvw/hqdefault.jpg" alt=""></a></figure>
+                </li>
+                <li>
+                    <figure class="cp-ins-item"><a href="#"><img src="http://img.youtube.com/vi/z3Qj0QPYtMQ/hqdefault.jpg" alt=""></a></figure>
+                </li>
+                <li>
+                    <figure class="cp-ins-item"><a href="#"><img src="http://img.youtube.com/vi/5nOmz3i51Gk/hqdefault.jpg" alt=""></a></figure>
+                </li>
+                <li>
+                    <figure class="cp-ins-item"><a href="#"><img src="http://img.youtube.com/vi/4yP3tYLqdQQ/hqdefault.jpg" alt=""></a></figure>
+                </li>
+                <li>
+                    <figure class="cp-ins-item"><a href="#"><img src="http://img.youtube.com/vi/NMwSBjuIaQc/hqdefault.jpg" alt=""></a></figure>
+                </li>
+                <li>
+                    <figure class="cp-ins-item"><a href="#"><img src="http://img.youtube.com/vi/9E7FZyZiJe0/hqdefault.jpg" alt=""></a></figure>
+                </li>
+            </ul>
+        </section>
+        <!--Instagram Section End-->
+    {% else %}
+        <!--Instagram Section Start-->
+        <section class="cp-instagram-section">
+            <div class="cp-ins-text">
+                <h4>Instagram</h4>
+                <i class="fa fa-instagram"></i>
+            </div>
+            <ul class="cp-instagram-listed">
+                <li>
+                    <figure class="cp-ins-item"><a href="#"><img src="http://placekitten.com/g/224/187" alt=""></a></figure>
+                </li>
+                <li>
+                    <figure class="cp-ins-item"><a href="#"><img src="http://placekitten.com/g/224/187" alt=""></a></figure>
+                </li>
+                <li>
+                    <figure class="cp-ins-item"><a href="#"><img src="http://placekitten.com/g/224/187" alt=""></a></figure>
+                </li>
+                <li>
+                    <figure class="cp-ins-item"><a href="#"><img src="http://placekitten.com/g/224/187" alt=""></a></figure>
+                </li>
+                <li>
+                    <figure class="cp-ins-item"><a href="#"><img src="http://placekitten.com/g/224/187" alt=""></a></figure>
+                </li>
+                <li>
+                    <figure class="cp-ins-item"><a href="#"><img src="http://placekitten.com/g/224/187" alt=""></a></figure>
+                </li>
+                <li>
+                    <figure class="cp-ins-item"><a href="#"><img src="http://placekitten.com/g/224/187" alt=""></a></figure>
+                </li>
+                <li>
+                    <figure class="cp-ins-item"><a href="#"><img src="http://placekitten.com/g/224/187" alt=""></a></figure>
+                </li>
+            </ul>
+        </section>
+        <!--Instagram Section End-->
+    {% endif %}
 
     <!--Copyright Section Start-->
     <section class="cp-copyright-section">

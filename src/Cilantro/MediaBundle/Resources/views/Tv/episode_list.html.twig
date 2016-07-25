@@ -38,7 +38,7 @@
                     <img src="http://img.youtube.com/vi/9E7FZyZiJe0/hqdefault.jpg" alt="">
 
                     <div class="cp-caption">
-                        <a class="play-video" href="#">Reproducir</a>
+                        <a class="play-video" href="{{ path('cilantro_media_tv_episode', {'slug':'episode-2', 'scene':'3'}) }}">Reproducir</a>
                         <h4>Paty Muñoz Video Blog</h4>
                         <strong>Episodio 8</strong>
                     </div>
@@ -323,36 +323,16 @@
                     </div>
                     <div class="col-md-3">
                         <aside class="cp_sidebar-outer">
-                            <!--Widget Item Start-->
-                            <div class="widget widget-share">
+                            <div class="widget widget-form">
                                 <div class="cp-heading-outer">
-                                    <h2>Síguenos</h2>
-                                </div>
-                                <ul class="cp-share-social">
-                                    <li class="fb-box"><a href="#"><i class="fa fa-facebook"></i><span>32,355</span><span>Likes</span></a>
-                                    </li>
-                                    <li class="tw-box"><a href="#"><i
-                                                    class="fa fa-twitter"></i><span>49,122</span><span>Usuarios</span></a>
-                                    </li>
-                                    <li class="google-box"><a href="#"><i
-                                                    class="fa fa-youtube"></i><span>27,355</span><span>Usuarios</span></a>
-                                    </li>
-                                    <li class="inst-box"><a href="#"><i
-                                                    class="fa fa-instagram"></i><span>45,015</span><span>Usuarios</span></a>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <!--div class="widget widget-form">
-                                <div class="cp-heading-outer">
-                                    <h2>Sign Up for Newsletter</h2>
+                                    <h2>Boletín</h2>
                                 </div>
                                 <form method="get" action="">
                                     <input type="text" pattern="[a-zA-Z ]+" required
-                                           placeholder="Enter email for subscription...">
+                                           placeholder="Email">
                                     <button type="submit"><i class="fa fa-arrow-right"></i></button>
                                 </form>
-                            </div-->
+                            </div>
                             <div class="widget widget-advertisement">
                                 <div class="cp-advertisement">
                                     <img src="http://lorempixel.com/300/250/" alt="">
@@ -378,7 +358,7 @@
         <div class="container">
             <div class="row">
                 <div class="cp-heading-outer">
-                    <h2>Queens</h2>
+                    <h2>Promo Queens</h2>
                 </div>
             </div>
             <div class="row">

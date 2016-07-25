@@ -20,4 +20,19 @@ class TvController extends Controller
             'themePath' => $themePath
         ));
     }
+
+    /**
+     * @Route("/tv/episode/{slug}")
+     */
+    public function episodeAction($slug)
+    {
+        $themePath = 'bundles/cilantromedia/site-assets/css/theme-color.css';
+        if(file_exists('bundles/cilantromedia/css/site/theme-color-'.$slug.'.css'))
+            $themePath = 'bundles/cilantromedia/css/site/theme-color-'.$slug.'.css';
+
+        return $this->render('CilantroMediaBundle:Tv:episode.html.twig', Array(
+            'themePath' => $themePath,
+            'videosRelacionados' => 1
+        ));
+    }
 }
