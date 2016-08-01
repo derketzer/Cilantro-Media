@@ -17,3 +17,7 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
+    ga_api_key:        abc
+    ga_key_pass:       abc
+    ga_email:          abc
+    slack_token:       abc

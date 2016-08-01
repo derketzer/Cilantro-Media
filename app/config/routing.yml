@@ -1,3 +1,8 @@
+cilantro_admin:
+    resource: "@CilantroAdminBundle/Controller/"
+    type:     annotation
+    prefix:   /admin/
+
 cilantro_media:
     resource: "@CilantroMediaBundle/Controller/"
     type:     annotation

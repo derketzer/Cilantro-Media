@@ -7,3 +7,10 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    youtube:
+          class: Cilantro\AdminBundle\Service\YoutubeService
+          arguments: ['@doctrine', '@service_container']
+
+    log:
+          class: Cilantro\AdminBundle\Service\LogService
+          arguments: ['@service_container']
