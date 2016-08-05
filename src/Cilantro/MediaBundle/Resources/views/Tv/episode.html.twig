@@ -1,43 +1,46 @@
 {% extends 'CilantroMedia/Site/base.html.twig' %}
 
 {% block body %}
-    <!--Banner Start-->
     <div class="cp_inner-banner">
         <div class="container">
             <div class="cp-inner-banner-holder">
-                <h2>Episodio 8: <strong>Paty Muñoz</strong></h2>
-                <!--Breadcrumb Start-->
+                <h2>{{ video.title }} <strong></strong></h2>
                 <ul class="breadcrumb">
                     <li>Televisión</li>
                     <li class="active"><a href="{{ path('cilantro_media_tv_episodes', {'slug':'desestresa2'}) }}">Desestresa2</a></li>
-                </ul><!--Breadcrumb End-->
+                </ul>
             </div>
         </div>
-    </div><!--Banner End-->
+    </div>
 
-    <!--Main Content Start-->
     <div id="cp-main-content">
         <section class="cp-blog-section pd-tb60">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-9">
                         <!--Video Detail Outer Start-->
                         <div class="cp-video-detail-outer">
                             <div class="cp-video-outer2">
-                                <iframe src="https://www.youtube.com/embed/9E7FZyZiJe0"></iframe>
+                                <iframe src="https://www.youtube.com/embed/{{ video.videoId }}"></iframe>
                             </div>
                             <div class="cp-text-holder">
                                 <div class="cp-top">
-                                    <h4>Paty Muñoz con desestresa2 </h4>
+                                    <h4>{{ video.title }}</h4>
                                 </div>
                                 <div class="cp-watch-holer">
                                     <ul class="cp-meta-list">
-                                        <li>Lunes, 26 de Enero, 2016</li>
+                                        <li>{{ video.publishedAt|date('l, M d, Y') }}</li>
                                     </ul>
                                 </div>
-                                <!--Comments Holder Start-->
                             </div>
-                        </div><!--Video Detail Outer End-->
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="widget widget-advertisement">
+                            <div class="cp-advertisement">
+                                <img src="http://lorempixel.com/300/500/" alt="">
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -227,6 +230,7 @@
 
                 <div style="height:50px;"></div>
 
+                {% if latest is defined %}
                 <div class="row">
                     <div class="col-md-12">
                         <!--Most Viewer Outer Start-->
@@ -235,48 +239,31 @@
                                 <h2>Últimos videos</h2>
                             </div>
                             <div class="cp_viewed-slider">
+                                {% for video in latest %}
                                 <div class="item">
                                     <div class="cp-most-listed">
                                         <figure class="cp-thumb">
-                                            <img src="http://img.youtube.com/vi/yMa_5h_AmoI/hqdefault.jpg" alt="">
+                                            <img src="{{ video.thumbnail }}" alt="">
                                             <figcaption class="cp-caption">
-                                                <a href="#" class="play-video">Reproducir</a>
+                                                <a href="{{ path('cilantro_media_tv_episode', {'slug':video.id}) }}" class="play-video">Reproducir</a>
                                             </figcaption>
                                         </figure>
                                         <div class="cp-text">
-                                            <h3>Promo julio</h3>
+                                            <h3>{{ video.title }}</h3>
                                             <ul class="cp-meta-list">
-                                                <li>Lunes, Jul 1, 2016</li>
-                                                <li>Bloopers</li>
+                                                <li>{{ video.publishedAt|date('l, M d, Y') }}</li>
                                             </ul>
-                                            <p>Desestresa2 es un programa que busca traer la comedia tradicional al presente y crear una sinergia con la nueva comedia.</p>
-                                            <p>No te lo pierdas...<br />Desestresa2 está en la red y por hoy... Ya se chingaron.</p>
+                                            <p>{{ video.description }}</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="item">
-                                    <div class="cp-most-listed">
-                                        <figure class="cp-thumb">
-                                            <img src="http://img.youtube.com/vi/4cRnnuc1XtE/hqdefault.jpg" alt="">
-                                            <figcaption class="cp-caption">
-                                                <a href="#" class="play-video">Reproducir</a>
-                                            </figcaption>
-                                        </figure>
-                                        <div class="cp-text">
-                                            <h3>El Chevo</h3>
-                                            <ul class="cp-meta-list">
-                                                <li>Lunes, Jul 7, 2016</li>
-                                                <li>Teasers</li>
-                                            </ul>
-                                            <p>Un programa que busca traer la comedia tradicional al presente y crear una sinergia con la nueva comedia. Dentro del contenido se tocan herramientas de improvisación, sketches, rutinas cómicas, parodias y de stand up, la participación de personajes que agregan un toque ácido y que en conjunto se aborden temas cotidianos, con los que todos nos identificamos.</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                         <!--Most Viewer Outer End-->
                     </div>
                 </div>
+                {% endif %}
             </div>
         </section>
     </div><!--Main Content End-->

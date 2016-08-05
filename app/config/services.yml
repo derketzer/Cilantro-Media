@@ -1,12 +1,11 @@
-# Learn more about services, parameters and containers at
-# http://symfony.com/doc/current/book/service_container.html
 parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    cilantro.utils:
+          class: Cilantro\AdminBundle\Service\UtilsService
+          arguments: ['@service_container']
+
     youtube:
           class: Cilantro\AdminBundle\Service\YoutubeService
           arguments: ['@doctrine', '@service_container']

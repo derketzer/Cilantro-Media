@@ -43,22 +43,25 @@ class YoutubeService
         $channels = $this->googleService->channels->listChannels('snippet', array('id'=>'UCPAYAZIOoMD-4A3-3Hr_4wQ'));
 
         $youtubeChannelRespository = $this->em->getRepository('CilantroAdminBundle:YoutubeChannel');
-        foreach($channels->getItems() as $item){
-            $youtubeChannelTemp = $youtubeChannelRespository->findBy(array('channelId'=>$item->id));
 
-            if($youtubeChannelTemp == Array()) {
-                $youtubeChannel = new YoutubeChannel();
-                $youtubeChannel->setChannelId($item->id);
-                $youtubeChannel->setTitle($item->getSnippet()->title);
-                $youtubeChannel->setDescription($item->getSnippet()->description);
-                $youtubeChannel->setPublishedAt(new \DateTime($item->getSnippet()->publishedAt));
-                $youtubeChannel->setActive(true);
+        if(!empty($channels)) {
+            foreach ($channels->getItems() as $item) {
+                $youtubeChannelTemp = $youtubeChannelRespository->findBy(array('channelId' => $item->id));
 
-                try{
-                    $this->em->persist($youtubeChannel);
-                    $this->em->flush();
-                }catch(\Exception $e){
-                    return false;
+                if (empty($youtubeChannelTemp)) {
+                    $youtubeChannel = new YoutubeChannel();
+                    $youtubeChannel->setChannelId($item->id);
+                    $youtubeChannel->setTitle($item->getSnippet()->title);
+                    $youtubeChannel->setDescription($item->getSnippet()->description);
+                    $youtubeChannel->setPublishedAt(new \DateTime($item->getSnippet()->publishedAt));
+                    $youtubeChannel->setActive(true);
+
+                    try {
+                        $this->em->persist($youtubeChannel);
+                        $this->em->flush();
+                    } catch (\Exception $e) {
+                        return false;
+                    }
                 }
             }
         }
@@ -73,48 +76,51 @@ class YoutubeService
 
         $youtubeChannels = $youtubeChannelRespository->findBy(Array('active'=>true));
 
-        $videosAgregados = 0;
-        foreach($youtubeChannels as $youtubeChannel){
-            $lastVideo = $youtubeVideoRespository->findOneBy(Array(), Array('publishedAt'=>'DESC'), 1);
-            if($lastVideo == Array()){
-                $videos = $this->googleService->search->listSearch('snippet,id', array('order'=>'date', 'maxResults'=>'50', 'channelId'=>$youtubeChannel->getChannelId()));
-            }else{
-                $lastVideoDate = date("Y-m-d\T00:00:00\Z", $lastVideo->getPublishedAt()->getTimestamp());
-                $videos = $this->googleService->search->listSearch('snippet,id', array('order'=>'date', 'maxResults'=>'50', 'channelId'=>$youtubeChannel->getChannelId(), 'publishedAfter'=>$lastVideoDate));
-            }
+        if(!empty($youtubeChannels)) {
+            $videosAgregados = 0;
 
-            do {
-                foreach ($videos->getItems() as $item) {
-                    $youtubeVideoTemp = $youtubeVideoRespository->findBy(array('videoId' => $item->getId()->videoId));
+            foreach ($youtubeChannels as $youtubeChannel) {
+                $lastVideo = $youtubeVideoRespository->findBy(Array('youtubeChannel'=>$youtubeChannel), Array('publishedAt' => 'DESC'), 1);
+                if (empty($lastVideo)) {
+                    $videos = $this->googleService->search->listSearch('snippet,id', array('order' => 'date', 'maxResults' => '50', 'channelId' => $youtubeChannel->getChannelId()));
+                } else {
+                    $lastVideoDate = date("Y-m-d\T00:00:00\Z", $lastVideo[0]->getPublishedAt()->getTimestamp());
+                    $videos = $this->googleService->search->listSearch('snippet,id', array('order' => 'date', 'maxResults' => '50', 'channelId' => $youtubeChannel->getChannelId(), 'publishedAfter' => $lastVideoDate));
+                }
 
-                    if ($youtubeVideoTemp == Array()) {
+                do {
+                    foreach ($videos->getItems() as $item) {
                         if (!isset($item->getId()->videoId))
                             continue;
-dump($item);exit();
-                        $youtubeVideo = new YoutubeVideo();
-                        $youtubeVideo->setVideoId($item->getId()->videoId);
-                        $youtubeVideo->setTitle($item->getSnippet()->title);
-                        $youtubeVideo->setDescription($item->getSnippet()->description);
-                        $youtubeVideo->setThumbnail($item->getSnippet()->getThumbnails()->high->url);
-                        $youtubeVideo->setPublishedAt(new \DateTime($item->getSnippet()->publishedAt));
-                        $youtubeVideo->setYoutubeChannel($youtubeChannel);
-                        $youtubeVideo->setActive(true);
 
-                        try {
-                            $this->em->persist($youtubeVideo);
-                            $this->em->flush();
-                            $videosAgregados++;
-                        } catch (\Exception $e) {
-                            $this->log->errorMessage('Youtube: Video save Error!');
-                            return false;
+                        $youtubeVideoTemp = $youtubeVideoRespository->findBy(array('videoId' => $item->getId()->videoId));
+
+                        if (empty($youtubeVideoTemp)) {
+                            $youtubeVideo = new YoutubeVideo();
+                            $youtubeVideo->setVideoId($item->getId()->videoId);
+                            $youtubeVideo->setTitle($item->getSnippet()->title);
+                            $youtubeVideo->setDescription($item->getSnippet()->description);
+                            $youtubeVideo->setThumbnail($item->getSnippet()->getThumbnails()->high->url);
+                            $youtubeVideo->setPublishedAt(new \DateTime($item->getSnippet()->publishedAt));
+                            $youtubeVideo->setYoutubeChannel($youtubeChannel);
+                            $youtubeVideo->setActive(true);
+
+                            try {
+                                $this->em->persist($youtubeVideo);
+                                $this->em->flush();
+                                $videosAgregados++;
+                            } catch (\Exception $e) {
+                                $this->log->errorMessage('Youtube: Video save Error!');
+                                return false;
+                            }
                         }
                     }
-                }
-                $nextPageToken = $videos->nextPageToken;
-                if($nextPageToken != ''){
-                    $videos = $this->googleService->search->listSearch('snippet,id', array('order'=>'date', 'pageToken'=>$nextPageToken, 'maxResults'=>'50', 'channelId'=>$youtubeChannel->getChannelId()));
-                }
-            }while($nextPageToken != '');
+                    $nextPageToken = $videos->nextPageToken;
+                    if (!empty($nextPageToken)) {
+                        $videos = $this->googleService->search->listSearch('snippet,id', array('order' => 'date', 'pageToken' => $nextPageToken, 'maxResults' => '50', 'channelId' => $youtubeChannel->getChannelId()));
+                    }
+                } while (!empty($nextPageToken));
+            }
         }
 
         $this->log->infoMessage('Youtube: '.$videosAgregados.' new videos added.');
@@ -128,7 +134,7 @@ dump($item);exit();
         $youtubeStatsRespository = $this->em->getRepository('CilantroAdminBundle:YoutubeStats');
 
         $logMessage = '';
-        if($count == -1) {
+        if($count == 0) {
             $youtubeVideos = $youtubeVideoRespository->findBy(Array('active' => true), Array('publishedAt'=>'DESC'));
             $logMessage = 'Youtube: All videos stats updated.';
         }else if($count != "") {
@@ -139,36 +145,38 @@ dump($item);exit();
             $logMessage = 'Youtube: Last 30 videos stats updated.';
         }
 
-        foreach($youtubeVideos as $youtubeVideo){
-            $videos = $this->googleService->videos->listVideos('statistics', array('id'=>$youtubeVideo->getVideoId()));
+        if(!empty($youtubeVideos)) {
+            foreach ($youtubeVideos as $youtubeVideo) {
+                $videos = $this->googleService->videos->listVideos('statistics', array('id' => $youtubeVideo->getVideoId()));
 
-            foreach($videos->getItems() as $item){
-                $youtubeStats = $youtubeStatsRespository->findOneBy(array('youtubeVideo'=>$youtubeVideo->getId()));
+                foreach ($videos->getItems() as $item) {
+                    $youtubeStats = $youtubeStatsRespository->findOneBy(array('youtubeVideo' => $youtubeVideo->getId()));
 
-                if($youtubeStats == Array()) {
-                    $youtubeStats = new YoutubeStats();
-                    $youtubeStats->setYoutubeVideo($youtubeVideo);
-                    $youtubeStats->setCommentCount($item->getStatistics()->commentCount);
-                    $youtubeStats->setDislikeCount($item->getStatistics()->dislikeCount);
-                    $youtubeStats->setFavoriteCount($item->getStatistics()->favoriteCount);
-                    $youtubeStats->setLikeCount($item->getStatistics()->likeCount);
-                    $youtubeStats->setViewCount($item->getStatistics()->viewCount);
-                    $youtubeStats->setUpdatedAt(new \DateTime());
-                }else{
-                    $youtubeStats->setCommentCount($item->getStatistics()->commentCount);
-                    $youtubeStats->setDislikeCount($item->getStatistics()->dislikeCount);
-                    $youtubeStats->setFavoriteCount($item->getStatistics()->favoriteCount);
-                    $youtubeStats->setLikeCount($item->getStatistics()->likeCount);
-                    $youtubeStats->setViewCount($item->getStatistics()->viewCount);
-                    $youtubeStats->setUpdatedAt(new \DateTime());
-                }
+                    if (empty($youtubeStats)) {
+                        $youtubeStats = new YoutubeStats();
+                        $youtubeStats->setYoutubeVideo($youtubeVideo);
+                        $youtubeStats->setCommentCount($item->getStatistics()->commentCount);
+                        $youtubeStats->setDislikeCount($item->getStatistics()->dislikeCount);
+                        $youtubeStats->setFavoriteCount($item->getStatistics()->favoriteCount);
+                        $youtubeStats->setLikeCount($item->getStatistics()->likeCount);
+                        $youtubeStats->setViewCount($item->getStatistics()->viewCount);
+                        $youtubeStats->setUpdatedAt(new \DateTime());
+                    } else {
+                        $youtubeStats->setCommentCount($item->getStatistics()->commentCount);
+                        $youtubeStats->setDislikeCount($item->getStatistics()->dislikeCount);
+                        $youtubeStats->setFavoriteCount($item->getStatistics()->favoriteCount);
+                        $youtubeStats->setLikeCount($item->getStatistics()->likeCount);
+                        $youtubeStats->setViewCount($item->getStatistics()->viewCount);
+                        $youtubeStats->setUpdatedAt(new \DateTime());
+                    }
 
-                try{
-                    $this->em->persist($youtubeStats);
-                    $this->em->flush();
-                }catch(\Exception $e){
-                    $this->log->errorMessage('Youtube: Stats save Error!');
-                    return false;
+                    try {
+                        $this->em->persist($youtubeStats);
+                        $this->em->flush();
+                    } catch (\Exception $e) {
+                        $this->log->errorMessage('Youtube: Stats save Error!');
+                        return false;
+                    }
                 }
             }
         }

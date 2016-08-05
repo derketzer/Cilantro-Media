@@ -1,6 +1,6 @@
 <!--Footer Start-->
 <footer class="cp_footer">
-    {% if videosRelacionados is defined %}
+    {% if random is defined %}
         <!--Instagram Section Start-->
         <section class="cp-instagram-section">
             <div class="cp-ins-text">
@@ -8,30 +8,11 @@
                 <i class="fa fa-video-camera"></i>
             </div>
             <ul class="cp-instagram-listed">
+                {% for video in random %}
                 <li>
-                    <figure class="cp-ins-item"><a href="#"><img src="http://img.youtube.com/vi/9E7FZyZiJe0/hqdefault.jpg" alt=""></a></figure>
+                    <figure class="cp-ins-item"><a href="{{ path('cilantro_media_tv_episode', {'slug':video.id}) }}"><img src="{{ video.thumbnail }}" alt=""></a></figure>
                 </li>
-                <li>
-                    <figure class="cp-ins-item"><a href="#"><img src="http://img.youtube.com/vi/Pzn7j6vhGVM/hqdefault.jpg" alt=""></a></figure>
-                </li>
-                <li>
-                    <figure class="cp-ins-item"><a href="#"><img src="http://img.youtube.com/vi/H4B2FYIebvw/hqdefault.jpg" alt=""></a></figure>
-                </li>
-                <li>
-                    <figure class="cp-ins-item"><a href="#"><img src="http://img.youtube.com/vi/z3Qj0QPYtMQ/hqdefault.jpg" alt=""></a></figure>
-                </li>
-                <li>
-                    <figure class="cp-ins-item"><a href="#"><img src="http://img.youtube.com/vi/5nOmz3i51Gk/hqdefault.jpg" alt=""></a></figure>
-                </li>
-                <li>
-                    <figure class="cp-ins-item"><a href="#"><img src="http://img.youtube.com/vi/4yP3tYLqdQQ/hqdefault.jpg" alt=""></a></figure>
-                </li>
-                <li>
-                    <figure class="cp-ins-item"><a href="#"><img src="http://img.youtube.com/vi/NMwSBjuIaQc/hqdefault.jpg" alt=""></a></figure>
-                </li>
-                <li>
-                    <figure class="cp-ins-item"><a href="#"><img src="http://img.youtube.com/vi/9E7FZyZiJe0/hqdefault.jpg" alt=""></a></figure>
-                </li>
+                {% endfor %}
             </ul>
         </section>
         <!--Instagram Section End-->

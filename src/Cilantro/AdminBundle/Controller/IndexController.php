@@ -24,38 +24,9 @@ class IndexController extends Controller
                         ['title'=>'Dashboard']
         ];
 
-        $breadcrumbsHtml = $this->generateBreadcrumbs($breadcrumbs);
+        $breadcrumbsHtml = $this->get('cilantro.utils')->generateBreadcrumbs($breadcrumbs);
 
         return $this->render('@CilantroAdmin/dashboard.html.twig', ['contentTitle'=>'Dashboard',
                                                           'breadcrumbs'=>$breadcrumbsHtml]);
-    }
-
-    private function generateBreadcrumbs($breadcrumbs=Array())
-    {
-        $breadcrumbsTemp = '';
-        foreach ($breadcrumbs as $key=>$breadcrumb){
-            if($key == 0){
-                $breadcrumbsTemp .= '
-                    <li>
-                        <i class="ace-icon fa fa-home home-icon"></i>
-                        <a href="'.$this->generateUrl($breadcrumb['path']).'">'.$breadcrumb['title'].'</a>
-                    </li>
-                ';
-            }else if($key == count($breadcrumbs)-1){
-                $breadcrumbsTemp .= '
-                    <li class="active">
-                        '.$breadcrumb['title'].'
-                    </li>
-                ';
-            }else{
-                $breadcrumbsTemp .= '
-                    <li>
-                        <a href="'.$this->generateUrl($breadcrumb['path']).'">'.$breadcrumb['title'].'</a>
-                    </li>
-                ';
-            }
-        }
-
-        return $breadcrumbsTemp;
     }
 }

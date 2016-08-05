@@ -39,6 +39,13 @@ class YoutubeChannel
     /**
      * @var string
      *
+     * @ORM\Column(name="slug", type="string", length=255)
+     */
+    private $slug;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="description", type="text")
      */
     private $description;
@@ -62,6 +69,13 @@ class YoutubeChannel
      * @ORM\Column(name="active", type="boolean")
      */
     private $active;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="adult", type="boolean")
+     */
+    private $adult;
 
     public function __construct() {
         $this->videos = new ArrayCollection();
@@ -229,5 +243,37 @@ class YoutubeChannel
     public function getVideos()
     {
         return $this->videos;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAdult()
+    {
+        return $this->adult;
+    }
+
+    /**
+     * @param int $adult
+     */
+    public function setAdult($adult)
+    {
+        $this->adult = $adult;
     }
 }

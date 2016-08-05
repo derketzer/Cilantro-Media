@@ -128,7 +128,7 @@
                             <div class="cp-text">
                                 <h4>
                                     <a href="#">
-                                        Olga Sana Sketch
+                                        Olga Sana Impro
                                     </a>
                                 </h4>
                                 <ul class="cp-meta-list">
@@ -149,7 +149,7 @@
                             <div class="cp-text">
                                 <h4>
                                     <a href="#">
-                                        El Costeño Sketch
+                                        El Costeño Entrevista
                                     </a>
                                 </h4>
                                 <ul class="cp-meta-list">
@@ -170,7 +170,7 @@
                             <div class="cp-text">
                                 <h4>
                                     <a href="#">
-                                        Meire Carvalho Sketch
+                                        Meire Carvalho Video Blog
                                     </a>
                                 </h4>
                                 <ul class="cp-meta-list">
@@ -191,7 +191,7 @@
                             <div class="cp-text">
                                 <h4>
                                     <a href="#">
-                                        Radamés de Jesús Sketch
+                                        Radamés de Jesús Stand Up
                                     </a>
                                 </h4>
                                 <ul class="cp-meta-list">
@@ -201,125 +201,42 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="item">
-                        <div class="cp-video-item">
-                            <figure class="cp-thumb">
-                                <img src="http://img.youtube.com/vi/ZTjIAv6KMAs/hqdefault.jpg" alt="">
-                                <figcaption class="cp-caption"><a href="#" class="play-video">Reproducir</a>
-                                </figcaption>
-                            </figure>
-                            <div class="cp-text">
-                                <h4>
-                                    <a href="#">
-                                        El Chevo Sketch
-                                    </a>
-                                </h4>
-                                <ul class="cp-meta-list">
-                                    <li>Lunes, Jul 7, 2016</li>
-                                    <li>Episodio 6</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="cp-video-item">
-                            <figure class="cp-thumb">
-                                <img src="http://img.youtube.com/vi/HfLyBZcv9HI/hqdefault.jpg" alt="">
-                                <figcaption class="cp-caption"><a href="#" class="play-video">Reproducir</a>
-                                </figcaption>
-                            </figure>
-                            <div class="cp-text">
-                                <h4>
-                                    <a href="#">
-                                        El Gamborimbo Sketch
-                                    </a>
-                                </h4>
-                                <ul class="cp-meta-list">
-                                    <li>Lunes, Jul 14, 2016</li>
-                                    <li>Episodio 7</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="cp-video-item">
-                            <figure class="cp-thumb">
-                                <img src="http://img.youtube.com/vi/H4B2FYIebvw/hqdefault.jpg" alt="">
-                                <figcaption class="cp-caption"><a href="#" class="play-video">Reproducir</a>
-                                </figcaption>
-                            </figure>
-                            <div class="cp-text">
-                                <h4>
-                                    <a href="#">
-                                        Paty Muñoz Sketch
-                                    </a>
-                                </h4>
-                                <ul class="cp-meta-list">
-                                    <li>Lunes, Jul 21, 2016</li>
-                                    <li>Episodio 8</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
 
             <!--Outer Holder End-->
 
-            <!--Outer Holder Start-->
             <div class="cp-outer-holder pd-t60">
+                {% if popular is defined %}
                 <div class="row">
                     <div class="col-md-9">
                         <!--Most Viewer Outer Start-->
                         <div class="cp-most-view-outer pd-b60">
                             <div class="cp-heading-outer">
-                                <h2>Últimos videos</h2>
+                                <h2>Videos más populares</h2>
                             </div>
                             <div class="cp_viewed-slider">
+                                {% for video in popular %}
                                 <div class="item">
                                     <div class="cp-most-listed">
                                         <figure class="cp-thumb">
-                                            <img src="http://img.youtube.com/vi/yMa_5h_AmoI/hqdefault.jpg" alt="">
+                                            <img src="{{ video.thumbnail }}" alt="">
                                             <figcaption class="cp-caption">
-                                                <a href="#" class="play-video">Reproducir</a>
+                                                <a href="{{ path('cilantro_media_tv_episode', {'slug':video.id}) }}" class="play-video">Reproducir</a>
                                             </figcaption>
                                         </figure>
                                         <div class="cp-text">
-                                            <h3>Promo julio</h3>
+                                            <h3>{{ video.title }}</h3>
                                             <ul class="cp-meta-list">
-                                                <li>Lunes, Jul 1, 2016</li>
-                                                <li>Bloopers</li>
+                                                <li>{{ video.publishedAt|date('l, M d, Y') }}</li>
                                             </ul>
-                                            <p>Desestresa2 es un programa que busca traer la comedia tradicional al presente y crear una sinergia con la nueva comedia.</p>
-                                            <p>No te lo pierdas...<br />Desestresa2 está en la red y por hoy... Ya se chingaron.</p>
+                                            <p>{{ video.description }}</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="item">
-                                    <div class="cp-most-listed">
-                                        <figure class="cp-thumb">
-                                            <img src="http://img.youtube.com/vi/4cRnnuc1XtE/hqdefault.jpg" alt="">
-                                            <figcaption class="cp-caption">
-                                                <a href="#" class="play-video">Reproducir</a>
-                                            </figcaption>
-                                        </figure>
-                                        <div class="cp-text">
-                                            <h3>El Chevo</h3>
-                                            <ul class="cp-meta-list">
-                                                <li>Lunes, Jul 7, 2016</li>
-                                                <li>Teasers</li>
-                                            </ul>
-                                            <p>Un programa que busca traer la comedia tradicional al presente y crear una sinergia con la nueva comedia. Dentro del contenido se tocan herramientas de improvisación, sketches, rutinas cómicas, parodias y de stand up, la participación de personajes que agregan un toque ácido y que en conjunto se aborden temas cotidianos, con los que todos nos identificamos.</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
-                        <!--Most Viewer Outer End-->
                     </div>
                     <div class="col-md-3">
                         <aside class="cp_sidebar-outer">
@@ -341,9 +258,52 @@
                         </aside>
                     </div>
                 </div>
-            </div>
+                {% endif %}
 
-            <!--Outer Holder End-->
+                {% if latest is defined %}
+                <div class="row">
+                    <div class="col-md-9">
+                        <!--Most Viewer Outer Start-->
+                        <div class="cp-most-view-outer pd-b60">
+                            <div class="cp-heading-outer">
+                                <h2>Últimos videos</h2>
+                            </div>
+                            <div class="cp_viewed-slider">
+                                {% for video in latest %}
+                                    <div class="item">
+                                        <div class="cp-most-listed">
+                                            <figure class="cp-thumb">
+                                                <img src="{{ video.thumbnail }}" alt="">
+                                                <figcaption class="cp-caption">
+                                                    <a href="#" class="play-video">Reproducir</a>
+                                                </figcaption>
+                                            </figure>
+                                            <div class="cp-text">
+                                                <h3>{{ video.title }}</h3>
+                                                <ul class="cp-meta-list">
+                                                    <li>{{ video.publishedAt|date('l, M d, Y') }}</li>
+                                                    <li>Bloopers</li>
+                                                </ul>
+                                                <p>{{ video.description }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <aside class="cp_sidebar-outer">
+                            <div class="widget widget-advertisement">
+                                <div class="cp-advertisement">
+                                    <img src="http://lorempixel.com/300/500/" alt="">
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
 
             <div class="cp-advertisement">
                 <div class="row">
