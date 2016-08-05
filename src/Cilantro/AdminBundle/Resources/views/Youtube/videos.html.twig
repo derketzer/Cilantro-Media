@@ -18,6 +18,10 @@
                             <th>Titulo</th>
                             <th class="hidden-480">Descripción</th>
                             <th>Views</th>
+							<th>Likes</th>
+							<th>Dislikes</th>
+							<th>Favoritos</th>
+							<th>Comentarios</th>
                         </tr>
                     </thead>
 
@@ -41,6 +45,34 @@
                                             N/A
                                         {% endif %}
                                     </td>
+									<td>
+										{% if video.stats is defined %}
+											{{ video.stats.likeCount }}
+										{% else %}
+											N/A
+										{% endif %}
+									</td>
+									<td>
+										{% if video.stats is defined %}
+											{{ video.stats.dislikeCount }}
+										{% else %}
+											N/A
+										{% endif %}
+									</td>
+									<td>
+										{% if video.stats is defined %}
+											{{ video.stats.favoriteCount }}
+										{% else %}
+											N/A
+										{% endif %}
+									</td>
+									<td>
+										{% if video.stats is defined %}
+											{{ video.stats.commentCount }}
+										{% else %}
+											N/A
+										{% endif %}
+									</td>
                                 </tr>
                             {% endfor %}
                         {% endif %}
@@ -72,7 +104,11 @@
                         { "bSortable": false },
                         null,
                         { "bSortable": false },
-                        null
+                        null,
+						null,
+						null,
+						null,
+						null
 					],
 					"aaSorting": [],
 
