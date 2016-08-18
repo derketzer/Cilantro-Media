@@ -10,6 +10,10 @@ services:
           class: Cilantro\AdminBundle\Service\YoutubeService
           arguments: ['@doctrine', '@service_container']
 
+    facebook:
+          class: Cilantro\AdminBundle\Service\FacebookService
+          arguments: ['@doctrine', '@service_container']
+
     log:
           class: Cilantro\AdminBundle\Service\LogService
           arguments: ['@service_container']

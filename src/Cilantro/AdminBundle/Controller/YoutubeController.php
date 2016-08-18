@@ -14,13 +14,13 @@ class YoutubeController extends Controller
     public function channelAction($slug='')
     {
         if(empty($slug))
-            $this->redirectToRoute('cilantro_admin_index_dashboard');
+            return $this->redirectToRoute('cilantro_admin_index_dashboard');
 
         $youtubeChannelRespository = $this->getDoctrine()->getRepository('CilantroAdminBundle:YoutubeChannel');
-        $youtubeChannel= $youtubeChannelRespository->findOneBy(array('slug' => $slug));
+        $youtubeChannel = $youtubeChannelRespository->findOneBy(array('slug' => $slug));
 
         if(empty($youtubeChannel))
-            $this->redirectToRoute('cilantro_admin_index_dashboard');
+            return $this->redirectToRoute('cilantro_admin_index_dashboard');
 
         $breadcrumbs = [['title'=>'Inicio', 'path'=>'cilantro_admin_index_dashboard'],
             ['title'=>'Youtube'],
