@@ -133,7 +133,6 @@ class YoutubeService
         $youtubeVideoRespository = $this->em->getRepository('CilantroAdminBundle:YoutubeVideo');
         $youtubeStatsRespository = $this->em->getRepository('CilantroAdminBundle:YoutubeStats');
 
-        $logMessage = '';
         if($count == 0) {
             $youtubeVideos = $youtubeVideoRespository->findBy(Array('active' => true), Array('publishedAt'=>'DESC'));
             $logMessage = 'Youtube: All videos stats updated.';

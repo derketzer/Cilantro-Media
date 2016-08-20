@@ -3,6 +3,7 @@
 namespace Cilantro\AdminBundle\Service;
 
 use Cilantro\AdminBundle\Entity\FacebookPage;
+use Cilantro\AdminBundle\Entity\FacebookVideo;
 use Cilantro\AdminBundle\Entity\FacebookVideoList;
 use Doctrine\Bundle\DoctrineBundle\Registry as Doctrine;
 use Facebook\Facebook;
@@ -84,7 +85,7 @@ class FacebookService
             foreach ($pages as $page) {
                 $this->fb->setDefaultAccessToken($page->getAccessToken());
 
-                $response = $this->fb->get('/' . $page->getFacebookId() . '/video_lists');
+                $response = $this->fb->get('/' . $page->getFacebookId() . '/video_lists?limit=50');
                 $responseBody = $response->getDecodedBody();
                 $facebookVideoLists = $responseBody['data'];
 
@@ -112,5 +113,42 @@ class FacebookService
             }
         }
     }
-    // facebookVideoList/videos?fields=id,title,description,content_tags,picture,published
+
+    public function getVideos()
+    {
+        $facebookPageRepository = $this->em->getRepository('CilantroAdminBundle:FacebookPage');
+        $pages = $facebookPageRepository->findBy(['active' => true]);
+
+        $facebookVideoRepository = $this->em->getRepository('CilantroAdminBundle:FacebookVideo');
+
+        if (!empty($pages)) {
+            foreach ($pages as $page) {
+                $this->fb->setDefaultAccessToken($page->getAccessToken());
+
+                foreach ($page->getVideoLists() as $videoList){
+                    $response = $this->fb->get('/' . $videoList->getFacebookId() .
+                        '/videos?limit=50&fields=id,title,description,content_tags,picture,published,embed_html');
+                    $responseBody = $response->getDecodedBody();
+                    $facebookVideos = $responseBody['data'];
+
+                    foreach ($facebookVideos as $facebookVideo) {
+                        $facebookVideoTemp = $facebookVideoRepository->findOneBy(['facebookId'=>$facebookVideo['id']]);
+                        if(empty($facebookVideoTemp)){
+                            $video = new FacebookVideo();
+                            $video->setDescription(utf8_encode($facebookVideo['description']));
+                            $video->setFacebookId($facebookVideo['id']);
+                            $video->setPicture($facebookVideo['picture']);
+                            $video->setPublished($facebookVideo['published']);
+                            $video->setTitle($facebookVideo['title']);
+                            $video->setFacebookVideoList($videoList);
+                            $video->setEmbedHtml($facebookVideo['embed_html']);
+
+                            $this->em->persist($video);
+                            $this->em->flush();
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

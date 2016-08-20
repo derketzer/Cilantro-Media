@@ -2,6 +2,7 @@
 
 namespace Cilantro\AdminBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -47,6 +48,15 @@ class FacebookVideoList
      * @ORM\Column(name="active", type="integer")
      */
     private $active;
+
+    /**
+     * @ORM\OneToMany(targetEntity="FacebookVideo", mappedBy="facebookVideoList")
+     */
+    private $videos;
+
+    public function __construct() {
+        $this->videos = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -128,6 +138,22 @@ class FacebookVideoList
     public function setActive($active)
     {
         $this->active = $active;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVideos()
+    {
+        return $this->videos;
+    }
+
+    /**
+     * @param mixed $videos
+     */
+    public function setVideos($videos)
+    {
+        $this->videos = $videos;
     }
 }
 
