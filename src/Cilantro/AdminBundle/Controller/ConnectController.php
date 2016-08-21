@@ -6,9 +6,12 @@ use Cilantro\AdminBundle\Entity\SocialNetworkService;
 use Facebook\Exceptions\FacebookResponseException;
 use Facebook\Exceptions\FacebookSDKException;
 use Facebook\Facebook;
+use Google_Client;
+use Google_Service_YouTube;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\EventDispatcher\Tests\Service;
+use Symfony\Component\HttpFoundation\Request;
 
 class ConnectController extends Controller
 {
@@ -37,9 +40,19 @@ class ConnectController extends Controller
             $this->generateUrl('cilantro_admin_connect_facebookcallback');
         $facebookLink = $helper->getLoginUrl($callbackUrl, $permissions);
 
+        $client = new Google_Client();
+        $client->setAuthConfigFile($this->container->get('kernel')->getRootDir().'/cilantromedia.json');
+        $client->addScope(Google_Service_YouTube::YOUTUBE_READONLY);
+        $callbackUrl = $this->container->get('router')->getContext()->getScheme().'://'.
+            $this->container->get('router')->getContext()->getHost().':8080'.
+            $this->generateUrl('cilantro_admin_connect_googlecallback');
+        $client->setRedirectUri($callbackUrl);
+        $client->setAccessType("offline");
+        $auth_url = $client->createAuthUrl();
+
         return $this->render('@CilantroAdmin/Service/list.html.twig', ['contentTitle'=>'Conexión a redes sociales',
             'facebookLink' => $facebookLink,
-            'youtubeLink' => '2',
+            'youtubeLink' => $auth_url,
             'breadcrumbs' => $breadcrumbsHtml]);
     }
 
@@ -95,6 +108,38 @@ class ConnectController extends Controller
                 exit;
             }
         }
+
+        return $this->redirectToRoute('cilantro_admin_connect_servicelist');
+    }
+
+    /**
+     * @Route("/services/google/callback")
+     */
+    public function googleCallbackAction(Request $request)
+    {
+        if (!session_id()) {
+            session_start();
+        }
+
+        $client = new Google_Client();
+        $client->setAuthConfigFile($this->container->get('kernel')->getRootDir().'/cilantromedia.json');
+        $client->addScope(Google_Service_YouTube::YOUTUBE_READONLY);
+        $callbackUrl = $this->container->get('router')->getContext()->getScheme().'://'.
+            $this->container->get('router')->getContext()->getHost().':8080'.
+            $this->generateUrl('cilantro_admin_connect_googlecallback');
+        $client->setRedirectUri($callbackUrl);
+        $client->setAccessType("offline");
+
+        $client->authenticate($request->query->get('code'));
+        $access_token = $client->getAccessToken();
+
+        $socialNetworkService = new SocialNetworkService();
+        $socialNetworkService->setAccessToken(json_encode($access_token));
+        $socialNetworkService->setName('Google');
+        $socialNetworkService->setUserId($client->getClientId());
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($socialNetworkService);
+        $em->flush();
 
         return $this->redirectToRoute('cilantro_admin_connect_servicelist');
     }

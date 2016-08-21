@@ -83,6 +83,16 @@ class YoutubeVideo
     private $active;
 
     /**
+     * @ORM\ManyToMany(targetEntity="YoutubeVideoTag", inversedBy="videos")
+     * @ORM\JoinTable(name="youtube_video_tags")
+     */
+    private $tags;
+
+    public function __construct() {
+        $this->tags = new ArrayCollection();
+    }
+
+    /**
      * Get id
      *
      * @return integer
@@ -298,5 +308,37 @@ class YoutubeVideo
     public function setSlug($slug)
     {
         $this->slug = $slug;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * @param mixed $tags
+     */
+    public function setTags($tags)
+    {
+        $this->tags = $tags;
+    }
+
+    public function addTag($tag)
+    {
+        foreach ($this->tags as $tagTemp){
+            if($tagTemp->getName() == $tag->getName()){
+                return null;
+            }
+        }
+
+        $this->tags[] = $tag;
+    }
+
+    public function flushTags()
+    {
+        $this->tags = [];
     }
 }

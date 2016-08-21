@@ -23,3 +23,5 @@ parameters:
     slack_token:         abc
     facebook_app_id:     abc
     facebook_app_secret: abc
+    youtube_key:         abc
+    youtube_secret:      abc

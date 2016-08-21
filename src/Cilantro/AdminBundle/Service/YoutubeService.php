@@ -2,6 +2,7 @@
 
 namespace Cilantro\AdminBundle\Service;
 
+use Cilantro\AdminBundle\Entity\YoutubeVideoTag;
 use Doctrine\Bundle\DoctrineBundle\Registry as Doctrine;
 use Google_Client;
 use Google_Service_YouTube;
@@ -15,8 +16,8 @@ class YoutubeService
     private $em;
     private $container;
     private $googleClient;
-    private $googleService;
     private $log;
+    private $googleService;
 
     public function __construct(Doctrine $doctrine, Container $container)
     {
@@ -24,23 +25,23 @@ class YoutubeService
         $this->container = $container;
 
         $this->googleClient = new Google_Client();
-        $this->googleClient->setAuthConfig($this->container->get('kernel')->getRootDir().'/cilantromedia.json');
-        $this->googleClient->setScopes(['https://www.googleapis.com/auth/youtube',
-            'https://www.googleapis.com/auth/youtube.force-ssl',
-            'https://www.googleapis.com/auth/youtube.readonly',
-            'https://www.googleapis.com/auth/youtubepartner']);
+        $this->googleClient->setClientId($this->container->getParameter('youtube_key'));
+        $this->googleClient->setClientSecret($this->container->getParameter('youtube_secret'));
+        $this->googleClient->addScope('https://www.googleapis.com/auth/youtube');
+        $callbackUrl = $this->container->get('router')->getContext()->getScheme().'://'.
+            $this->container->get('router')->getContext()->getHost().':8080';
+        $this->googleClient->setRedirectUri($callbackUrl);
 
-        $this->googleClient->setApplicationName('Cilantro Media');
+        $snRepository = $this->em->getRepository('CilantroAdminBundle:SocialNetworkService');
+        $googleService = $snRepository->findOneBy(['name'=>'Google']);
+        $this->googleClient->setAccessToken($googleService->getAccessToken());
 
         $this->googleService = new Google_Service_YouTube($this->googleClient);
-
-        $this->log = new LogService($container);
-        $this->log->init();
     }
 
     public function channel()
     {
-        $channels = $this->googleService->channels->listChannels('snippet', array('id'=>'UCPAYAZIOoMD-4A3-3Hr_4wQ'));
+        /*$channels = $this->googleService->channels->listChannels('snippet', array('id'=>'UCPAYAZIOoMD-4A3-3Hr_4wQ'));
 
         $youtubeChannelRespository = $this->em->getRepository('CilantroAdminBundle:YoutubeChannel');
 
@@ -64,7 +65,7 @@ class YoutubeService
                     }
                 }
             }
-        }
+        }*/
 
         return true;
     }
@@ -126,6 +127,39 @@ class YoutubeService
         $this->log->infoMessage('Youtube: '.$videosAgregados.' new videos added.');
 
         return true;
+    }
+
+    public function videoTags()
+    {
+        $youtubeVideosRepository = $this->em->getRepository('CilantroAdminBundle:YoutubeVideo');
+        $videos = $youtubeVideosRepository->findAll();
+
+        $videoTagRepository = $this->em->getRepository('CilantroAdminBundle:YoutubeVideoTag');
+
+        foreach ($videos as $video) {
+            $listResponse = $this->googleService->videos->listVideos("snippet", array('id' => $video->getVideoId()));
+            $youtubeVideo = $listResponse[0];
+            $videoSnippet = $youtubeVideo['snippet'];
+            $tags = $videoSnippet['tags'];
+
+            $video->flushTags();
+
+            if(!empty($tags)) {
+                foreach ($tags as $tag) {
+                    $videoTag = $videoTagRepository->findOneBy(['name' => $tag]);
+                    if (empty($videoTag)) {
+                        $videoTag = new YoutubeVideoTag();
+                        $videoTag->setName($tag);
+                        $this->em->persist($videoTag);
+                    }
+
+                    $video->addTag($videoTag);
+                    $this->em->persist($video);
+                }
+            }
+
+            $this->em->flush();
+        }
     }
 
     public function stats($count="")
