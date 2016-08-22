@@ -5,10 +5,10 @@ namespace Cilantro\MediaBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
-class TvController extends Controller
+class YoutubeController extends Controller
 {
     /**
-     * @Route("/tv/{slug}")
+     * @Route("/yt-channel/{slug}")
      */
     public function episodesAction($slug='')
     {
@@ -28,7 +28,7 @@ class TvController extends Controller
         $popularVideos = $youtubeVideoRespository->findBy(Array('youtubeChannel'=>$youtubeChannel), Array('publishedAt'=>'DESC'), 5);
         $latestVideos = $youtubeVideoRespository->findBy(Array('youtubeChannel'=>$youtubeChannel), Array('publishedAt'=>'DESC'), 5);
 
-        return $this->render('CilantroMediaBundle:Tv:episode_list.html.twig', [
+        return $this->render('CilantroMediaBundle:Youtube:episode_list.html.twig', [
             'themePath' => $themePath,
             'disclaimer' => $disclaimer,
             'popular' => $popularVideos,
@@ -37,7 +37,7 @@ class TvController extends Controller
     }
 
     /**
-     * @Route("/tv/episode/{slug}")
+     * @Route("/yt-channel/episode/{slug}")
      */
     public function episodeAction($slug='')
     {
@@ -67,7 +67,7 @@ class TvController extends Controller
         if(file_exists('bundles/cilantromedia/css/site/theme-color-'.$slug.'.css'))
             $themePath = 'bundles/cilantromedia/css/site/theme-color-'.$slug.'.css';
 
-        return $this->render('CilantroMediaBundle:Tv:episode.html.twig', [
+        return $this->render('CilantroMediaBundle:Youtube:episode.html.twig', [
             'themePath' => $themePath,
             'videosRelacionados' => 1,
             'video' => $video,

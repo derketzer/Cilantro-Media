@@ -22,12 +22,13 @@
 							<th>Dislikes</th>
 							<th>Favoritos</th>
 							<th>Comentarios</th>
+							<th>Activo</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         {% if videos is defined %}
-                            {% for video in videos %}
+                            {% for key,video in videos %}
                                 <tr>
                                     <td class="center">
                                         <img src="{{ video.thumbnail }}" style="max-width:150px;" />
@@ -73,6 +74,14 @@
 											N/A
 										{% endif %}
 									</td>
+									<td>
+										<div class="col-xs-3">
+											<label>
+												<input name="switch-active-{{ key }}" class="ace ace-switch ace-switch-4 btn-empty" type="checkbox"{% if video.active %} checked{% endif %} />
+												<span class="lbl"></span>
+											</label>
+										</div>
+									</td>
                                 </tr>
                             {% endfor %}
                         {% endif %}
@@ -108,7 +117,8 @@
 						null,
 						null,
 						null,
-						null
+						null,
+							null
 					],
 					"aaSorting": [],
 

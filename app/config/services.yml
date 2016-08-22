@@ -17,3 +17,10 @@ services:
     log:
           class: Cilantro\AdminBundle\Service\LogService
           arguments: ['@service_container']
+
+    app.menu_builder:
+          class: Cilantro\MediaBundle\Menu\MenuBuilder
+          arguments: ["@knp_menu.factory", '@doctrine']
+          tags:
+                - { name: knp_menu.menu_builder, method: createMainMenu, alias: main }
+                - { name: knp_menu.menu_builder, method: createSiteMenu, alias: site }

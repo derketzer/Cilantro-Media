@@ -121,6 +121,8 @@ class ConnectController extends Controller
             session_start();
         }
 
+        $em = $this->getDoctrine()->getManager();
+
         $client = new Google_Client();
         $client->setAuthConfigFile($this->container->get('kernel')->getRootDir().'/cilantromedia.json');
         $client->addScope(Google_Service_YouTube::YOUTUBE_READONLY);
@@ -133,11 +135,17 @@ class ConnectController extends Controller
         $client->authenticate($request->query->get('code'));
         $access_token = $client->getAccessToken();
 
-        $socialNetworkService = new SocialNetworkService();
-        $socialNetworkService->setAccessToken(json_encode($access_token));
-        $socialNetworkService->setName('Google');
-        $socialNetworkService->setUserId($client->getClientId());
-        $em = $this->getDoctrine()->getManager();
+        $snRepository = $em->getRepository('CilantroAdminBundle:SocialNetworkService');
+        $socialNetworkService = $snRepository->findOneBy(['name'=>'Google']);
+        if(empty($socialNetworkService)) {
+            $socialNetworkService = new SocialNetworkService();
+            $socialNetworkService->setAccessToken(json_encode($access_token));
+            $socialNetworkService->setName('Google');
+            $socialNetworkService->setUserId($client->getClientId());
+        }else{
+            $socialNetworkService->setAccessToken(json_encode($access_token));
+        }
+
         $em->persist($socialNetworkService);
         $em->flush();
 

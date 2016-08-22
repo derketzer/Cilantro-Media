@@ -9,6 +9,26 @@ use Symfony\Component\HttpFoundation\Response;
 class YoutubeController extends Controller
 {
     /**
+     * @Route("/youtube/channels")
+     */
+    public function channelsAction()
+    {
+        $youtubeChannelRepository = $this->getDoctrine()->getRepository('CilantroAdminBundle:YoutubeChannel');
+        $youtubeChannels = $youtubeChannelRepository->findAll();
+
+        $breadcrumbs = [['title'=>'Inicio', 'path'=>'cilantro_admin_index_dashboard'],
+            ['title'=>'Youtube Channels']
+        ];
+
+        $breadcrumbsHtml = $this->get('cilantro.utils')->generateBreadcrumbs($breadcrumbs);
+
+        return $this->render('@CilantroAdmin/Youtube/channels.html.twig',
+            ['contentTitle'=>'Youtube Channels',
+            'breadcrumbs' => $breadcrumbsHtml,
+            'youtubeChannels' => $youtubeChannels]);
+    }
+
+    /**
      * @Route("/youtube/channel/{slug}/videos")
      */
     public function channelAction($slug='')

@@ -64,6 +64,13 @@ class FacebookVideo
     private $published;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="active", type="boolean")
+     */
+    private $active;
+
+    /**
      * @ORM\ManyToOne(targetEntity="FacebookVideoList", inversedBy="videos")
      * @ORM\JoinColumn(name="facebook_video_list_id", referencedColumnName="id")
      **/
@@ -230,6 +237,22 @@ class FacebookVideo
     public function setEmbedHtml($embedHtml)
     {
         $this->embedHtml = $embedHtml;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * @param mixed $active
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
     }
 }
 
