@@ -4,6 +4,7 @@ namespace Cilantro\AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * YoutubeChannel
@@ -40,6 +41,7 @@ class YoutubeChannel
      * @var string
      *
      * @ORM\Column(name="slug", type="string", length=255)
+     * @Gedmo\Slug(fields={"title"})
      */
     private $slug;
 

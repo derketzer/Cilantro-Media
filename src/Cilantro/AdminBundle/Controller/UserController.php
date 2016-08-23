@@ -74,6 +74,49 @@ class UserController extends Controller
     }
 
     /**
+     * @Route("/user/{userId}/edit");
+     */
+    public function editAction($userId, Request $request)
+    {
+        if(empty($userId)){
+            return $this->redirectToRoute('cilantro_admin_user_index');
+        }
+
+        $userManager = $this->container->get('fos_user.user_manager');
+        $user = $userManager->findUserBy(['id'=>$userId]);
+
+        $breadcrumbs = [['title'=>'Inicio', 'path'=>'cilantro_admin_index_dashboard'],
+            ['title'=>'Usuarios', 'path'=>'cilantro_admin_user_index'],
+            ['title'=>'Editar usuario']
+        ];
+        $breadcrumbsHtml = $this->get('cilantro.utils')->generateBreadcrumbs($breadcrumbs);
+
+        $form = $this->createForm(UserType::class, $user);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid() && !$form->isEmpty()) {
+            try {
+                $user->setEnabled(true);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($user);
+                $em->flush();
+
+                return $this->redirectToRoute('cilantro_admin_user_index');
+            }catch(\Exception $e){
+                $error = new FormError('Hubo un error al guardar el formulario');
+                $form->addError($error);
+            }
+        }
+
+        return $this->render('@CilantroAdmin/Users/user.html.twig', [
+            'contentTitle'=>'Editar',
+            'breadcrumbs' => $breadcrumbsHtml,
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
      * @Route("/user/{userId}/lock");
      */
     public function lockAction($userId)

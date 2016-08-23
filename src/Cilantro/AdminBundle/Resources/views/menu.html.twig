@@ -1,0 +1,10 @@
+{% extends 'knp_menu.html.twig' %}
+
+{% block linkElement %}
+    <a href="{{ item.uri }}">
+        <i class="menu-icon fa fa-{{ item.attribute('icon') }}"></i>
+        <span class="menu-text"> {{ block('label') }} </span>
+    </a>
+
+    <b class="arrow"></b>
+{% endblock %}

@@ -4,6 +4,8 @@ namespace Cilantro\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class VideoController extends Controller
 {
@@ -47,5 +49,36 @@ class VideoController extends Controller
         return $this->render('@CilantroAdmin/Video/video_list.html.twig', ['contentTitle'=>'Lista "'.$videoList->getTitle().'"',
             'breadcrumbs'=>$breadcrumbsHtml,
             'videos'=>$videos]);
+    }
+
+    /**
+     * @Route("/video/switch")
+     */
+    public function facebookListSwitchAction(Request $request)
+    {
+        $checkedValue = $request->request->get('checkedValue');
+        $videoListId = $request->request->get('videoListId');
+
+        if(empty($videoListId)){
+            return new Response(json_encode(['type'=>'error', 'text'=>'La lista está vacía!']));
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $videoListsRepository = $em->getRepository('CilantroAdminBundle:FacebookVideoList');
+        $videoList = $videoListsRepository->findOneBy(['id'=>$videoListId]);
+
+        if(!empty($videoList)){
+            try {
+                $videoList->setActive($checkedValue);
+                $em->persist($videoList);
+                $em->flush();
+            }catch(\Exception $e){
+                return new Response(json_encode(['type'=>'error', 'text'=>"Hubo un error al guardar la lista!\n\n".$e->getMessage()]));
+            }
+        }else{
+            return new Response(json_encode(['type'=>'error', 'text'=>'La lista no existe!']));
+        }
+
+        return new Response(json_encode([]));
     }
 }

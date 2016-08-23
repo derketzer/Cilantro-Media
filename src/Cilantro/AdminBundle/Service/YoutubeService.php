@@ -28,8 +28,15 @@ class YoutubeService
         $this->googleClient->setClientId($this->container->getParameter('youtube_key'));
         $this->googleClient->setClientSecret($this->container->getParameter('youtube_secret'));
         $this->googleClient->addScope('https://www.googleapis.com/auth/youtube');
-        $callbackUrl = $this->container->get('router')->getContext()->getScheme().'://'.
-            $this->container->get('router')->getContext()->getHost().':8080';
+
+        $environment = $this->container->get('kernel')->getEnvironment();
+        if($environment == 'dev') {
+            $callbackUrl = $this->container->get('router')->getContext()->getScheme() . '://' .
+                $this->container->get('router')->getContext()->getHost() . ':8080';
+        }else{
+            $callbackUrl = $this->container->get('router')->getContext()->getScheme() . '://' .
+                $this->container->get('router')->getContext()->getHost();
+        }
         $this->googleClient->setRedirectUri($callbackUrl);
 
         $snRepository = $this->em->getRepository('CilantroAdminBundle:SocialNetworkService');
@@ -41,7 +48,7 @@ class YoutubeService
 
     public function channel()
     {
-        /*$channels = $this->googleService->channels->listChannels('snippet', array('id'=>'UCPAYAZIOoMD-4A3-3Hr_4wQ'));
+        $channels = $this->googleService->channels->listChannels('snippet', array('id'=>'UCuFAb_NwdzeyAYTp38jBvRw'));
 
         $youtubeChannelRespository = $this->em->getRepository('CilantroAdminBundle:YoutubeChannel');
 
@@ -61,11 +68,12 @@ class YoutubeService
                         $this->em->persist($youtubeChannel);
                         $this->em->flush();
                     } catch (\Exception $e) {
+                        echo $e->getMessage();
                         return false;
                     }
                 }
             }
-        }*/
+        }
 
         return true;
     }

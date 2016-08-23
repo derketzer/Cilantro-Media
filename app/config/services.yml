@@ -22,5 +22,12 @@ services:
           class: Cilantro\MediaBundle\Menu\MenuBuilder
           arguments: ["@knp_menu.factory", '@doctrine']
           tags:
-                - { name: knp_menu.menu_builder, method: createMainMenu, alias: main }
-                - { name: knp_menu.menu_builder, method: createSiteMenu, alias: site }
+                - { name: knp_menu.menu_builder, method: createMainMenu, alias: main  }
+                - { name: knp_menu.menu_builder, method: createSiteMenu, alias: site  }
+                - { name: knp_menu.menu_builder, method: adminMenu,      alias: admin }
+
+    form.type.user:
+          class: Cilantro\AdminBundle\Form\UserType
+          arguments: ["@security.role_hierarchy"]
+          tags:
+                - { name: form.type, alias: user_type }

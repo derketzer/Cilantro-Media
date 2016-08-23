@@ -3,6 +3,9 @@
         try{ace.settings.loadState('sidebar')}catch(e){}
     </script>
 
+    {{ knp_menu_render('admin', {'template': '@CilantroAdmin/menu.html.twig', 'currentClass': 'active'}) }}
+
+    {% if false %}
     <ul class="nav nav-list">
         <li class="active">
             <a href="{{ path('cilantro_admin_index_dashboard') }}">
@@ -60,4 +63,5 @@
             </li>
         {% endif %}
     </ul>
+    {% endif %}
 </div>

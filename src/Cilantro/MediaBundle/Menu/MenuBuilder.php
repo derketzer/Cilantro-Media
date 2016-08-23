@@ -4,6 +4,7 @@ namespace Cilantro\MediaBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Registry as Doctrine;
+use Symfony\Component\HttpFoundation\Request;
 
 class MenuBuilder
 {
@@ -74,6 +75,20 @@ class MenuBuilder
                 }
             }
         }
+
+        return $menu;
+    }
+
+    public function adminMenu(Array $options)
+    {
+        $menu = $this->factory->createItem('root')->setChildrenAttribute('class', 'nav nav-list');
+
+        $menu->addChild('Dashboard', ['route'=>'cilantro_admin_index_dashboard'])->setAttribute('icon', 'tachometer');
+        $menu->addChild('Facebook', ['route'=>'cilantro_admin_video_facebooklist'])->setAttribute('icon', 'facebook');
+        $menu->addChild('Youtube', ['route'=>'cilantro_admin_youtube_channels'])->setAttribute('icon', 'youtube');
+        $menu->addChild('Contacto', ['route'=>'cilantro_admin_contacto_index'])->setAttribute('icon', 'envelope');
+        $menu->addChild('Usuarios', ['route'=>'cilantro_admin_user_index'])->setAttribute('icon', 'user');
+        $menu->addChild('Connect', ['route'=>'cilantro_admin_connect_servicelist'])->setAttribute('icon', 'plug');
 
         return $menu;
     }

@@ -37,7 +37,7 @@
                                 <td>
                                     <div class="col-xs-3">
                                         <label>
-                                            <input name="switch-field-{{ key }}" class="ace ace-switch ace-switch-4 btn-empty" type="checkbox"{% if videoList.active %} checked{% endif %} />
+                                            <input name="switch-field-{{ key }}" video-list-id="{{ videoList.id }}" class="ace ace-switch ace-switch-4 btn-empty" type="checkbox"{% if videoList.active %} checked{% endif %} />
                                             <span class="lbl"></span>
                                         </label>
                                     </div>
@@ -95,9 +95,7 @@
                                 //"iDisplayLength": 50
 
 
-                                select: {
-                                    style: 'multi'
-                                }
+
                             } );
 
             $.fn.dataTable.Buttons.defaults.dom.container.className = 'dt-buttons btn-overlap btn-group btn-overlap';
@@ -235,6 +233,23 @@
                 $(this).find(ace.vars['.icon']).toggleClass('fa-angle-double-down').toggleClass('fa-angle-double-up');
             });
             /***************/
-        })
+        });
+
+        $('.ace-switch').change(function(){
+            var videoListId = $(this).attr('video-list-id');
+            var checkedValue = $(this).is(':checked')?1:0;
+
+            post_data = {'checkedValue':checkedValue, 'videoListId':videoListId};
+            $.post(
+                '{{ path('cilantro_admin_video_facebooklistswitch') }}',
+                post_data,
+                function(response){
+                    if(response.type == 'error') {
+                        alert(response.text);
+                    }
+                },
+                'json'
+            );
+        });
     </script>
 {% endblock %}
