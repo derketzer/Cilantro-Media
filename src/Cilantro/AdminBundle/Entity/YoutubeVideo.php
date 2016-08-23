@@ -85,6 +85,13 @@ class YoutubeVideo
     private $active;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="font", type="boolean")
+     */
+    private $front;
+
+    /**
      * @ORM\ManyToMany(targetEntity="YoutubeVideoTag", inversedBy="videos")
      * @ORM\JoinTable(name="youtube_video_tags")
      */
@@ -342,5 +349,21 @@ class YoutubeVideo
     public function flushTags()
     {
         $this->tags = [];
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFront()
+    {
+        return $this->front;
+    }
+
+    /**
+     * @param mixed $front
+     */
+    public function setFront($front)
+    {
+        $this->front = $front;
     }
 }

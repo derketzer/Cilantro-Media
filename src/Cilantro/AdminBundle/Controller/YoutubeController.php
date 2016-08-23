@@ -150,4 +150,42 @@ class YoutubeController extends Controller
 
         return new Response(json_encode([]));
     }
+
+    /**
+     * @Route("/youtube/video/front/switch")
+     */
+    public function videoSwitchFrontAction(Request $request)
+    {
+        $checkedValue = $request->request->get('checkedValue');
+        $videoId = $request->request->get('videoId');
+
+        if(empty($videoId)){
+            return new Response(json_encode(['type'=>'error', 'text'=>'El video está vacía!']));
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $youtubeVideoRepository = $em->getRepository('CilantroAdminBundle:YoutubeVideo');
+        $video = $youtubeVideoRepository->findOneBy(['id'=>$videoId]);
+
+        if(!empty($video)){
+            if($checkedValue) {
+                $videosFronts = $youtubeVideoRepository->findBy(['front' => true]);
+                if (!empty($videosFronts) && count($videosFronts) > 3) {
+                    return new Response(json_encode(['type' => 'error', 'text' => "Ya hay 4 videos seleccionados para la portada!"]));
+                }
+            }
+
+            try {
+                $video->setFront($checkedValue);
+                $em->persist($video);
+                $em->flush();
+            }catch(\Exception $e){
+                return new Response(json_encode(['type'=>'error', 'text'=>"Hubo un error al guardar el video!\n\n".$e->getMessage()]));
+            }
+        }else{
+            return new Response(json_encode(['type'=>'error', 'text'=>'El video no existe!']));
+        }
+
+        return new Response(json_encode([]));
+    }
 }

@@ -114,6 +114,7 @@ class YoutubeService
                             $youtubeVideo->setPublishedAt(new \DateTime($item->getSnippet()->publishedAt));
                             $youtubeVideo->setYoutubeChannel($youtubeChannel);
                             $youtubeVideo->setActive(true);
+                            $youtubeVideo->setFront(false);
 
                             try {
                                 $this->em->persist($youtubeVideo);

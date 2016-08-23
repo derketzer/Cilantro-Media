@@ -9,7 +9,7 @@
             <ul class="cp-instagram-listed">
                 {% for video in random %}
                 <li>
-                    <figure class="cp-ins-item"><a href="{{ path('cilantro_media_tv_episode', {'slug':video.id}) }}"><img src="{{ video.thumbnail }}" alt=""></a></figure>
+                    <figure class="cp-ins-item"><a href="{{ path('cilantro_media_youtube_episode', {'slug':video.id}) }}"><img src="{{ video.thumbnail }}" alt=""></a></figure>
                 </li>
                 {% endfor %}
             </ul>

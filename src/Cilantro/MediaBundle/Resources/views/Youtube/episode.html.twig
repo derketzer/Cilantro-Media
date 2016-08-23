@@ -1,13 +1,29 @@
 {% extends 'CilantroMedia/Site/base.html.twig' %}
 
 {% block body %}
+    <div id="disclaimer-box">
+    </div>
+    <div id="disclaimer-content">
+        <div id="disclaimer-content-box">
+            <h3>Aviso legal</h3>
+            <br />
+            <p>La página que está a punto de ver contiene material dirigido a adultos mayores de 18 años, responsables legalmente en la región en donde viven y desde donde están accediendo a este contenido. Si usted no tiene 18 años y no es legalmente responsable en la región en la que se encuentra, su acceso a este material NO ESTÁ PERMITIDO. La ley prohibe el acceso de personas menores de edad. </p>
+            <br />
+            <p>Esta página puede incluir imágenes, textos, gráficos, sonidos, ilustraciones, palabras ó descripciones no aptas para menores. Si usted no desea acceder a material de esta naturaleza, entonces usted no debería entrar a esta página.</p>
+            <br />
+            <a href="javascript:closeDisclaimer();">Deseo continuar</a>
+            <br /><br />
+            <a href="//google.com">Deseo salir</a>
+        </div>
+    </div>
+
     <div class="cp_inner-banner">
         <div class="container">
             <div class="cp-inner-banner-holder">
                 <h2>{{ video.title }} <strong></strong></h2>
                 <ul class="breadcrumb">
                     <li>Televisión</li>
-                    <li class="active"><a href="{{ path('cilantro_admin_youtube_channel', {'slug':'desestresa2'}) }}">Desestresa2</a></li>
+                    <li class="active"><a href="{{ path('cilantro_media_youtube_episodes', {'slug':'desestresa2'}) }}">Desestresa2</a></li>
                 </ul>
             </div>
         </div>
@@ -245,7 +261,7 @@
                                         <figure class="cp-thumb">
                                             <img src="{{ video.thumbnail }}" alt="">
                                             <figcaption class="cp-caption">
-                                                <a href="{{ path('cilantro_media_tv_episode', {'slug':video.id}) }}" class="play-video">Reproducir</a>
+                                                <a href="{{ path('cilantro_media_youtube_episode', {'slug':video.slug}) }}" class="play-video">Reproducir</a>
                                             </figcaption>
                                         </figure>
                                         <div class="cp-text">
@@ -267,4 +283,48 @@
             </div>
         </section>
     </div><!--Main Content End-->
+
+    <style type="text/css">
+        #disclaimer-box{
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: 9998;
+            opacity: 0.85;
+            filter: alpha(opacity=85);
+        }
+
+        #disclaimer-content{
+            width: 50%;
+            height: 30%;
+            position: absolute;
+            left: 25%;
+            top: 35%;
+            background-color: #FFF;
+            z-index: 9999;
+        }
+
+        #disclaimer-content-box{
+            width: 80%;
+            height: 92%;
+            margin: auto;
+            margin-top: 4%;
+            color: #000;
+        }
+
+        #disclaimer-content-box h3{
+            margin: auto;
+            text-align: center;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function closeDisclaimer(){
+            $("#disclaimer-box").remove();
+            $("#disclaimer-content").remove();
+        }
+    </script>
 {% endblock %}

@@ -7,7 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class FacebookController extends Controller
 {
-    private $videoLimit = 5;
+    private $videoLimit = 6;
 
     /**
      * @Route("/fb-channel/{slug}/{page}")

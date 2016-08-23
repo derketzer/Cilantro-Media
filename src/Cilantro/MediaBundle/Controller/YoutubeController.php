@@ -16,7 +16,7 @@ class YoutubeController extends Controller
             return $this->redirectToRoute('cilantro_media_home_index');
 
         $youtubeChannelRespository = $this->getDoctrine()->getRepository('CilantroAdminBundle:YoutubeChannel');
-        $youtubeChannel= $youtubeChannelRespository->findOneBy(array('slug' => $slug));
+        $youtubeChannel= $youtubeChannelRespository->findOneBy(['slug' => $slug]);
 
         if(empty($youtubeChannel))
             return $this->redirectToRoute('cilantro_media_home_index');
@@ -29,16 +29,22 @@ class YoutubeController extends Controller
 
         $youtubeVideoRespository = $this->getDoctrine()->getRepository('CilantroAdminBundle:YoutubeVideo');
 
-        $latestVideos = $youtubeVideoRespository->findBy(Array('youtubeChannel'=>$youtubeChannel), Array('publishedAt'=>'DESC'), 5);
+        $latestVideos = $youtubeVideoRespository->findBy(['youtubeChannel'=>$youtubeChannel], ['publishedAt'=>'DESC'], 5);
 
-        $popularVideos = $youtubeVideoRespository->findBy(Array('youtubeChannel'=>$youtubeChannel));
-        array_walk($popularVideos, 'orderByStats');
+        $popularVideos = $youtubeVideoRespository->findBy(['youtubeChannel'=>$youtubeChannel]);
+        usort($popularVideos, array($this, 'orderByStats'));
+        $popularVideos = array_slice($popularVideos, 0, 5);
+
+        $latestVideos = $youtubeVideoRespository->findBy(['youtubeChannel'=>$youtubeChannel], ['publishedAt'=>'DESC'], 5);
+
+        $frontVideos = $youtubeVideoRespository->findBy(['youtubeChannel'=>$youtubeChannel, 'front'=>true], ['publishedAt'=>'DESC'], 5);
 
         return $this->render('CilantroMediaBundle:Youtube:episode_list.html.twig', [
             'themePath' => $themePath,
             'disclaimer' => $disclaimer,
             'popular' => $popularVideos,
-            'latest' => $latestVideos
+            'latest' => $latestVideos,
+            'frontVideos' => $frontVideos
         ]);
     }
 
@@ -51,12 +57,12 @@ class YoutubeController extends Controller
             return $this->redirectToRoute('cilantro_media_home_index');
 
         $youtubeVideoRespository = $this->getDoctrine()->getRepository('CilantroAdminBundle:YoutubeVideo');
-        $video = $youtubeVideoRespository->findOneBy(Array('id'=>$slug));
+        $video = $youtubeVideoRespository->findOneBy(['slug'=>$slug]);
 
         if(empty($video))
             return $this->redirectToRoute('cilantro_media_home_index');
 
-        $vidIds = $youtubeVideoRespository->findBy(Array('youtubeChannel'=>$video->getYoutubeChannel()));
+        $vidIds = $youtubeVideoRespository->findBy(['youtubeChannel'=>$video->getYoutubeChannel()]);
         shuffle($vidIds);
         $vidIds = array_slice($vidIds, 0, 8);
 
@@ -67,7 +73,7 @@ class YoutubeController extends Controller
             ->getQuery()
             ->getResult();
 
-        $latestVideos = $youtubeVideoRespository->findBy(Array('youtubeChannel'=>$video->getYoutubeChannel()), Array('publishedAt'=>'DESC'), 5);
+        $latestVideos = $youtubeVideoRespository->findBy(['youtubeChannel'=>$video->getYoutubeChannel()], ['publishedAt'=>'DESC'], 5);
 
         $themePath = 'bundles/cilantromedia/site-assets/css/theme-color.css';
         if(file_exists('bundles/cilantromedia/css/site/theme-color-'.$slug.'.css'))
@@ -82,8 +88,12 @@ class YoutubeController extends Controller
         ]);
     }
 
-    private function orderByStats()
+    private function orderByStats($a, $b)
     {
+        if($a->getStats()->getViewCount() == $b->getStats()->getViewCount()){
+            return 0;
+        }
 
+        return ($a->getStats()->getViewCount() > $b->getStats()->getViewCount()) ? -1 : 1;
     }
 }
