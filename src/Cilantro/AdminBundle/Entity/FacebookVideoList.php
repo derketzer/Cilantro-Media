@@ -4,6 +4,7 @@ namespace Cilantro\AdminBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * FacebookVideoList
@@ -41,6 +42,14 @@ class FacebookVideoList
      * @ORM\JoinColumn(name="facebook_page_id", referencedColumnName="id")
      **/
     private $facebookPage;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=255)
+     * @Gedmo\Slug(fields={"title"})
+     */
+    private $slug;
 
     /**
      * @var integer
@@ -154,6 +163,22 @@ class FacebookVideoList
     public function setVideos($videos)
     {
         $this->videos = $videos;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
     }
 }
 

@@ -13,10 +13,13 @@ class YoutubeController extends Controller
     public function episodesAction($slug='')
     {
         if(empty($slug))
-            $this->redirectToRoute('cilantro_media_home_index');
+            return $this->redirectToRoute('cilantro_media_home_index');
 
         $youtubeChannelRespository = $this->getDoctrine()->getRepository('CilantroAdminBundle:YoutubeChannel');
         $youtubeChannel= $youtubeChannelRespository->findOneBy(array('slug' => $slug));
+
+        if(empty($youtubeChannel))
+            return $this->redirectToRoute('cilantro_media_home_index');
 
         $themePath = 'bundles/cilantromedia/site-assets/css/theme-color.css';
         if(file_exists('bundles/cilantromedia/css/site/theme-color-'.$slug.'.css'))
@@ -42,13 +45,13 @@ class YoutubeController extends Controller
     public function episodeAction($slug='')
     {
         if(empty($slug))
-            $this->redirectToRoute('cilantro_media_home_index');
+            return $this->redirectToRoute('cilantro_media_home_index');
 
         $youtubeVideoRespository = $this->getDoctrine()->getRepository('CilantroAdminBundle:YoutubeVideo');
         $video = $youtubeVideoRespository->findOneBy(Array('id'=>$slug));
 
         if(empty($video))
-            $this->redirectToRoute('cilantro_media_home_index');
+            return $this->redirectToRoute('cilantro_media_home_index');
 
         $vidIds = $youtubeVideoRespository->findBy(Array('youtubeChannel'=>$video->getYoutubeChannel()));
         shuffle($vidIds);

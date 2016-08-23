@@ -52,7 +52,7 @@ class VideoController extends Controller
     }
 
     /**
-     * @Route("/video/switch")
+     * @Route("/videos/facebook/list/active/switch")
      */
     public function facebookListSwitchAction(Request $request)
     {

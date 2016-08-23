@@ -14,37 +14,31 @@
                 <table id="dynamic-table" class="table table-striped table-bordered table-hover">
                     <thead>
                     <tr>
-                        <th>Título</th>
-                        <th class="hidden-480">Descripción</th>
+                        <th>Nombre</th>
+                        <th>Padre</th>
                         <th>Activo</th>
-                        <th>Adultos</th>
                     </tr>
                     </thead>
 
                     <tbody>
-                    {% if youtubeChannels is defined %}
-                        {% for key,youtubeChannel in youtubeChannels %}
+                    {% if menus is defined %}
+                        {% for key,menu in menus %}
                             <tr>
                                 <td>
-                                    <a href="{{ path('cilantro_admin_youtube_channel', {'slug':youtubeChannel.slug}) }}">
-                                        {{ youtubeChannel.title }}
-                                    </a>
+                                    {{ menu.name }}
                                 </td>
-                                <td class="hidden-480">
-                                    {{ youtubeChannel.description }}
+                                <td>
+                                    <select class="parentMenuSelect" menu-id="{{ menu.id }}">
+                                        <option value="null" {% if menu.parent is null %}selected{% endif %}>- Menú Padre- </option>
+                                        {% for parentMenu in parentMenus %}
+                                            <option value="{{ parentMenu.id }}" {% if menu.parent is not null and menu.parent.id == parentMenu.id %}selected{% endif %}>{{ parentMenu.name }}</option>
+                                        {% endfor %}
+                                    </select>
                                 </td>
                                 <td>
                                     <div class="col-xs-3">
                                         <label>
-                                            <input name="switch-active-{{ key }}" channel-id="{{ youtubeChannel.id }}" class="active-switch ace ace-switch ace-switch-4 btn-empty" type="checkbox"{% if youtubeChannel.active %} checked{% endif %} />
-                                            <span class="lbl"></span>
-                                        </label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-xs-3">
-                                        <label>
-                                            <input name="switch-adult-{{ key }}" channel-id="{{ youtubeChannel.id }}" class="adult-switch ace ace-switch ace-switch-4 btn-empty" type="checkbox"{% if youtubeChannel.adult %} checked{% endif %} />
+                                            <input name="switch-active-{{ key }}" menu-id="{{ menu.id }}" class="ace ace-switch ace-switch-4 btn-empty" type="checkbox"{% if menu.active %} checked{% endif %} />
                                             <span class="lbl"></span>
                                         </label>
                                     </div>
@@ -78,7 +72,6 @@
                                 bAutoWidth: false,
                                 "aoColumns": [
                                     null,
-                                    { "bSortable": false },
                                     { "bSortable": false },
                                     { "bSortable": false }
                                 ],
@@ -239,37 +232,37 @@
             /***************/
         });
 
-        $('.active-switch').change(function(){
-            var channelId = $(this).attr('channel-id');
+        $('.ace-switch').change(function(){
+            var menuId = $(this).attr('menu-id');
             var checkedValue = $(this).is(':checked')?1:0;
 
-            post_data = {'checkedValue':checkedValue, 'channelId':channelId};
+            post_data = {'checkedValue':checkedValue, 'menuId':menuId};
             $.post(
-                    '{{ path('cilantro_admin_youtube_channelswitchactive') }}',
-                    post_data,
-                    function(response){
-                        if(response.type == 'error') {
-                            alert(response.text);
-                        }
-                    },
-                    'json'
+                '{{ path('cilantro_admin_menu_menuswitchactive') }}',
+                post_data,
+                function(response){
+                    if(response.type == 'error') {
+                        alert(response.text);
+                    }
+                },
+                'json'
             );
         });
 
-        $('.adult-switch').change(function(){
-            var channelId = $(this).attr('channel-id');
-            var checkedValue = $(this).is(':checked')?1:0;
+        $('.parentMenuSelect').change(function(){
+            var menuId = $(this).attr('menu-id');
+            var menuParentId = $(this).val();
 
-            post_data = {'checkedValue':checkedValue, 'channelId':channelId};
+            post_data = {'menuParentId':menuParentId, 'menuId':menuId};
             $.post(
-                    '{{ path('cilantro_admin_youtube_channelswitchadult') }}',
-                    post_data,
-                    function(response){
-                        if(response.type == 'error') {
-                            alert(response.text);
-                        }
-                    },
-                    'json'
+                '{{ path('cilantro_admin_menu_menuparentswitch') }}',
+                post_data,
+                function(response){
+                    if(response.type == 'error') {
+                        alert(response.text);
+                    }
+                },
+                'json'
             );
         });
     </script>

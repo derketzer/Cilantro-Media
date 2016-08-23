@@ -32,7 +32,8 @@
         "google/apiclient": "^2.0",
         "facebook/php-sdk-v4": "^5.3",
         "knplabs/knp-menu-bundle": "^2.0",
-        "gedmo/doctrine-extensions": "^3.0"
+        "gedmo/doctrine-extensions": "dev-master",
+        "friendsofsymfony/user-bundle": "~2.0@dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

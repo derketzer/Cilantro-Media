@@ -22,16 +22,23 @@ class MenuBuilder
         $menu = $this->factory->createItem('root')->setChildrenAttribute('class', 'nav navbar-nav');
 
         $menuRepository = $this->em->getRepository('CilantroMediaBundle:Menu');
-        $menusTemp = $menuRepository->findBy(['parent'=>NULL]);
+        $menusTemp = $menuRepository->findBy(['parent'=>NULL, 'active'=>true], ['order'=>'asc']);
 
         foreach($menusTemp as $menuTemp){
             if($menuTemp->getPath() == NULL){
                 $subMenu = $menu->addChild($menuTemp->getName(), ['uri'=>'#']);
             }else{
-                $subMenu = $menu->addChild($menuTemp->getName(), ['route' => $menuTemp->getPath()]);
+                if($menu->getAttributes() != "") {
+                    $subMenu = $menu->addChild($menuTemp->getName(), [
+                        'route' => $menuTemp->getPath(),
+                        'routeParameters' => json_decode($menuTemp->getAttributes(), true)
+                    ]);
+                }else{
+                    $subMenu = $menu->addChild($menuTemp->getName(), ['route' => $menuTemp->getPath()]);
+                }
             }
 
-            $subMenusTemp = $menuRepository->findBy(['parent'=>$menuTemp]);
+            $subMenusTemp = $menuRepository->findBy(['parent'=>$menuTemp, 'active'=>true], ['order'=>'asc']);
             if(!empty($subMenusTemp)) {
                 $subMenu->setAttribute('class', 'dropdown');
                 $subMenu->setLinkAttributes(['class'=>'dropdown-toggle', 'data-toggle'=>'dropdown']);
@@ -54,19 +61,25 @@ class MenuBuilder
         $menu = $this->factory->createItem('root')->setChildrenAttribute('class', 'main-menu');
 
         $menuRepository = $this->em->getRepository('CilantroMediaBundle:Menu');
-        $menusTemp = $menuRepository->findBy(['parent'=>NULL]);
+        $menusTemp = $menuRepository->findBy(['parent'=>NULL, 'active'=>true], ['order'=>'asc']);
 
         foreach($menusTemp as $menuTemp){
             if($menuTemp->getPath() == NULL){
                 $subMenu = $menu->addChild($menuTemp->getName(), ['uri'=>'#']);
             }else{
-                $subMenu = $menu->addChild($menuTemp->getName(), ['route' => $menuTemp->getPath()]);
+                if($menu->getAttributes() != "") {
+                    $subMenu = $menu->addChild($menuTemp->getName(), [
+                        'route' => $menuTemp->getPath(),
+                        'routeParameters' => json_decode($menuTemp->getAttributes(), true)
+                    ]);
+                }else{
+                    $subMenu = $menu->addChild($menuTemp->getName(), ['route' => $menuTemp->getPath()]);
+                }
             }
 
-            $subMenusTemp = $menuRepository->findBy(['parent'=>$menuTemp]);
+            $subMenusTemp = $menuRepository->findBy(['parent'=>$menuTemp, 'active'=>true], ['order'=>'asc']);
             if(!empty($subMenusTemp)) {
                 $subMenu->setChildrenAttribute('class', 'drop-down one-column hover-expand');
-
                 foreach ($subMenusTemp as $subMenuTemp) {
                     $subMenu->addChild($subMenuTemp->getName()  , [
                         'route' => $subMenuTemp->getPath(),
@@ -84,6 +97,7 @@ class MenuBuilder
         $menu = $this->factory->createItem('root')->setChildrenAttribute('class', 'nav nav-list');
 
         $menu->addChild('Dashboard', ['route'=>'cilantro_admin_index_dashboard'])->setAttribute('icon', 'tachometer');
+        $menu->addChild('Menu', ['route'=>'cilantro_admin_menu_index'])->setAttribute('icon', 'bars');
         $menu->addChild('Facebook', ['route'=>'cilantro_admin_video_facebooklist'])->setAttribute('icon', 'facebook');
         $menu->addChild('Youtube', ['route'=>'cilantro_admin_youtube_channels'])->setAttribute('icon', 'youtube');
         $menu->addChild('Contacto', ['route'=>'cilantro_admin_contacto_index'])->setAttribute('icon', 'envelope');

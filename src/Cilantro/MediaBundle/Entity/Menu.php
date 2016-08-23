@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Menu
  *
- * @ORM\Table(name="menu")
+ * @ORM\Table(name="menu", uniqueConstraints={@ORM\UniqueConstraint(name="menu_order_unique", columns={"parent_id", "menu_order"})})
  * @ORM\Entity(repositoryClass="Cilantro\MediaBundle\Repository\MenuRepository")
  */
 class Menu
@@ -44,20 +44,41 @@ class Menu
     private $attributes;
 
     /**
-     * @ORM\OneToMany(targetEntity="Menu", mappedBy="parent")
+     * @var boolean
+     *
+     * @ORM\Column(name="menu_generated", type="boolean")
+     */
+    private $generated;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="menu_order", type="integer")
+     */
+    private $order;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="active", type="boolean")
+     */
+    private $active;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Menu", mappedBy="parent", cascade={"remove"})
      */
     private $children;
 
     /**
      * @ORM\ManyToOne(targetEntity="Menu", inversedBy="children")
-     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", nullable=true)
      */
     private $parent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="source", type="integer")
+     * @ORM\Column(name="source", type="integer", nullable=true)
      */
     private $source;
 
@@ -193,6 +214,54 @@ class Menu
     public function setSource($source)
     {
         $this->source = $source;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGenerated()
+    {
+        return $this->generated;
+    }
+
+    /**
+     * @param mixed $generated
+     */
+    public function setGenerated($generated)
+    {
+        $this->generated = $generated;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * @param mixed $active
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
+    /**
+     * @param mixed $order
+     */
+    public function setOrder($order)
+    {
+        $this->order = $order;
     }
 }
 

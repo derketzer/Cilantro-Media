@@ -63,6 +63,7 @@ class YoutubeService
                     $youtubeChannel->setDescription($item->getSnippet()->description);
                     $youtubeChannel->setPublishedAt(new \DateTime($item->getSnippet()->publishedAt));
                     $youtubeChannel->setActive(true);
+                    $youtubeChannel->setAdult(0);
 
                     try {
                         $this->em->persist($youtubeChannel);
@@ -119,7 +120,7 @@ class YoutubeService
                                 $this->em->flush();
                                 $videosAgregados++;
                             } catch (\Exception $e) {
-                                $this->log->errorMessage('Youtube: Video save Error!');
+                                echo $e->getMessage();
                                 return false;
                             }
                         }
@@ -131,8 +132,6 @@ class YoutubeService
                 } while (!empty($nextPageToken));
             }
         }
-
-        $this->log->infoMessage('Youtube: '.$videosAgregados.' new videos added.');
 
         return true;
     }
@@ -215,14 +214,12 @@ class YoutubeService
                         $this->em->persist($youtubeStats);
                         $this->em->flush();
                     } catch (\Exception $e) {
-                        $this->log->errorMessage('Youtube: Stats save Error!');
+                        echo $e->getMessage();
                         return false;
                     }
                 }
             }
         }
-
-        $this->log->infoMessage($logMessage);
 
         return true;
     }

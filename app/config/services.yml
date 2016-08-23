@@ -3,31 +3,49 @@ parameters:
 
 services:
     cilantro.utils:
-          class: Cilantro\AdminBundle\Service\UtilsService
-          arguments: ['@service_container']
+        class: Cilantro\AdminBundle\Service\UtilsService
+        arguments: ['@service_container']
 
     youtube:
-          class: Cilantro\AdminBundle\Service\YoutubeService
-          arguments: ['@doctrine', '@service_container']
+        class: Cilantro\AdminBundle\Service\YoutubeService
+        arguments: ['@doctrine', '@service_container']
 
     facebook:
-          class: Cilantro\AdminBundle\Service\FacebookService
-          arguments: ['@doctrine', '@service_container']
+        class: Cilantro\AdminBundle\Service\FacebookService
+        arguments: ['@doctrine', '@service_container']
+
+    menu:
+        class: Cilantro\AdminBundle\Service\MenuService
+        arguments: ['@doctrine', '@service_container']
 
     log:
-          class: Cilantro\AdminBundle\Service\LogService
-          arguments: ['@service_container']
+        class: Cilantro\AdminBundle\Service\LogService
+        arguments: ['@service_container']
 
     app.menu_builder:
-          class: Cilantro\MediaBundle\Menu\MenuBuilder
-          arguments: ["@knp_menu.factory", '@doctrine']
-          tags:
-                - { name: knp_menu.menu_builder, method: createMainMenu, alias: main  }
-                - { name: knp_menu.menu_builder, method: createSiteMenu, alias: site  }
-                - { name: knp_menu.menu_builder, method: adminMenu,      alias: admin }
+        class: Cilantro\MediaBundle\Menu\MenuBuilder
+        arguments: ["@knp_menu.factory", '@doctrine']
+        tags:
+              - { name: knp_menu.menu_builder, method: createMainMenu, alias: main  }
+              - { name: knp_menu.menu_builder, method: createSiteMenu, alias: site  }
+              - { name: knp_menu.menu_builder, method: adminMenu, alias: admin }
 
     form.type.user:
-          class: Cilantro\AdminBundle\Form\UserType
-          arguments: ["@security.role_hierarchy"]
-          tags:
-                - { name: form.type, alias: user_type }
+        class: Cilantro\AdminBundle\Form\UserType
+        arguments: ["@security.role_hierarchy"]
+        tags:
+              - { name: form.type, alias: user_type }
+
+    gedmo.listener.sluggable:
+        class: Gedmo\Sluggable\SluggableListener
+        tags:
+              - { name: doctrine.event_subscriber, connection: default }
+        calls:
+              - [ setAnnotationReader, [ "@annotation_reader" ] ]
+
+    gedmo.listener.timestampable:
+        class: Gedmo\Timestampable\TimestampableListener
+        tags:
+              - { name: doctrine.event_subscriber, connection: default }
+        calls:
+              - [ setAnnotationReader, [ "@annotation_reader" ] ]

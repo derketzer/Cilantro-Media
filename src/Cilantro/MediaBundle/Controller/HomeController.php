@@ -14,4 +14,12 @@ class HomeController extends Controller
     {
         return $this->render('CilantroMediaBundle:Home:home.html.twig');
     }
+
+    /**
+     * @Route("/politica-de-privacidad")
+     */
+    public function privacyAction()
+    {
+        return $this->render('CilantroMediaBundle::privacy.html.twig');
+    }
 }
