@@ -31,22 +31,33 @@
             <b class="arrow"></b>
         </li>
 
-        <li class="hover">
-            <a href="#">
-                <i class="menu-icon fa fa-user"></i>
-                <span class="menu-text"> Contacto </span>
-            </a>
+        {% if is_granted('ROLE_ADMIN') %}
+            <li class="hover">
+                <a href="{{ path('cilantro_admin_contacto_index') }}">
+                    <i class="menu-icon fa fa-envelope"></i>
+                    <span class="menu-text"> Contacto </span>
+                </a>
 
-            <b class="arrow"></b>
-        </li>
+                <b class="arrow"></b>
+            </li>
 
-        <li class="hover">
-            <a href="{{ path('cilantro_admin_connect_servicelist') }}">
-                <i class="menu-icon fa fa-plug"></i>
-                <span class="menu-text"> Connect </span>
-            </a>
+            <li class="hover">
+                <a href="{{ path('cilantro_admin_connect_servicelist') }}">
+                    <i class="menu-icon fa fa-plug"></i>
+                    <span class="menu-text"> Connect </span>
+                </a>
 
-            <b class="arrow"></b>
-        </li>
+                <b class="arrow"></b>
+            </li>
+
+            <li class="hover">
+                <a href="{{ path('cilantro_admin_user_index') }}">
+                    <i class="menu-icon fa fa-user"></i>
+                    <span class="menu-text"> Usuarios </span>
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+        {% endif %}
     </ul>
 </div>

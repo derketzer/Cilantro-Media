@@ -450,56 +450,6 @@ $(".input-number").keydown(function (e) {
     //$('.cbp-spmenu-right').on('click', function (e) {
 //        e.stopPropagation();
 //    });
-
-
-
- //Contact Us
-  $("#submit_btn").click(function() { 
-        //get input field values
-        var user_name       = $('input[name=name]').val(); 
-        var user_email      = $('input[name=email]').val();
-		var user_telephone      = $('input[name=phone]').val();
-		var user_subject      = $('input[name=subject]').val();
-        var user_message    = $('textarea[name=message]').val();
-        
-        //simple validation at client's end
-        var proceed = true;
-        if(user_name==""){ 
-            proceed = false;
-        }
-        if(user_email==""){ 
-            proceed = false;
-        }
-		if(user_message=="") {  
-            proceed = false;
-        }
-
-        //everything looks good! proceed...
-        if(proceed) 
-        {
-            //data to be sent to server
-            post_data = {'userName':user_name, 'userEmail':user_email, 'userTelephone':user_telephone, 'userSubject':user_subject, 'userMessage':user_message};
-            
-            //Ajax post data to server
-            $.post('contact_me.php', post_data, function(response){  
-
-                //load json data from server and output message     
-				if(response.type == 'error')
-				{
-					output = '<div class="error">'+response.text+'</div>';
-				}else{
-				    output = '<div class="success">'+response.text+'</div>';
-					
-					//reset values in all input fields
-					$('.form-inline input').val(''); 
-					$('.form-inline textarea').val(''); 
-				}
-				
-				$("#result").hide().html(output).slideDown();
-            }, 'json');
-			
-        }
-    });
     
     //reset previously set border colors and hide all message on .keyup()
     $(".form-inline input, .form-inline textarea").keyup(function() { 

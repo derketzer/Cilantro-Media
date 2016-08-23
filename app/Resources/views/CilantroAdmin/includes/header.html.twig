@@ -16,7 +16,7 @@
                         <img class="nav-user-photo" src="{{ asset('bundles/cilantroadmin/assets/avatars/user.jpg') }}" alt="Jason's Photo" />
                         <span class="user-info">
                             <small>Holi,</small>
-                            Usuario
+                            {{ app.user.username }}
                         </span>
 
                         <i class="ace-icon fa fa-caret-down"></i>
@@ -33,7 +33,7 @@
                         <li class="divider"></li>
 
                         <li>
-                            <a href="#">
+                            <a href="{{ path('fos_user_security_logout') }}">
                                 <i class="ace-icon fa fa-power-off"></i>
                                 Salir
                             </a>

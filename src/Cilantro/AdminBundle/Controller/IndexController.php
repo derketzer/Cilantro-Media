@@ -8,14 +8,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class IndexController extends Controller
 {
     /**
-     * @Route("/login")
-     */
-    public function loginAction()
-    {
-        return $this->render(':CilantroAdmin:login.html.twig');
-    }
-
-    /**
      * @Route("/")
      */
     public function dashboardAction()
