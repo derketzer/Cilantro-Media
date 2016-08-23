@@ -1,7 +1,6 @@
 <!--Footer Start-->
 <footer class="cp_footer">
     {% if random is defined %}
-        <!--Instagram Section Start-->
         <section class="cp-instagram-section">
             <div class="cp-ins-text">
                 <h4>+ videos</h4>
@@ -15,10 +14,8 @@
                 {% endfor %}
             </ul>
         </section>
-        <!--Instagram Section End-->
     {% else %}
-        <!--Instagram Section Start-->
-        <section class="cp-instagram-section">
+        {#<section class="cp-instagram-section">
             <div class="cp-ins-text">
                 <h4>Instagram</h4>
                 <i class="fa fa-instagram"></i>
@@ -49,8 +46,7 @@
                     <figure class="cp-ins-item"><a href="#"><img src="http://placekitten.com/g/224/187" alt=""></a></figure>
                 </li>
             </ul>
-        </section>
-        <!--Instagram Section End-->
+        </section>#}
     {% endif %}
 
     <!--Copyright Section Start-->
@@ -67,11 +63,11 @@
             </nav>
             <nav class="cp-ft-nav cp-ft-nav2">
                 <ul>
-                    <li><a href="#">Contacto</a></li>
+                    <li><a href="{{ path('cilantro_media_contact_index') }}">Contacto</a></li>
                     <li><a href="#">Aviso Legal</a></li>
-                    <li><a href="#">Política de privacidad</a></li>
+                    <li><a href="{{ path('cilantro_media_home_privacy') }}">Política de privacidad</a></li>
                     <li><a href="#">Mapa web</a></li>
-                    <li>&copy; 2016 Cilantro Media. Todos los derechos reservados. Desarrollado por Katana Studios</li>
+                    <li>&copy; 2016 Cilantro Media. Todos los derechos reservados. Desarrollado por <a href="https://katanastudios.com" target="_blank">Katana Studios</a></li>
                 </ul>
             </nav>
         </div>

@@ -1,0 +1,95 @@
+{% extends 'CilantroMedia/Site/base.html.twig' %}
+
+{% block body %}
+    <!--Banner Start-->
+    <div class="cp_inner-banner">
+        <div class="container">
+            <div class="cp-inner-banner-holder">
+                <h2><strong>{{ videoList.title }}</strong></h2>
+                <ul class="breadcrumb">
+                    <li><a href="{{ path('cilantro_media_home_index') }}">Inicio</a></li>
+                    <li class="active">Página: {{ currentPage }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--Banner End-->
+
+    <!--Main Content Start-->
+    <div id="cp-main-content">
+        <section class="cp-blog-section pd-tb60">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        {% if videos is defined %}
+                            {% for video in videos %}
+                                <article class="cp-blog-item">
+                                    {{ video.embedHtml|raw }}
+                                    <div class="cp-text">
+                                        <!--span class="cp-icon-box">
+                                            <i class="fa fa-headphones"></i>
+                                        </span-->
+                                        <div class="cp-inner-holder">
+                                            <h3>{{ video.title }}</h3>
+                                            <p>{{ video.description|convert_encoding('iso-8859-1', 'utf8')|nl2br }}</p>
+                                        </div>
+                                    </div>
+                                </article>
+                            {% endfor %}
+                        {% endif %}
+
+                        <div class="cp-pagination-row">
+                            <ul class="pagination">
+                                {% if currentPage != pages %}
+                                    <li>
+                                        <a href="{{ path(app.request.attributes.get('_route'), {'slug':videoList.slug, 'page':currentPage+1}) }}" aria-label="Previous">
+                                            <i class="fa fa-caret-square-o-left"></i>
+                                        </a>
+                                    </li>
+                                {% endif %}
+
+                                {% if currentPage != 1 %}
+                                    <li>
+                                        <a href="{{ path(app.request.attributes.get('_route'), {'slug':videoList.slug, 'page':currentPage-1}) }}" aria-label="Next">
+                                            <i class="fa fa-caret-square-o-right"></i>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <aside class="cp_sidebar-outer">
+                            <div class="widget widget-recent-post">
+                                <div class="cp-heading-outer">
+                                    <h2>Más populares</h2>
+                                </div>
+                                <ul>
+                                    {% if mostPopularVideos is defined %}
+                                        {% for video in mostPopularVideos %}
+                                            <li>
+                                                <div class="cp-holder">
+                                                    <div class="cp-thumb2">
+                                                        <a href="#"><img src="images/recent-post-img-01.jpg" alt=""></a>
+                                                    </div>
+                                                    <div class="cp-text">
+                                                        <h5><a href="#">Shoot inspiration </a></h5>
+                                                        <ul class="cp-meta-list">
+                                                            <li>Monday, Feb 26, 2016</li>
+                                                            <li>by Jiana Smith, <span>123 Views</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        {% endfor %}
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div><!--Main Content End-->
+{% endblock %}

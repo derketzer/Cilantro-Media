@@ -142,6 +142,7 @@ class FacebookService
                             $video->setTitle($facebookVideo['title']);
                             $video->setFacebookVideoList($videoList);
                             $video->setEmbedHtml($facebookVideo['embed_html']);
+                            $video->setActive(true);
 
                             $this->em->persist($video);
                             $this->em->flush();

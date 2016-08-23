@@ -28,8 +28,11 @@ class YoutubeController extends Controller
         $disclaimer = $youtubeChannel->getAdult();
 
         $youtubeVideoRespository = $this->getDoctrine()->getRepository('CilantroAdminBundle:YoutubeVideo');
-        $popularVideos = $youtubeVideoRespository->findBy(Array('youtubeChannel'=>$youtubeChannel), Array('publishedAt'=>'DESC'), 5);
+
         $latestVideos = $youtubeVideoRespository->findBy(Array('youtubeChannel'=>$youtubeChannel), Array('publishedAt'=>'DESC'), 5);
+
+        $popularVideos = $youtubeVideoRespository->findBy(Array('youtubeChannel'=>$youtubeChannel));
+        array_walk($popularVideos, 'orderByStats');
 
         return $this->render('CilantroMediaBundle:Youtube:episode_list.html.twig', [
             'themePath' => $themePath,
@@ -77,5 +80,10 @@ class YoutubeController extends Controller
             'random' => $randomVideos,
             'latest' => $latestVideos
         ]);
+    }
+
+    private function orderByStats()
+    {
+
     }
 }
