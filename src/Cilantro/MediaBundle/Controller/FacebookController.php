@@ -30,6 +30,8 @@ class FacebookController extends Controller
         $videoRepository = $this->getDoctrine()->getRepository('CilantroAdminBundle:FacebookVideo');
         $videos = $videoRepository->findBy(['facebookVideoList'=>$videoList, 'published'=>true], ['facebookId'=>'desc'], $this->videoLimit, $page-1);
 
+        $videosPopulares = $videoRepository->findBy(['facebookVideoList'=>$videoList, 'published'=>true], ['views'=>'desc'], 5);
+
         $allVideos = $videoRepository->findBy(['facebookVideoList'=>$videoList, 'published'=>true]);
         $pages = intval(ceil(count($allVideos)/$this->videoLimit));
 
@@ -40,8 +42,25 @@ class FacebookController extends Controller
             'themePath' => $themePath,
             'videoList' => $videoList,
             'videos' => $videos,
+            'videosPopulares' => $videosPopulares,
             'pages' => $pages,
             'currentPage' => $page
         ]);
+    }
+
+    /**
+     * @Route("/fb-channel/{listSlug}/episode/{videoSlug}")
+     */
+    public function episodeAction($listSlug, $videoSlug)
+    {
+        if(!empty($videoSlug)){
+            $videoRepository = $this->getDoctrine()->getRepository('CilantroAdminBundle:FacebookVideo');
+            $video = $videoRepository->findOneBy(['slug'=>$videoSlug]);
+
+            if(empty($video))
+                return $this->redirectToRoute('cilantro_media_facebook_episodes', ['slug'=>$listSlug]);
+
+            return $this->render('@CilantroMedia/Facebook/episode.html.twig', ['content'=>$video->getEmbedHtml()]);
+        }
     }
 }

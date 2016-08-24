@@ -66,18 +66,23 @@
                                     <h2>Más populares</h2>
                                 </div>
                                 <ul>
-                                    {% if mostPopularVideos is defined %}
-                                        {% for video in mostPopularVideos %}
+                                    {% if videosPopulares is defined %}
+                                        {% for video in videosPopulares %}
                                             <li>
                                                 <div class="cp-holder">
                                                     <div class="cp-thumb2">
-                                                        <a href="#"><img src="images/recent-post-img-01.jpg" alt=""></a>
+                                                        <a class="facebook-video-popular" data-fancybox-type="iframe" href="{{ path('cilantro_media_facebook_episode', {'listSlug':video.facebookVideoList.slug, 'videoSlug':video.slug}) }}">
+                                                            <img style="width:75px;height:65px;" src="{{ video.picture }}" alt="">
+                                                        </a>
                                                     </div>
                                                     <div class="cp-text">
-                                                        <h5><a href="#">Shoot inspiration </a></h5>
+                                                        <h5>
+                                                            <a class="facebook-video-popular" data-fancybox-type="iframe" href="{{ path('cilantro_media_facebook_episode', {'listSlug':video.facebookVideoList.slug, 'videoSlug':video.slug}) }}">
+                                                                {{ video.title }}
+                                                            </a>
+                                                        </h5>
                                                         <ul class="cp-meta-list">
-                                                            <li>Monday, Feb 26, 2016</li>
-                                                            <li>by Jiana Smith, <span>123 Views</span></li>
+                                                            <li>{{ video.publishedAt|date('l, M d, Y') }}</li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -92,4 +97,23 @@
             </div>
         </section>
     </div><!--Main Content End-->
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen" />
+
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            jQuery(".facebook-video-popular").fancybox({
+                fitToView	: true,
+                width		: '70%',
+                height		: '50%',
+                autoSize	: false,
+                closeClick	: false,
+                openEffect	: 'none',
+                closeEffect	: 'none'
+            });
+        });
+    </script>
 {% endblock %}

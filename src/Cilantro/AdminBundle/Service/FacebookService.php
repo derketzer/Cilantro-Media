@@ -127,21 +127,47 @@ class FacebookService
 
                 foreach ($page->getVideoLists() as $videoList){
                     $response = $this->fb->get('/' . $videoList->getFacebookId() .
-                        '/videos?limit=50&fields=id,title,description,content_tags,picture,published,embed_html');
+                        '/videos?limit=50&fields=id,title,description,content_tags,picture,published,embed_html,created_time');
                     $responseBody = $response->getDecodedBody();
                     $facebookVideos = $responseBody['data'];
 
                     foreach ($facebookVideos as $facebookVideo) {
                         $facebookVideoTemp = $facebookVideoRepository->findOneBy(['facebookId'=>$facebookVideo['id']]);
                         if(empty($facebookVideoTemp)){
+                            $thumbnailsTemp = $this->fb->get('/' . $facebookVideo['id'] . '/thumbnails');
+                            $responseBody = $thumbnailsTemp->getDecodedBody();
+                            $facebookVideoThumbnails = $responseBody['data'];
+
+                            $uri = $facebookVideo['picture'];
+                            if(!empty($facebookVideoThumbnails)) {
+                                $width = 0;
+                                $uri = 0;
+                                foreach ($facebookVideoThumbnails as $facebookVideoThumbnail) {
+                                    if ($facebookVideoThumbnail['width'] > $width) {
+                                        $uri = $facebookVideoThumbnail['uri'];
+                                        $width = $facebookVideoThumbnail['width'];
+                                    }
+                                }
+                            }
+
+                            $statsTemp = $this->fb->get('/' . $facebookVideo['id'] . '/video_insights?metric=total_video_views');
+                            $responseBody = $statsTemp->getDecodedBody();
+                            $facebookVideoStats = $responseBody['data'];
+                            $views = 0;
+                            if(!empty($facebookVideoStats) && isset($facebookVideoStats[0]['values'][0]['value'])){
+                                $views = $facebookVideoStats[0]['values'][0]['value'];
+                            }
+
                             $video = new FacebookVideo();
                             $video->setDescription(utf8_encode($facebookVideo['description']));
                             $video->setFacebookId($facebookVideo['id']);
-                            $video->setPicture($facebookVideo['picture']);
+                            $video->setPicture($uri);
+                            $video->setViews($views);
                             $video->setPublished($facebookVideo['published']);
                             $video->setTitle($facebookVideo['title']);
                             $video->setFacebookVideoList($videoList);
                             $video->setEmbedHtml($facebookVideo['embed_html']);
+                            $video->setPublishedAt(new \DateTime($facebookVideo['created_time']));
                             $video->setActive(true);
 
                             $this->em->persist($video);

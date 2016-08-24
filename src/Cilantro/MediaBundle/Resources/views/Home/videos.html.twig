@@ -1,0 +1,66 @@
+{% extends 'CilantroMedia/Site/base.html.twig' %}
+
+{% block body %}
+    <div class="cp_banner">
+        <div class="owl-carousel" id="cp_banner-slider">
+            {% if videos is defined %}
+                {% for video in videos %}
+                    <div class="item">
+                        <div class="" style="position:absolute;top:0px;left:0px;background-color:#000;width:100%;height:100%;z-index:100;opacity:0.7;filter: alpha(opacity=50);"></div>
+                        {% if video.type == 1 %}
+                            <img src="{{ video.video.thumbnail }}" alt="" style="max-height:595px;z-index:10;">
+                        {% else %}
+                            <img src="{{ video.video.picture }}" alt="" style="max-height:595px;z-index:10;">
+                        {% endif %}
+                        <div class="cp-banner-caption" style="z-index:120;">
+                            <div class="container">
+                                <div class="inner-holder">
+                                    <div class="banner-top-text"> <strong class="banner-title">{{ video.channelName }}</strong>
+                                        <p>{{ video.video.title }}</p>
+                                    </div>
+                                    {% if video.type == 1 %}
+                                        <a href="{{ path('cilantro_media_youtube_episodes', {'slug':video.slug}) }}" class="cp-btn-style1">Ir al canal</a>
+                                    {% else %}
+                                        <a href="{{ path('cilantro_media_facebook_episodes', {'slug':video.slug}) }}" class="cp-btn-style1">Ir al canal</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+    <div id="cp-main-content">
+        <section class="cp-blog-section pd-tb60">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        {% if videos is defined %}
+                            {% for video in videos %}
+                                <article class="cp-blog-item">
+                                    {% if video.type == 1 %}
+                                        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ video.video.videoId }}" frameborder="0" allowfullscreen></iframe>
+                                    {% else %}
+                                        {{ video.video.embedHtml|raw }}
+                                    {% endif %}
+                                    <div class="cp-text">
+                                        <div class="cp-inner-holder">
+                                            <h3>{{ video.video.title }}</h3>
+                                            {% if video.type == 1 %}
+                                                <p>{{ video.video.description|nl2br }}</p>
+                                            {% else %}
+                                                <p>{{ video.video.description|convert_encoding('iso-8859-1', 'utf8')|nl2br }}</p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </article>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div
+{% endblock %}

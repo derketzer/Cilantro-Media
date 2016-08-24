@@ -3,6 +3,7 @@
 namespace Cilantro\AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * FacebookVideo
@@ -22,6 +23,13 @@ class FacebookVideo
     private $id;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="views", type="integer")
+     */
+    private $views;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="facebookId", type="string", length=255)
@@ -34,6 +42,14 @@ class FacebookVideo
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=255)
+     * @Gedmo\Slug(fields={"title"})
+     */
+    private $slug;
 
     /**
      * @var string
@@ -76,6 +92,12 @@ class FacebookVideo
      **/
     private $facebookVideoList;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="publishedAt", type="datetime")
+     */
+    private $publishedAt;
 
     /**
      * Get id
@@ -253,6 +275,54 @@ class FacebookVideo
     public function setActive($active)
     {
         $this->active = $active;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getPublishedAt()
+    {
+        return $this->publishedAt;
+    }
+
+    /**
+     * @param \DateTime $publishedAt
+     */
+    public function setPublishedAt($publishedAt)
+    {
+        $this->publishedAt = $publishedAt;
+    }
+
+    /**
+     * @return int
+     */
+    public function getViews()
+    {
+        return $this->views;
+    }
+
+    /**
+     * @param int $views
+     */
+    public function setViews($views)
+    {
+        $this->views = $views;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
     }
 }
 

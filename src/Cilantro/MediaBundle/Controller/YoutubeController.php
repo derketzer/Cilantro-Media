@@ -29,8 +29,6 @@ class YoutubeController extends Controller
 
         $youtubeVideoRespository = $this->getDoctrine()->getRepository('CilantroAdminBundle:YoutubeVideo');
 
-        $latestVideos = $youtubeVideoRespository->findBy(['youtubeChannel'=>$youtubeChannel], ['publishedAt'=>'DESC'], 5);
-
         $popularVideos = $youtubeVideoRespository->findBy(['youtubeChannel'=>$youtubeChannel]);
         usort($popularVideos, array($this, 'orderByStats'));
         $popularVideos = array_slice($popularVideos, 0, 5);
@@ -44,7 +42,8 @@ class YoutubeController extends Controller
             'disclaimer' => $disclaimer,
             'popular' => $popularVideos,
             'latest' => $latestVideos,
-            'frontVideos' => $frontVideos
+            'frontVideos' => $frontVideos,
+            'channelSlug' => $slug
         ]);
     }
 
@@ -61,6 +60,8 @@ class YoutubeController extends Controller
 
         if(empty($video))
             return $this->redirectToRoute('cilantro_media_home_index');
+
+        $disclaimer = $video->getYoutubeChannel()->getAdult();
 
         $vidIds = $youtubeVideoRespository->findBy(['youtubeChannel'=>$video->getYoutubeChannel()]);
         shuffle($vidIds);
@@ -82,6 +83,7 @@ class YoutubeController extends Controller
         return $this->render('CilantroMediaBundle:Youtube:episode.html.twig', [
             'themePath' => $themePath,
             'videosRelacionados' => 1,
+            'disclaimer' => $disclaimer,
             'video' => $video,
             'random' => $randomVideos,
             'latest' => $latestVideos
