@@ -70,7 +70,7 @@ class MenuService
         $facebookVideoLists = $facebookVideoListRepository->findAll();
 
         if(!empty($facebookVideoLists)) {
-            $menuRadio = $menuRepository->findOneBy(['name' => 'Radio']);
+            $menuRadio = $menuRepository->findOneBy(['name' => 'Podcast']);
 
             try {
                 $menuOrder = 1;

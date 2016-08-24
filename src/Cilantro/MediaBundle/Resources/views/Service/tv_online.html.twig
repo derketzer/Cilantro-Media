@@ -1,0 +1,54 @@
+{% extends(':CilantroMedia/Home:base.html.twig') %}
+
+{% block body %}
+    <section class="innerpage-banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Servicios</h2>
+                    <p class="tagline">TV Online</p>
+                </div>
+                <div class="col-md-12 text-right">
+                    <div class="other-page-link">
+                        <a href="{{ path('cilantro_media_home_index') }}"><i class="fa fa-circle"></i>Inicio</a>
+                        <span><i class="fa fa-angle-right"></i>Servicios</span>
+                        <span><i class="fa fa-angle-right"></i>TV Online</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <iframe src="https://www.youtube.com/embed/h2wcSgvMaFs" style="max-width:900px;max-height:500px;" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <div style="clear: both;height:60px;"></div>
+
+            <div class="row service-block">
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="bg-img">
+                        <figure class="hvr-trim">
+                            <img src="{{ asset('bundles/cilantromedia/home-assets/images/service1.jpg') }}" alt="" class="img-responsive">
+                        </figure>
+
+                    </div>
+                </div>
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                    <div class="grey-content bg-grey r-test">
+                        <h3>En Cilantro Media</h3>
+                        <p>tenemos lo mejor en herramientas y tecnología consiguiendo para ti, los mejores resultados. Nuestros servicios van desde: grabaciones en foro o en campo, entrevistas para radio y televisión en vivo, edición de audio y vídeo, reportajes, foto reportajes, voz en off, videoclips, etc. Contamos con cabinas de audio, cámaras 4K y HD para uso en campo, en foro, consolas de audio e iluminación profesional, switcher de vídeo, post producción de audio y vídeo. También tenemos renta de foro con todo lo necesario para una producción integral, renta de equipos de cámara profesionales, estudios de grabación de audio con sistema pro tools y salas de edición equipadas con la suite adobe. Nuestro estándar de producción es en HD.</p>
+
+                        <h4>¡Cuéntanos tu idea, nosotros nos encargamos de hacerla realidad!</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div style="clear: both;height:60px;"></div>
+        </div>
+    </section>
+{% endblock %}

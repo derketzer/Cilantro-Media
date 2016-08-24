@@ -5,3 +5,36 @@
 .innerpage-banner{
     background-image: url("/bundles/cilantromedia/images/home/contact_header.jpg");
 }
+
+span#especialidad-3 i, span#especialidad-2 i, span#especialidad-1 i {
+    background: #fff;
+    border: 1px solid #D4D4D4;
+    border-radius: 100%;
+    box-shadow: 0 0 2px 5px #ebebeb;
+    color: #868686;
+    display: inline-block;
+    height: 100px;
+    margin-bottom: 30px;
+    position: relative;
+    width: 100px;
+    z-index: 20;
+    font-size: 50px;
+    line-height: 99px;
+    -webkit-transition: background 0.3s ease 0.1s;
+    -ms-transition: background 0.3s ease 0.1s;
+    transition: background 0.3s ease 0.1s;
+}
+
+span#especialidad-3 i::before, span#especialidad-2 i::before, span#especialidad-1 i::before{
+    text-align: center;
+}
+span#especialidad-3:hover i, span#especialidad-2:hover i, span#especialidad-1:hover i {
+    background: #07aaa5;
+    border: 1px solid rgb(170, 247, 244);
+    color: #fff;
+    box-shadow: 0 0 2px 5px rgb(170, 247, 244);
+}
+
+.navbar-default .navbar-nav > li > a{
+    font-size: 13px !important;
+}

@@ -1,0 +1,118 @@
+{% extends(':CilantroMedia/Home:base.html.twig') %}
+
+{% block body %}
+    <section class="innerpage-banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Servicios</h2>
+                    <p class="tagline">Renta de foros y cabinas</p>
+                </div>
+                <div class="col-md-12 text-right">
+                    <div class="other-page-link">
+                        <a href="{{ path('cilantro_media_home_index') }}"><i class="fa fa-circle"></i>Inicio</a>
+                        <span><i class="fa fa-angle-right"></i>Servicios</span>
+                        <span><i class="fa fa-angle-right"></i>Renta de foros y cabinas</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <iframe src="https://www.youtube.com/embed/h2wcSgvMaFs" style="max-width:900px;max-height:500px;" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <div style="clear: both;height:60px;"></div>
+
+            <div class="row service-block">
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="bg-img">
+                        <figure class="hvr-trim">
+                            <img src="{{ asset('bundles/cilantromedia/home-assets/images/service1.jpg') }}" alt="" class="img-responsive">
+                        </figure>
+
+                    </div>
+                </div>
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                    <div class="grey-content bg-grey r-test">
+
+                        <br />
+                        <br />
+                        <h3>Te ofrecemos:</h3>
+                        <ul class="r-feature">
+                            <li>Cabinas de audio</li>
+                            <li>Foro de grabación</li>
+                            <li>Cámaras profesionales</li>
+                            <li>Iluminación de producción</li>
+                            <li>Paquetes de producción</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div style="clear: both;height:60px;"></div>
+
+            <div class="row service-block">
+
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                    <div class="grey-content bg-grey r-test">
+                        <h3>Blackmagic Studio</h3>
+                        <p>Blacmagic Studio 4K (cámara, lente 24-105 mm, tripié y sistema de intercomunicación) Renta de cámara incluye camarógrafo</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="bg-img-right">
+                        <figure class="hvr-trim">
+                            <img src="{{ asset('bundles/cilantromedia/home-assets/images/service2.jpg') }}" alt="" class="img-responsive">
+                        </figure>
+                    </div>
+                </div>
+            </div>
+
+            <div style="clear: both;height:60px;"></div>
+
+            <div class="row service-block">
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="bg-img">
+                        <figure class="hvr-trim">
+                            <img src="{{ asset('bundles/cilantromedia/home-assets/images/service3.jpg') }}" alt="" class="img-responsive">
+                        </figure>
+                    </div>
+                </div>
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                    <div class="grey-content bg-grey r-test">
+                        <h3>Todas las rentas de los paquetes por "5, 8, 12 Hrs" incluyen</h3>
+                        <p>Montaje de equipo e Iluminación Básico Operadores de Audio Luces Switcher Lockers Sala de Espera Sala de Juntas con Pantalla de 60" WIFI y Café Dolce Gusto</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="clear: both;height:60px;"></div>
+
+            <div class="row service-block">
+
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                    <div class="grey-content bg-grey r-test">
+                        <h3>Foro</h3>
+                        <p>En Cilantro Media contamos con un espacio de 90m² x 3.50m² perfectamente equipado y aislado de ruidos externos con sistema de aire acondicionado
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="bg-img-right">
+                        <figure class="hvr-trim">
+                            <img src="{{ asset('bundles/cilantromedia/home-assets/images/service2.jpg') }}" alt="" class="img-responsive">
+                        </figure>
+                    </div>
+                </div>
+            </div>
+
+            <div style="clear: both;height:60px;"></div>
+        </div>
+    </section>
+{% endblock %}
