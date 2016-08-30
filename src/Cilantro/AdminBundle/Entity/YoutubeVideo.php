@@ -10,7 +10,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * YoutubeVideo
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Cilantro\AdminBundle\Repository\YoutubeVideoRepository")
  */
 class YoutubeVideo
 {
@@ -73,6 +73,18 @@ class YoutubeVideo
     private $youtubeChannel;
 
     /**
+     * @ORM\ManyToOne(targetEntity="YoutubeVideoArtist", inversedBy="videos")
+     * @ORM\JoinColumn(name="youtube_video_artist_id", referencedColumnName="id")
+     **/
+    private $artist;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="YoutubeVideoCategory", inversedBy="videos")
+     * @ORM\JoinColumn(name="youtube_video_category_id", referencedColumnName="id")
+     **/
+    private $category;
+
+    /**
      * @ORM\OneToOne(targetEntity="YoutubeStats", mappedBy="youtubeVideo")
      **/
     private $stats;
@@ -90,6 +102,22 @@ class YoutubeVideo
      * @ORM\Column(name="font", type="boolean")
      */
     private $front;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="season", type="integer")
+     */
+    private $season;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="episode", type="integer")
+     */
+    private $episode;
+
+
 
     /**
      * @ORM\ManyToMany(targetEntity="YoutubeVideoTag", inversedBy="videos")
@@ -365,5 +393,69 @@ class YoutubeVideo
     public function setFront($front)
     {
         $this->front = $front;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSeason()
+    {
+        return $this->season;
+    }
+
+    /**
+     * @param mixed $season
+     */
+    public function setSeason($season)
+    {
+        $this->season = $season;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEpisode()
+    {
+        return $this->episode;
+    }
+
+    /**
+     * @param mixed $episode
+     */
+    public function setEpisode($episode)
+    {
+        $this->episode = $episode;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getArtist()
+    {
+        return $this->artist;
+    }
+
+    /**
+     * @param mixed $artist
+     */
+    public function setArtist($artist)
+    {
+        $this->artist = $artist;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param mixed $category
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
     }
 }

@@ -1,21 +1,9 @@
 {% extends 'CilantroMedia/Site/base.html.twig' %}
 
 {% block body %}
-    {% if not app.request.cookies.has('home-'~channelSlug) %}
-        <div id="disclaimer-box">
-        </div>
-        <div id="disclaimer-content">
-            <div id="disclaimer-content-box">
-                <h3>Aviso legal</h3>
-                <br />
-                <p>La página que está a punto de ver contiene material dirigido a adultos mayores de 18 años, responsables legalmente en la región en donde viven y desde donde están accediendo a este contenido. Si usted no tiene 18 años y no es legalmente responsable en la región en la que se encuentra, su acceso a este material NO ESTÁ PERMITIDO. La ley prohibe el acceso de personas menores de edad. </p>
-                <br />
-                <p>Esta página puede incluir imágenes, textos, gráficos, sonidos, ilustraciones, palabras ó descripciones no aptas para menores. Si usted no desea acceder a material de esta naturaleza, entonces usted no debería entrar a esta página.</p>
-                <br /><br /><br />
-                <a href="javascript:closeDisclaimer();">Deseo continuar</a>
-                <br /><br />
-                <a href="//google.com">Deseo salir</a>
-            </div>
+    {% if disclaimer %}
+        <div id="disclaimer">
+            <p>La página que está a punto de ver contiene material dirigido a adultos mayores de 18 años, responsables legalmente en la región en donde viven y desde donde están accediendo a este contenido. Si usted no tiene 18 años y no es legalmente responsable en la región en la que se encuentra, su acceso a este material NO ESTÁ PERMITIDO. La ley prohibe el acceso de personas menores de edad. Esta página puede incluir imágenes, textos, gráficos, sonidos, ilustraciones, palabras ó descripciones no aptas para menores. Si usted no desea acceder a material de esta naturaleza, entonces usted no debería entrar a esta página.</p>
         </div>
     {% endif %}
 
@@ -28,22 +16,26 @@
         <div class="cp_banner">
             <!--Banner Slider Start-->
             <div class="owl-carousel" id="cp-video-slider">
-                {% for i in 1..8 %}
-                    <div class="item">
-                        <img src="http://placekitten.com/g/983/595" alt="">
+                {% if episodes is defined %}
+                    {% for episode in episodes %}
+                        <div class="item">
+                            <img src="http://img.youtube.com/vi/{{ episode.videoId }}/hqdefault.jpg" alt="">
 
-                        <div class="cp-banner-caption">
-                            <div class="inner-holder">
-                                <div class="banner-top-text">
-                                    <strong class="banner-title">Episodio {{ i }}</strong>
-                                    <p>Nombre Comediante {{ i }}</p>
+                            <div class="cp-banner-caption">
+                                <div class="inner-holder">
+                                    <div class="banner-top-text">
+                                        <strong class="banner-title">Episodio {{ episode.episode+1 }}</strong>
+                                        {% if episode.artist is defined and episode.artist is not null %}
+                                            <p>{{ episode.artist.name }}</p>
+                                        {% endif %}
+                                    </div>
+                                    <a href="{{ path('cilantro_media_youtube_episode', {'slug':episode.slug}) }}" class="cp-btn-style1">Ver episodio</a>
                                 </div>
-                                <a href="#" class="cp-btn-style1">Ver episodio</a>
                             </div>
+                            <!--Banner Caption End-->
                         </div>
-                        <!--Banner Caption End-->
-                    </div>
-                {% endfor %}
+                    {% endfor %}
+                {% endif %}
             </div>
         </div>
     </div>
@@ -89,110 +81,30 @@
                     </div>
                 </div>
                 <div id="featured-video">
-                    <div class="item">
-                        <div class="cp-video-item">
-                            <figure class="cp-thumb">
-                                <img src="http://img.youtube.com/vi/rZF7NIZH4s0/hqdefault.jpg" alt="">
-                                <figcaption class="cp-caption"><a href="#" class="play-video">Reproducir</a>
-                                </figcaption>
-                            </figure>
-                            <div class="cp-text">
-                                <h4>
-                                    <a href="#">
-                                        El Indio Brayan Sketch
-                                    </a>
-                                </h4>
-                                <ul class="cp-meta-list">
-                                    <li>Lunes, Jun 2, 2016</li>
-                                    <li>Episodio 1</li>
-                                </ul>
+                    {% if recommendedVideos is defined %}
+                        {% for video in recommendedVideos %}
+                            <div class="item">
+                                <div class="cp-video-item">
+                                    <figure class="cp-thumb">
+                                        <img src="http://img.youtube.com/vi/{{ video.videoId }}/hqdefault.jpg" alt="">
+                                        <figcaption class="cp-caption"><a href="#" class="play-video">Reproducir</a>
+                                        </figcaption>
+                                    </figure>
+                                    <div class="cp-text">
+                                        <h4>
+                                            <a href="#">
+                                                {{ video.title }}
+                                            </a>
+                                        </h4>
+                                        <ul class="cp-meta-list">
+                                            <li>{{ video.publishedAt|date('l, M d, Y') }}</li>
+                                            <li>Episodio {{ video.episode }}</li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="cp-video-item">
-                            <figure class="cp-thumb">
-                                <img src="http://img.youtube.com/vi/Vnbs_VTiQts/hqdefault.jpg" alt="">
-                                <figcaption class="cp-caption"><a href="#" class="play-video">Reproducir</a>
-                                </figcaption>
-                            </figure>
-                            <div class="cp-text">
-                                <h4>
-                                    <a href="#">
-                                        Olga Sana Impro
-                                    </a>
-                                </h4>
-                                <ul class="cp-meta-list">
-                                    <li>Lunes, Jun 9, 2016</li>
-                                    <li>Episodio 2</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="cp-video-item">
-                            <figure class="cp-thumb">
-                                <img src="http://img.youtube.com/vi/dZxrweNFFrc/hqdefault.jpg" alt="">
-                                <figcaption class="cp-caption"><a href="#" class="play-video">Reproducir</a>
-                                </figcaption>
-                            </figure>
-                            <div class="cp-text">
-                                <h4>
-                                    <a href="#">
-                                        El Costeño Entrevista
-                                    </a>
-                                </h4>
-                                <ul class="cp-meta-list">
-                                    <li>Lunes, Jun 16, 2016</li>
-                                    <li>Episodio 3</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="cp-video-item">
-                            <figure class="cp-thumb">
-                                <img src="http://img.youtube.com/vi/MGNaRooe73o/hqdefault.jpg" alt="">
-                                <figcaption class="cp-caption"><a href="#" class="play-video">Reproducir</a>
-                                </figcaption>
-                            </figure>
-                            <div class="cp-text">
-                                <h4>
-                                    <a href="#">
-                                        Meire Carvalho Video Blog
-                                    </a>
-                                </h4>
-                                <ul class="cp-meta-list">
-                                    <li>Lunes, Jun 23, 2016</li>
-                                    <li>Episodio 4</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="cp-video-item">
-                            <figure class="cp-thumb">
-                                <img src="http://img.youtube.com/vi/2pG7pBwUdkI/hqdefault.jpg" alt="">
-                                <figcaption class="cp-caption"><a href="#" class="play-video">Reproducir</a>
-                                </figcaption>
-                            </figure>
-                            <div class="cp-text">
-                                <h4>
-                                    <a href="#">
-                                        Radamés de Jesús Stand Up
-                                    </a>
-                                </h4>
-                                <ul class="cp-meta-list">
-                                    <li>Lunes, Jun 30, 2016</li>
-                                    <li>Episodio 5</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>
 
@@ -354,39 +266,12 @@
 </style>
 
 <style type="text/css">
-    #disclaimer-box{
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        width: 100%;
-        height: 100%;
-        background-color: #000;
-        z-index: 9998;
-        opacity: 0.85;
-        filter: alpha(opacity=85);
+    #disclaimer p {
+        font-size: 80%;
     }
 
-    #disclaimer-content{
-        width: 50%;
-        height: 30%;
-        position: absolute;
-        left: 25%;
-        top: 35%;
-        background-color: #FFF;
-        z-index: 9999;
-    }
-
-    #disclaimer-content-box{
-        width: 80%;
-        height: 92%;
-        margin: auto;
-        margin-top: 4%;
-        color: #000;
-    }
-
-    #disclaimer-content-box h3{
-        margin: auto;
-        text-align: center;
+    #disclaimer{
+        padding: 15px;
     }
 </style>
 

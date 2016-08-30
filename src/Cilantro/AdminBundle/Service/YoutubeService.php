@@ -2,6 +2,8 @@
 
 namespace Cilantro\AdminBundle\Service;
 
+use Cilantro\AdminBundle\Entity\YoutubeVideoArtist;
+use Cilantro\AdminBundle\Entity\YoutubeVideoCategory;
 use Cilantro\AdminBundle\Entity\YoutubeVideoTag;
 use Doctrine\Bundle\DoctrineBundle\Registry as Doctrine;
 use Google_Client;
@@ -18,6 +20,7 @@ class YoutubeService
     private $googleClient;
     private $log;
     private $googleService;
+    private $customTags = ['Categoria:', 'Episodio:', 'Temporada:', 'Artista:'];
 
     public function __construct(Doctrine $doctrine, Container $container)
     {
@@ -116,6 +119,9 @@ class YoutubeService
                             $youtubeVideo->setActive(true);
                             $youtubeVideo->setFront(false);
 
+                            $videosToProcess = [$youtubeVideo];
+                            $this->videoTags($videosToProcess);
+
                             try {
                                 $this->em->persist($youtubeVideo);
                                 $this->em->flush();
@@ -137,36 +143,79 @@ class YoutubeService
         return true;
     }
 
-    public function videoTags()
+    public function videoTags(&$videosToProcess=[])
     {
         $youtubeVideosRepository = $this->em->getRepository('CilantroAdminBundle:YoutubeVideo');
-        $videos = $youtubeVideosRepository->findAll();
+        if(empty($videosToProcess)) {
+            $videos = $youtubeVideosRepository->findAll();
+        }else{
+            $videos = $videosToProcess;
+        }
 
-        $videoTagRepository = $this->em->getRepository('CilantroAdminBundle:YoutubeVideoTag');
+        if(!empty($videos)) {
+            $videoTagRepository = $this->em->getRepository('CilantroAdminBundle:YoutubeVideoTag');
+            $videoArtistRepository = $this->em->getRepository('CilantroAdminBundle:YoutubeVideoArtist');
+            $videoCategoryRepository = $this->em->getRepository('CilantroAdminBundle:YoutubeVideoCategory');
 
-        foreach ($videos as $video) {
-            $listResponse = $this->googleService->videos->listVideos("snippet", array('id' => $video->getVideoId()));
-            $youtubeVideo = $listResponse[0];
-            $videoSnippet = $youtubeVideo['snippet'];
-            $tags = $videoSnippet['tags'];
+            foreach ($videos as $video) {
+                $listResponse = $this->googleService->videos->listVideos("snippet", array('id' => $video->getVideoId()));
+                $youtubeVideoTemp = $listResponse[0];
+                $videoSnippet = $youtubeVideoTemp['snippet'];
+                $tags = $videoSnippet['tags'];
 
-            $video->flushTags();
+                $video->flushTags();
 
-            if(!empty($tags)) {
-                foreach ($tags as $tag) {
-                    $videoTag = $videoTagRepository->findOneBy(['name' => $tag]);
-                    if (empty($videoTag)) {
-                        $videoTag = new YoutubeVideoTag();
-                        $videoTag->setName($tag);
-                        $this->em->persist($videoTag);
+                if (!empty($tags)) {
+                    foreach ($tags as $tag) {
+                        $tagTemp = explode(' ', $tag);
+                        if(in_array($tagTemp[0], $this->customTags)){
+                            switch($tagTemp[0]){
+                                case "Categoria:":
+                                    $videoCategory = $videoCategoryRepository->findOneBy(['name'=>$tagTemp[1]]);
+                                    if(empty($videoCategory)){
+                                        $videoCategory = new YoutubeVideoCategory();
+                                        $tagTempName = implode(" ", array_slice($tagTemp, 1));
+                                        $videoCategory->setName($tagTempName);
+                                    }
+                                    $video->setCategory($videoCategory);
+                                    $this->em->persist($videoCategory);
+                                    break;
+
+                                case "Episodio:":
+                                    $video->setEpisode($tagTemp[1]);
+                                    break;
+
+                                case "Temporada:":
+                                    $video->setSeason($tagTemp[1]);
+                                    break;
+
+                                case "Artista:":
+                                    $videoArtist = $videoArtistRepository->findOneBy(['name'=>$tagTemp[1]]);
+                                    if(empty($videoArtist)){
+                                        $videoArtist = new YoutubeVideoArtist();
+                                        $tagTempName = implode(" ", array_slice($tagTemp, 1));
+                                        $videoArtist->setName($tagTempName);
+                                    }
+                                    $video->setArtist($videoArtist);
+                                    $this->em->persist($videoArtist);
+                                    break;
+                            }
+                        }else {
+                            $videoTag = $videoTagRepository->findOneBy(['name' => $tag]);
+                            if (empty($videoTag)) {
+                                $videoTag = new YoutubeVideoTag();
+                                $videoTag->setName($tag);
+                                $this->em->persist($videoTag);
+                            }
+
+                            $video->addTag($videoTag);
+                        }
                     }
-
-                    $video->addTag($videoTag);
-                    $this->em->persist($video);
                 }
-            }
 
-            $this->em->flush();
+                if(empty($videosToProcess))
+                    $this->em->flush();
+            }
         }
     }
 

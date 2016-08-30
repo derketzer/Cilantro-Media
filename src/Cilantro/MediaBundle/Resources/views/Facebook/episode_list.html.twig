@@ -31,6 +31,11 @@
                                         </span-->
                                         <div class="cp-inner-holder">
                                             <h3>{{ video.title }}</h3>
+                                            {% if videoList.slug == 'expedientes-musicales' %}
+                                                <ul class="cp-meta-list">
+                                                    <li><span>{{ video.views|number_format(0, '.', ',') }} Vistas</span></li>
+                                                </ul>
+                                            {% endif %}
                                             <p>{{ video.description|convert_encoding('iso-8859-1', 'utf8')|nl2br }}</p>
                                         </div>
                                     </div>

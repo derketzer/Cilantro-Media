@@ -37,13 +37,18 @@ class YoutubeController extends Controller
 
         $frontVideos = $youtubeVideoRespository->findBy(['youtubeChannel'=>$youtubeChannel, 'front'=>true], ['publishedAt'=>'DESC'], 5);
 
+        $recommendedVideos = $youtubeVideoRespository->getOneByCategory();
+        $episodes = $youtubeVideoRespository->getEpisodes();
+
         return $this->render('CilantroMediaBundle:Youtube:episode_list.html.twig', [
             'themePath' => $themePath,
             'disclaimer' => $disclaimer,
             'popular' => $popularVideos,
             'latest' => $latestVideos,
             'frontVideos' => $frontVideos,
-            'channelSlug' => $slug
+            'channelSlug' => $slug,
+            'recommendedVideos' => $recommendedVideos,
+            'episodes' => $episodes
         ]);
     }
 
@@ -76,6 +81,8 @@ class YoutubeController extends Controller
 
         $latestVideos = $youtubeVideoRespository->findBy(['youtubeChannel'=>$video->getYoutubeChannel()], ['publishedAt'=>'DESC'], 5);
 
+        $moreVideos = $youtubeVideoRespository->findBy(['episode'=>$video->getEpisode()], ['publishedAt'=>'desc']);
+
         $themePath = 'bundles/cilantromedia/site-assets/css/theme-color.css';
         if(file_exists('bundles/cilantromedia/css/site/theme-color-'.$slug.'.css'))
             $themePath = 'bundles/cilantromedia/css/site/theme-color-'.$slug.'.css';
@@ -86,12 +93,16 @@ class YoutubeController extends Controller
             'disclaimer' => $disclaimer,
             'video' => $video,
             'random' => $randomVideos,
-            'latest' => $latestVideos
+            'latest' => $latestVideos,
+            'moreVideos' => $moreVideos
         ]);
     }
 
     private function orderByStats($a, $b)
     {
+        if(empty($b->getStats()) || empty($a->getStats()))
+            return 0;
+
         if($a->getStats()->getViewCount() == $b->getStats()->getViewCount()){
             return 0;
         }

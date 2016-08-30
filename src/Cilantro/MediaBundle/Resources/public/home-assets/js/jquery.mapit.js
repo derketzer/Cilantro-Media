@@ -21,7 +21,7 @@
 	*/
 
 
-document.write('<scr'+'ipt type="text/javascript" src="https://maps.googleapis.com/maps/api/js" ></scr'+'ipt>');
+document.write('<scr'+'ipt type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWPXIhAh9pZNJp4MiU96QcKlW-lGJvW_c" ></scr'+'ipt>');
 
 
 ;(function($, window, undefined) {

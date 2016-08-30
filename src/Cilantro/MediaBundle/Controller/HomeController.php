@@ -22,4 +22,28 @@ class HomeController extends Controller
     {
         return $this->render('CilantroMediaBundle::privacy.html.twig');
     }
+
+    /**
+     * @Route("/vision")
+     */
+    public function visionAction()
+    {
+        return $this->render('CilantroMediaBundle::vision.html.twig');
+    }
+
+    /**
+     * @Route("/nosotros")
+     */
+    public function nosotrosAction()
+    {
+        return $this->render('CilantroMediaBundle::nosotros.html.twig');
+    }
+
+    /**
+     * @Route("/codigo-de-etica")
+     */
+    public function eticaAction()
+    {
+        return $this->render('CilantroMediaBundle::etica.html.twig');
+    }
 }
