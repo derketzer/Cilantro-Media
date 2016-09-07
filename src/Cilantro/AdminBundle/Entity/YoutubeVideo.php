@@ -106,14 +106,14 @@ class YoutubeVideo
     /**
      * @var integer
      *
-     * @ORM\Column(name="season", type="integer")
+     * @ORM\Column(name="season", type="integer", nullable=true)
      */
     private $season;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="episode", type="integer")
+     * @ORM\Column(name="episode", type="integer", nullable=true)
      */
     private $episode;
 

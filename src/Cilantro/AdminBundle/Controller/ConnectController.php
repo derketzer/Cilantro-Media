@@ -35,17 +35,32 @@ class ConnectController extends Controller
         ]);
         $permissions = ['manage_pages'];
         $helper = $fb->getRedirectLoginHelper();
-        $callbackUrl = $this->container->get('router')->getContext()->getScheme().'://'.
-            $this->container->get('router')->getContext()->getHost().':8080'.
-            $this->generateUrl('cilantro_admin_connect_facebookcallback');
+
+        $environment = $this->container->get('kernel')->getEnvironment();
+        if($environment == 'dev') {
+            $callbackUrl = $this->container->get('router')->getContext()->getScheme().'://'.
+                $this->container->get('router')->getContext()->getHost().':8080'.
+                $this->generateUrl('cilantro_admin_connect_facebookcallback');
+        }else{
+            $callbackUrl = $this->container->get('router')->getContext()->getScheme().'://'.
+                $this->container->get('router')->getContext()->getHost().
+                $this->generateUrl('cilantro_admin_connect_facebookcallback');
+        }
         $facebookLink = $helper->getLoginUrl($callbackUrl, $permissions);
 
         $client = new Google_Client();
         $client->setAuthConfigFile($this->container->get('kernel')->getRootDir().'/cilantromedia.json');
         $client->addScope(Google_Service_YouTube::YOUTUBE_READONLY);
-        $callbackUrl = $this->container->get('router')->getContext()->getScheme().'://'.
-            $this->container->get('router')->getContext()->getHost().':8080'.
-            $this->generateUrl('cilantro_admin_connect_googlecallback');
+
+        if($environment == 'dev') {
+            $callbackUrl = $this->container->get('router')->getContext()->getScheme().'://'.
+                $this->container->get('router')->getContext()->getHost().':8080'.
+                $this->generateUrl('cilantro_admin_connect_googlecallback');
+        }else{
+            $callbackUrl = $this->container->get('router')->getContext()->getScheme().'://'.
+                $this->container->get('router')->getContext()->getHost().
+                $this->generateUrl('cilantro_admin_connect_googlecallback');
+        }
         $client->setRedirectUri($callbackUrl);
         $client->setAccessType("offline");
         $auth_url = $client->createAuthUrl();
@@ -126,9 +141,17 @@ class ConnectController extends Controller
         $client = new Google_Client();
         $client->setAuthConfigFile($this->container->get('kernel')->getRootDir().'/cilantromedia.json');
         $client->addScope(Google_Service_YouTube::YOUTUBE_READONLY);
-        $callbackUrl = $this->container->get('router')->getContext()->getScheme().'://'.
-            $this->container->get('router')->getContext()->getHost().':8080'.
-            $this->generateUrl('cilantro_admin_connect_googlecallback');
+
+        $environment = $this->container->get('kernel')->getEnvironment();
+        if($environment == 'dev') {
+            $callbackUrl = $this->container->get('router')->getContext()->getScheme().'://'.
+                $this->container->get('router')->getContext()->getHost().':8080'.
+                $this->generateUrl('cilantro_admin_connect_googlecallback');
+        }else{
+            $callbackUrl = $this->container->get('router')->getContext()->getScheme().'://'.
+                $this->container->get('router')->getContext()->getHost().
+                $this->generateUrl('cilantro_admin_connect_googlecallback');
+        }
         $client->setRedirectUri($callbackUrl);
         $client->setAccessType("offline");
 
