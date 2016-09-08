@@ -93,7 +93,7 @@ class YoutubeService
             $videosAgregados = 0;
 
             foreach ($youtubeChannels as $youtubeChannel) {
-                $lastVideo = $youtubeVideoRespository->findBy(Array('youtubeChannel'=>$youtubeChannel), Array('publishedAt' => 'DESC'), 1);
+                $lastVideo = $youtubeVideoRespository->findBy(Array('youtubeChannel'=>$youtubeChannel, 'active'=>true), Array('publishedAt' => 'DESC'), 1);
                 if (empty($lastVideo)) {
                     $videos = $this->googleService->search->listSearch('snippet,id', array('order' => 'date', 'maxResults' => '50', 'channelId' => $youtubeChannel->getChannelId()));
                 } else {
@@ -171,10 +171,10 @@ class YoutubeService
                         if(in_array($tagTemp[0], $this->customTags)){
                             switch($tagTemp[0]){
                                 case "Categoria:":
-                                    $videoCategory = $videoCategoryRepository->findOneBy(['name'=>$tagTemp[1]]);
+                                    $tagTempName = implode(" ", array_slice($tagTemp, 1));
+                                    $videoCategory = $videoCategoryRepository->findOneBy(['name'=>$tagTempName]);
                                     if(empty($videoCategory)){
                                         $videoCategory = new YoutubeVideoCategory();
-                                        $tagTempName = implode(" ", array_slice($tagTemp, 1));
                                         $videoCategory->setName($tagTempName);
                                     }
                                     $video->setCategory($videoCategory);
@@ -190,10 +190,11 @@ class YoutubeService
                                     break;
 
                                 case "Artista:":
-                                    $videoArtist = $videoArtistRepository->findOneBy(['name'=>$tagTemp[1]]);
+                                    $tagTempName = implode(" ", array_slice($tagTemp, 1));
+
+                                    $videoArtist = $videoArtistRepository->findOneBy(['name'=>$tagTempName]);
                                     if(empty($videoArtist)){
                                         $videoArtist = new YoutubeVideoArtist();
-                                        $tagTempName = implode(" ", array_slice($tagTemp, 1));
                                         $videoArtist->setName($tagTempName);
                                     }
                                     $video->setArtist($videoArtist);
