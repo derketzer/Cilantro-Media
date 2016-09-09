@@ -1,5 +1,5 @@
-#bg-paralax {
-    background-image: url("/bundles/cilantromedia/images/home/parallax_1.jpeg");
+section#bg-paralax {
+    background-image: url("/bundles/cilantromedia/images/home/ideas.jpg");
 }
 
 .innerpage-banner{
