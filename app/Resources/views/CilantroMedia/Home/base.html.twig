@@ -82,7 +82,24 @@
             m.parentNode.insertBefore(a, m)
         })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
         ga('create', 'UA-81169201-1', 'auto');
+        ga('create', 'UA 52619038-5', 'auto');
         ga('send', 'pageview');
+
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '1652024101779135',
+                xfbml      : true,
+                version    : 'v2.7'
+            });
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
     </script>
 {% endif %}
 </body>
