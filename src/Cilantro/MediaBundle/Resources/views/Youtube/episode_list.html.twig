@@ -4,6 +4,7 @@
     {% if disclaimer %}
         <div id="disclaimer">
             <p>La página que está a punto de ver contiene material dirigido a adultos mayores de 18 años, responsables legalmente en la región en donde viven y desde donde están accediendo a este contenido. Si usted no tiene 18 años y no es legalmente responsable en la región en la que se encuentra, su acceso a este material NO ESTÁ PERMITIDO. La ley prohibe el acceso de personas menores de edad. Esta página puede incluir imágenes, textos, gráficos, sonidos, ilustraciones, palabras ó descripciones no aptas para menores. Si usted no desea acceder a material de esta naturaleza, entonces usted no debería entrar a esta página.</p>
+            <hr />
         </div>
     {% endif %}
 
@@ -11,8 +12,6 @@
 <div class="cp_banner_full_width">
 
     <div class="cp-slider-block">
-
-
         <div class="cp_banner">
             <!--Banner Slider Start-->
             <div class="owl-carousel" id="cp-video-slider">
@@ -217,7 +216,7 @@
     </section>
 
     <!--Today Video Start-->
-    <div class="cp-today-video">
+    <!--div class="cp-today-video">
         <div class="container">
             <div class="row">
                 <div class="cp-heading-outer">
@@ -236,14 +235,15 @@
                 <div class="col-md-1"></div>
             </div>
         </div>
-    </div>
+    </div-->
     <!--Today Video End-->
 </div>
 <!--Main Content End-->
 
 <style type="text/css">
     .cp_banner_full_width .cp-slider-block{
-        width: 45%;
+        width: 41.5%;
+        margin-right: 1.5%;
     }
 
     .cp_banner_full_width .cp-video-grid-block{
@@ -254,6 +254,10 @@
         float: left;
         width: 18.4%;
         overflow: hidden;
+    }
+
+    .cp_banner {
+        margin-left: 3.5%;
     }
 
     .cp_banner_full_width .cp-banner-block img{
@@ -270,8 +274,13 @@
         font-size: 80%;
     }
 
+    #disclaimer hr{
+        border-color: black;
+    }
+
     #disclaimer{
         padding: 15px;
+        clear: both;
     }
 </style>
 
