@@ -30,7 +30,7 @@ class FacebookController extends Controller
         $videoRepository = $this->getDoctrine()->getRepository('CilantroAdminBundle:FacebookVideo');
         $videos = $videoRepository->findBy(['facebookVideoList'=>$videoList, 'published'=>true], ['facebookId'=>'desc'], $this->videoLimit, $page-1);
 
-        $videosPopulares = $videoRepository->findBy(['facebookVideoList'=>$videoList, 'published'=>true], ['views'=>'desc'], 5);
+        $videosPopulares = $videoRepository->findBy(['facebookVideoList'=>$videoList, 'published'=>true], ['views'=>'desc']);
 
         $allVideos = $videoRepository->findBy(['facebookVideoList'=>$videoList, 'published'=>true]);
         $pages = intval(ceil(count($allVideos)/$this->videoLimit));
