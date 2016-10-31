@@ -1,7 +1,21 @@
 {% extends 'CilantroMedia/Site/base.html.twig' %}
 
 {% block body %}
+    <!--Banner Start-->
+    <div class="cp_inner-banner">
+        <div class="container">
+            <div class="cp-inner-banner-holder">
+                <h2><strong>{{ channel.title }}</strong></h2>
+                <ul class="breadcrumb">
+                    <li><a href="{{ path('cilantro_media_home_index') }}">Inicio</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--Banner End-->
+
     {% if disclaimer %}
+        <div style="clear:both;"></div>
         <div id="disclaimer">
             <p>La página que está a punto de ver contiene material dirigido a adultos mayores de 18 años, responsables legalmente en la región en donde viven y desde donde están accediendo a este contenido. Si usted no tiene 18 años y no es legalmente responsable en la región en la que se encuentra, su acceso a este material NO ESTÁ PERMITIDO. La ley prohibe el acceso de personas menores de edad. Esta página puede incluir imágenes, textos, gráficos, sonidos, ilustraciones, palabras ó descripciones no aptas para menores. Si usted no desea acceder a material de esta naturaleza, entonces usted no debería entrar a esta página.</p>
         </div>
@@ -229,7 +243,7 @@
                 {% endif %}
             </div>
 
-            <div class="cp-advertisement">
+            {# <div class="cp-advertisement">
                 <div class="row">
                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                     <!-- TV Center -->
@@ -241,7 +255,7 @@
                         (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>
                 </div>
-            </div>
+            </div> #}
         </div>
     </section>
 
@@ -305,7 +319,7 @@
         clear: both;
         width: 80%;
         margin: auto;
-        margin-top: 110px;
+        margin-top: 20px;
         margin-bottom: 15px;
     }
 </style>

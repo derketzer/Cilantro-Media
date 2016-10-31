@@ -48,7 +48,8 @@ class YoutubeController extends Controller
             'frontVideos' => $frontVideos,
             'channelSlug' => $slug,
             'recommendedVideos' => $recommendedVideos,
-            'episodes' => $episodes
+            'episodes' => $episodes,
+            'channel' => $youtubeChannel
         ]);
     }
 
