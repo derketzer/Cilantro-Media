@@ -9,17 +9,15 @@
                 <ul class="breadcrumb">
                     <li><a href="{{ path('cilantro_media_home_index') }}">Inicio</a></li>
                 </ul>
+                {% if disclaimer %}
+                    <div id="disclaimer">
+                        <p>Este programa puede contener palabras altisonantes.</p>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
     <!--Banner End-->
-
-    {% if disclaimer %}
-        <div style="clear:both;"></div>
-        <div id="disclaimer">
-            <p>La página que está a punto de ver contiene material dirigido a adultos mayores de 18 años, responsables legalmente en la región en donde viven y desde donde están accediendo a este contenido. Si usted no tiene 18 años y no es legalmente responsable en la región en la que se encuentra, su acceso a este material NO ESTÁ PERMITIDO. La ley prohibe el acceso de personas menores de edad. Esta página puede incluir imágenes, textos, gráficos, sonidos, ilustraciones, palabras ó descripciones no aptas para menores. Si usted no desea acceder a material de esta naturaleza, entonces usted no debería entrar a esta página.</p>
-        </div>
-    {% endif %}
 
 {# <div id="banner-header">
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -32,7 +30,7 @@
         (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
 </div> #}
-
+<div style="clear:both;"></div>
 <!--Banner Start-->
 <div class="cp_banner_full_width">
 
@@ -306,8 +304,9 @@
 
 <style type="text/css">
     #disclaimer p {
-        font-size: 80%;
+        font-size: 120%;
         padding: 1.5%;
+        color: #000;
     }
 
     #disclaimer hr{
@@ -315,12 +314,9 @@
     }
 
     #disclaimer{
-        border: 1px solid black;
         clear: both;
         width: 80%;
         margin: auto;
-        margin-top: 20px;
-        margin-bottom: 15px;
     }
 </style>
 

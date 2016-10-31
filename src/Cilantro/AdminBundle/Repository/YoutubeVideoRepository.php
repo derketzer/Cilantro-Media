@@ -29,6 +29,7 @@ class YoutubeVideoRepository extends \Doctrine\ORM\EntityRepository
         $query = $qb->select('v')
             ->groupBy('v.episode')
             ->where($qb->expr()->isNotNull('v.episode'))
+            ->orderBy('v.publishedAt', 'desc')
             ->getQuery();
 
         return $query->getResult();
