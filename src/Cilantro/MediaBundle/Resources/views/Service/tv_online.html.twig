@@ -23,7 +23,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <iframe src="https://www.youtube.com/embed/h2wcSgvMaFs" style="max-width:900px;max-height:500px;" frameborder="0" allowfullscreen></iframe>
+                    <video style="max-width:900px;max-height:500px;" controls>
+                        <source src="{{ asset('bundles/cilantromedia/images/servicios/tv_online_vid.mp4') }}" type="video/mp4">
+                    </video>
                 </div>
             </div>
 
@@ -33,7 +35,7 @@
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="bg-img">
                         <figure class="hvr-trim">
-                            <img src="{{ asset('bundles/cilantromedia/home-assets/images/service1.jpg') }}" alt="" class="img-responsive">
+                            <img src="{{ asset('bundles/cilantromedia/images/servicios/cm.jpg') }}" alt="" class="img-responsive">
                         </figure>
 
                     </div>
@@ -51,4 +53,12 @@
             <div style="clear: both;height:60px;"></div>
         </div>
     </section>
+{% endblock %}
+
+{% block styles %}
+    <style type="text/css">
+        .innerpage-banner{
+            background: url({{ asset('bundles/cilantromedia/images/servicios/tv_online.jpg ') }}) 80px -80px;
+        }
+    </style>
 {% endblock %}
