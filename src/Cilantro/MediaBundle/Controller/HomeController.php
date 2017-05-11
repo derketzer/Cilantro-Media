@@ -24,6 +24,14 @@ class HomeController extends Controller
     }
 
     /**
+     * @Route("/aviso-legal")
+     */
+    public function avisoLegalAction()
+    {
+        return $this->render('CilantroMediaBundle::aviso_legal.html.twig');
+    }
+
+    /**
      * @Route("/vision")
      */
     public function visionAction()
